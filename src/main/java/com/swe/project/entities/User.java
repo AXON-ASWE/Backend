@@ -58,4 +58,15 @@ public class User {
     protected void onCreate() {
         this.createdAt = LocalDateTime.now();
     }
+
+    /**
+     * Constructor for create new User form AuthRequest.
+     * @param username (default is email)
+     * @param password (default is already HASH)
+     */
+    public User(String username, String password) {
+        this.email = username;
+        this.passwordHash = password;
+
+    }
 }
