@@ -52,7 +52,7 @@ public class User {
     private LocalDateTime createdAt;
 
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    private List<Patient> patients = new ArrayList<>();
+    private List<Patients> patients = new ArrayList<>();
 
     @PrePersist
     protected void onCreate() {

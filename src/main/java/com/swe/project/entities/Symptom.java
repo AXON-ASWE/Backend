@@ -29,7 +29,7 @@ public class Symptom {
     private String tag;
 
     @ManyToMany(mappedBy = "symptoms", fetch = FetchType.LAZY)
-    private List<Department> departments = new ArrayList<>();
+    private List<Departments> departments = new ArrayList<>();
 
 
 }

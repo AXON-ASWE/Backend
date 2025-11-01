@@ -12,7 +12,7 @@ import java.util.List;
 @NoArgsConstructor
 @Entity
 @Table(name = "T_PATIENT")
-public class Patient {
+public class Patients {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -44,5 +44,5 @@ public class Patient {
      * One patient can have many appointments.
      */
     @OneToMany(mappedBy = "patient", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    private List<Appointment> appointments = new ArrayList<>();
+    private List<Appointments> appointments = new ArrayList<>();
 }

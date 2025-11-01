@@ -11,7 +11,7 @@ import java.time.LocalDateTime;
 @NoArgsConstructor
 @Entity
 @Table(name = "T_APPOINTMENT")
-public class Appointment {
+public class Appointments {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -23,12 +23,12 @@ public class Appointment {
      */
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "PATIENT_ID", nullable = false)
-    private Patient patient;
+    private Patients patient;
 
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "DOCTOR_ID", nullable = false)
-    private Doctor doctor;
+    private Doctors doctor;
 
     @Column(name = "APPOINTMENT_DATE")
     @Temporal(TemporalType.DATE)
