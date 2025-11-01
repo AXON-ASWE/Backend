@@ -9,7 +9,6 @@ import java.util.List;
 public class Departments {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "DEPARTMENT_ID")
     private Integer id;
 
     @Column(name = "DEPARTMENT_NAME", nullable = false)
@@ -24,8 +23,8 @@ public class Departments {
     @ManyToMany(fetch = FetchType.LAZY)
     @JoinTable(
             name = "T_DEPARTMENT_SYMPTOM",
-            joinColumns = @JoinColumn(name = "DEPARTMENT_ID"),
-            inverseJoinColumns = @JoinColumn(name = "SYMPTOM_ID")
+            joinColumns = @JoinColumn(name = "department_id", referencedColumnName="id"),
+            inverseJoinColumns = @JoinColumn(name = "symptom_id", referencedColumnName="symptom_id")
     )
     private List<Symptom> symptoms = new ArrayList<>();
 
