@@ -24,7 +24,7 @@ public class Patients {
      */
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "USER_ID", nullable = false)
-    private User user;
+    private Users user;
 
     @Column(name = "ADDRESS")
     private String address;

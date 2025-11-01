@@ -1,6 +1,6 @@
 package com.swe.project.services.user;
 
-import com.swe.project.entities.User;
+import com.swe.project.entities.Users;
 import com.swe.project.models.AuthRequest;
 import com.swe.project.models.createUserResponse;
 import com.swe.project.repositories.UserRepository;
@@ -15,7 +15,7 @@ public class UserService
     }
     public createUserResponse createUser(AuthRequest request){
         // To do Hash the Password( later)
-        userRepository.save(new User(request.getUsername(), request.getPassword()));
+        userRepository.save(new Users(request.getUsername(), request.getPassword()));
         return new createUserResponse(true);
     }
 }
