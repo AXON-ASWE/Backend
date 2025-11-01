@@ -1,47 +1,48 @@
 package com.swe.project.entities;
 
 import jakarta.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
+@Table(name = "T_DEPARTMENT")
 public class Departments {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "DEPARTMENT_ID")
     private Integer id;
+
+    @Column(name = "DEPARTMENT_NAME", nullable = false)
     private String departmentName;
+
+    @Column(name = "DESCRIPTION")
     private String description;
+
+    @Column(name = "LOCATION")
     private String location;
-    public Departments(){}
 
-    public Integer getId() {
-        return id;
-    }
+    @ManyToMany(fetch = FetchType.LAZY)
+    @JoinTable(
+            name = "T_DEPARTMENT_SYMPTOM",
+            joinColumns = @JoinColumn(name = "DEPARTMENT_ID"),
+            inverseJoinColumns = @JoinColumn(name = "SYMPTOM_ID")
+    )
+    private List<Symptom> symptoms = new ArrayList<>();
 
-    public void setId(Integer id) {
-        this.id = id;
-    }
+    public Departments() {}
 
-    public String getDepartmentName() {
-        return departmentName;
-    }
+    public Integer getId() { return id; }
+    public void setId(Integer id) { this.id = id; }
 
-    public void setDepartmentName(String departmentName) {
-        this.departmentName = departmentName;
-    }
+    public String getDepartmentName() { return departmentName; }
+    public void setDepartmentName(String departmentName) { this.departmentName = departmentName; }
 
-    public String getDescription() {
-        return description;
-    }
+    public String getDescription() { return description; }
+    public void setDescription(String description) { this.description = description; }
 
-    public void setDescription(String description) {
-        this.description = description;
-    }
+    public String getLocation() { return location; }
+    public void setLocation(String location) { this.location = location; }
 
-    public String getLocation() {
-        return location;
-    }
-
-    public void setLocation(String location) {
-        this.location = location;
-    }
-
+    public List<Symptom> getSymptoms() { return symptoms; }
+    public void setSymptoms(List<Symptom> symptoms) { this.symptoms = symptoms; }
 }
