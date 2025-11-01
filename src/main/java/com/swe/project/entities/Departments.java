@@ -1,7 +1,9 @@
 package com.swe.project.entities;
 
 import jakarta.persistence.*;
+import lombok.Data;
 
+@Data
 @Entity
 public class Departments {
     @Id
