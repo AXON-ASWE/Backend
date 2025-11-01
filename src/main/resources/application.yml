@@ -11,3 +11,23 @@ spring:
       hibernate:
         format_sql: true
     database: POSTGRESQL
+
+# OpenAPI/Swagger Configuration
+springdoc:
+  api-docs:
+    path: /api-docs
+    enabled: true
+  swagger-ui:
+    path: /swagger-ui.html
+    enabled: true
+    operationsSorter: method
+    tagsSorter: alpha
+    try-it-out-enabled: true
+    filter: true
+    display-request-duration: true
+
+# Application specific OpenAPI settings
+application:
+  openapi:
+    dev-url: http://localhost:8080
+    prod-url: 
