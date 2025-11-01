@@ -45,8 +45,7 @@ public class Appointments {
     @Column(name = "STATUS")
     private String status;
 
-    @Lob // Use @Lob for potentially long text like notes
-    @Column(name = "NOTES")
+    @Column(name = "NOTES", columnDefinition = "TEXT")
     private String notes;
 
     @Column(name = "CREATED_AT", updatable = false, nullable = false)

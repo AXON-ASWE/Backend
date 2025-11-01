@@ -4,6 +4,7 @@ import com.swe.project.entities.Departments;
 import com.swe.project.entities.Doctors;
 import com.swe.project.models.createDoctorsRequest;
 import com.swe.project.models.createDoctorsResponse;
+import com.swe.project.models.DoctorResponse;
 import com.swe.project.repositories.DepartmentRepository;
 import com.swe.project.repositories.DoctorRepository;
 import lombok.RequiredArgsConstructor;
@@ -11,6 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
@@ -19,8 +21,11 @@ public class DoctorService {
     private final DoctorRepository doctorRepository;
     private final DepartmentRepository departmentRepository;
 
-    public List<Doctors> getDoctorsByDepartmentId(Integer departmentId) {
-        return doctorRepository.findByDepartment_Id(departmentId);
+    public List<DoctorResponse> getDoctorsByDepartmentId(Integer departmentId) {
+        List<Doctors> doctors = doctorRepository.findByDepartment_Id(departmentId);
+        return doctors.stream()
+                .map(DoctorResponse::new)
+                .collect(Collectors.toList());
     }
 
     /**

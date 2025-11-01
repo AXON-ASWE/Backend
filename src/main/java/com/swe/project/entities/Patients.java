@@ -29,8 +29,7 @@ public class Patients {
     @Column(name = "ADDRESS")
     private String address;
 
-    @Lob // For large text
-    @Column(name = "MEDICAL_HISTORY")
+    @Column(name = "MEDICAL_HISTORY", columnDefinition = "TEXT")
     private String medicalHistory;
 
     @Column(name = "EMERGENCY_CONTACT")

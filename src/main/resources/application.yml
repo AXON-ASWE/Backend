@@ -11,6 +11,12 @@ spring:
       hibernate:
         format_sql: true
     database: POSTGRESQL
+    defer-datasource-initialization: true
+  sql:
+    init:
+      mode: always
+      data-locations: classpath:data.sql
+      encoding: UTF-8
 
 # OpenAPI/Swagger Configuration
 springdoc:
