@@ -6,16 +6,18 @@ import com.swe.project.models.createDoctorsRequest;
 import com.swe.project.models.createDoctorsResponse;
 import com.swe.project.repositories.DepartmentRepository;
 import com.swe.project.repositories.DoctorRepository;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import java.util.List;
 
 @Service
+@RequiredArgsConstructor
 public class DoctorService {
     @Autowired
-    private DoctorRepository doctorRepository;
-    private DepartmentRepository departmentRepository;
+    private final DoctorRepository doctorRepository;
+    private final DepartmentRepository departmentRepository;
 
     public List<Doctors> getDoctorsByDepartmentId(Integer departmentId) {
         return doctorRepository.findByDepartment_Id(departmentId);
