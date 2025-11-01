@@ -1,35 +1,50 @@
 package com.swe.project.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
-import lombok.Data;
-import lombok.NoArgsConstructor;
 
-import java.util.ArrayList;
-import java.util.List;
-
-@Data
-@NoArgsConstructor
 @Entity
 @Table(name = "T_SYMPTOM")
 public class Symptom {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "SYMPTOM_ID")
     private Integer id;
 
-    @Column(name = "SYMPTOM_NAME", nullable = false)
+    @Column(nullable = false)
     private String symptomName;
 
-    @Lob
-    @Column(name = "DESCRIPTION")
+    @Column(nullable = true)
     private String description;
 
-    @Column(name = "TAG")
-    private String tag;
+    // A no-argument constructor is required by JPA
+    public Symptom() {
+    }
 
-    @ManyToMany(mappedBy = "symptoms", fetch = FetchType.LAZY)
-    private List<Departments> departments = new ArrayList<>();
+    // --- Getters and Setters ---
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+    public String getSymptomName() {
+        return symptomName;
+    }
+
+    public void setSymptomName(String symptomName) {
+        this.symptomName = symptomName;
+    }
+
+    @JsonIgnore
+    public String getDescription() {
+        return description;
+    }
 
 
+    public void setDescription(String description) {
+        this.description = description;
+    }
 }
