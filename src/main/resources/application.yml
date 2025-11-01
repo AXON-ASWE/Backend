@@ -1,8 +1,8 @@
 spring:
   datasource:
     url: jdbc:postgresql://localhost:5433/axonproject
-    username:
-    password:
+    username: postgres
+    password: yasuo20gg
   jpa:
     hibernate:
       ddl-auto: 'update'
