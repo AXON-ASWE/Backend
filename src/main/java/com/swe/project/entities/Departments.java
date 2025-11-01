@@ -3,7 +3,9 @@ package com.swe.project.entities;
 import jakarta.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
+import lombok.Data;
 
+@Data
 @Entity
 @Table(name = "T_DEPARTMENT")
 public class Departments {
@@ -30,18 +32,36 @@ public class Departments {
 
     public Departments() {}
 
-    public Integer getId() { return id; }
-    public void setId(Integer id) { this.id = id; }
+    public Integer getId() {
+        return id;
+    }
 
-    public String getDepartmentName() { return departmentName; }
-    public void setDepartmentName(String departmentName) { this.departmentName = departmentName; }
+    public void setId(Integer id) {
+        this.id = id;
+    }
 
-    public String getDescription() { return description; }
-    public void setDescription(String description) { this.description = description; }
+    public String getDepartmentName() {
+        return departmentName;
+    }
 
-    public String getLocation() { return location; }
-    public void setLocation(String location) { this.location = location; }
+    public void setDepartmentName(String departmentName) {
+        this.departmentName = departmentName;
+    }
 
-    public List<Symptom> getSymptoms() { return symptoms; }
-    public void setSymptoms(List<Symptom> symptoms) { this.symptoms = symptoms; }
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public String getLocation() {
+        return location;
+    }
+
+    public void setLocation(String location) {
+        this.location = location;
+    }
+
 }
