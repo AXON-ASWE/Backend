@@ -32,4 +32,21 @@ build/
 ### VS Code ###
 .vscode/
 
+### Secrets and Environment ###
 **secret.yml**
+.env
+.env.local
+.env.*.local
+.env.staging.local
+.env.production.local
+
+### Docker ###
+docker-compose.override.yml
+
+### Logs ###
+*.log
+logs/
+
+### OS ###
+.DS_Store
+Thumbs.db
