@@ -8,7 +8,6 @@ import com.swe.project.models.DoctorResponse;
 import com.swe.project.repositories.DepartmentRepository;
 import com.swe.project.repositories.DoctorRepository;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import java.util.List;
@@ -17,7 +16,6 @@ import java.util.stream.Collectors;
 @Service
 @RequiredArgsConstructor
 public class DoctorService {
-    @Autowired
     private final DoctorRepository doctorRepository;
     private final DepartmentRepository departmentRepository;
 
