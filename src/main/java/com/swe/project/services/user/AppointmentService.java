@@ -3,6 +3,8 @@ package com.swe.project.services.user;
 import com.swe.project.entities.Appointments;
 import com.swe.project.entities.Doctors;
 import com.swe.project.entities.Patients;
+import com.swe.project.models.DoctorAppointmentResponseDTO;
+import com.swe.project.models.PatientAppointmentResponseDTO;
 import com.swe.project.models.TimeSlotResponse;
 import com.swe.project.repositories.AppointmentRepository;
 import com.swe.project.repositories.DoctorRepository;
@@ -11,9 +13,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Service
 public class AppointmentService {
@@ -64,5 +68,32 @@ public class AppointmentService {
     public boolean cancelAppointment(Integer appointmentId){
         int updated = appointmentRepository.cancelAppointment(appointmentId);
         return updated > 0;
+    }
+
+    public boolean rescheduleAppointment(Integer appointmentId, LocalDate appointmentDate, int timeSlot) {
+        int rescheduled = appointmentRepository.updateAppointment(appointmentId,appointmentDate,timeSlot, LocalDateTime.now());
+        return rescheduled > 0;
+    }
+    public List<PatientAppointmentResponseDTO> getListPatientAppointments(Integer patientId) {
+        Optional<Patients> patientOpt = patientRepository.findById(patientId);
+
+        if (patientOpt.isEmpty()) {
+            return null;
+        }
+        List<Appointments> listPatientAppointment =  appointmentRepository.findByPatient_Id(patientId);
+        return listPatientAppointment.stream()
+                .map(PatientAppointmentResponseDTO::new)
+                .collect(Collectors.toList());
+    }
+    public List<DoctorAppointmentResponseDTO> getListDoctorAppointments(Integer doctorId) {
+        Optional<Doctors> doctorOpt = doctorRepository.findById(doctorId);
+
+        if (doctorOpt.isEmpty()) {
+            return null;
+        }
+        List<Appointments> listPatientAppointment =  appointmentRepository.findByDoctor_Id(doctorId);
+        return listPatientAppointment.stream()
+                .map(DoctorAppointmentResponseDTO::new)
+                .collect(Collectors.toList());
     }
 }
