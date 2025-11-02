@@ -1,7 +1,7 @@
 package com.swe.project.controllers;
 
 import com.swe.project.entities.Symptom;
-import com.swe.project.models.SymtomResponse;
+import com.swe.project.models.SymptomResponse;
 import com.swe.project.services.user.SymptomService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -19,7 +19,7 @@ public class SymptomController {
     private SymptomService symptomService;
 
     @GetMapping("/names")
-    public ResponseEntity<List<SymtomResponse>> getAllSymptoms() {
+    public ResponseEntity<List<SymptomResponse>> getAllSymptoms() {
         return ResponseEntity.ok(symptomService.getAllSymptoms());
     }
 }
