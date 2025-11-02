@@ -45,6 +45,7 @@ jobs:
           context: .
           file: ./Dockerfile
           push: true
+          no-cache: false
           tags: |
             ${{ env.DOCKER_IMAGE }}:${{ steps.extract_branch.outputs.tag }}
             ${{ env.DOCKER_IMAGE }}:${{ github.sha }}
