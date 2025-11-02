@@ -33,9 +33,6 @@ public class Doctors {
     @Column(nullable = true)
     private int experience=0;
 
-    @Column(nullable = false)
-    private int experience = 0;
-
     @Column(nullable = true)
     private String doctorEmail;
 

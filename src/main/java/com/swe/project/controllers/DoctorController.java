@@ -9,9 +9,7 @@ import com.swe.project.services.user.DoctorService;
 import com.swe.project.services.user.UserService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 
 import java.util.List;
@@ -24,9 +22,9 @@ public class DoctorController {
         this.doctorService = doctorService;
     }
 
-    @PostMapping("doctor")
-    public ResponseEntity<List<DoctorResponse>> authenticate(@RequestBody FindDoctorByDepartment request){
-        return ResponseEntity.ok(doctorService.getDoctorsByDepartmentId(request.getDepartmentId()));
+    @GetMapping("doctor")
+    public ResponseEntity<List<DoctorResponse>> getDoctor(@RequestParam Integer departmentId){
+        return ResponseEntity.ok(doctorService.getDoctorsByDepartmentId(departmentId));
     }
 
     @PostMapping("doctor/create")
