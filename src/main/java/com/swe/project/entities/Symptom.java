@@ -5,6 +5,7 @@ import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import lombok.ToString;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -30,6 +31,7 @@ public class Symptom {
     @Column(name = "TAG")
     private String tag;
 
+    @ToString.Exclude
     @ManyToMany(mappedBy = "symptoms", fetch = FetchType.LAZY)
     private List<Departments> departments = new ArrayList<>();
 }

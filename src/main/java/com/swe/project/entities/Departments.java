@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 import lombok.Data;
+import lombok.ToString;
 
 @Data
 @Entity
@@ -22,6 +23,7 @@ public class Departments {
     @Column(name = "LOCATION")
     private String location;
 
+    @ToString.Exclude
     @ManyToMany(fetch = FetchType.LAZY)
     @JoinTable(
             name = "T_DEPARTMENT_SYMPTOM",
@@ -29,39 +31,4 @@ public class Departments {
             inverseJoinColumns = @JoinColumn(name = "symptom_id", referencedColumnName="symptom_id")
     )
     private List<Symptom> symptoms = new ArrayList<>();
-
-    public Departments() {}
-
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
-    }
-
-    public String getDepartmentName() {
-        return departmentName;
-    }
-
-    public void setDepartmentName(String departmentName) {
-        this.departmentName = departmentName;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
-    }
-
-    public String getLocation() {
-        return location;
-    }
-
-    public void setLocation(String location) {
-        this.location = location;
-    }
-
 }
