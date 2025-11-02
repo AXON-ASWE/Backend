@@ -5,6 +5,7 @@ import com.swe.project.models.AuthRequest;
 import com.swe.project.models.createUserResponse;
 import com.swe.project.repositories.UserRepository;
 import org.springframework.stereotype.Service;
+
 @Service
 public class UserService
 {

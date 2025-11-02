@@ -1,9 +1,12 @@
 package com.swe.project.controllers;
 
+import com.swe.project.entities.Doctors;
 import com.swe.project.models.DoctorResponse;
+import com.swe.project.models.FindDoctorByDepartment;
 import com.swe.project.models.createDoctorsRequest;
 import com.swe.project.models.createDoctorsResponse;
 import com.swe.project.services.user.DoctorService;
+import com.swe.project.services.user.UserService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;

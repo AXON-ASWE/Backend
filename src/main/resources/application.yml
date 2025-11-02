@@ -42,4 +42,4 @@ springdoc:
 application:
   openapi:
     dev-url: http://localhost:8080
-    prod-url: 
+    prod-url:
