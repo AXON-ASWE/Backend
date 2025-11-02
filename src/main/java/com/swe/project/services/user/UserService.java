@@ -15,7 +15,10 @@ public class UserService
     }
     public createUserResponse createUser(AuthRequest request){
         // TODO: Hash the Password (later)
-        userRepository.save(new Users(request.getUsername(), request.getPassword()));
+        Users user = new Users();
+        user.setUsername(request.getUsername());
+        user.setPassword(request.getPassword());
+        userRepository.save(user);
         return new createUserResponse(true);
     }
 }
