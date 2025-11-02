@@ -1,11 +1,11 @@
 package com.swe.project.models;
 
-public class SymtomResponse {
+public class SymptomResponse {
     private Integer id;
     private String name;
 
-    public SymtomResponse() {}
-    public SymtomResponse(Integer id, String name) {
+    public SymptomResponse() {}
+    public SymptomResponse(Integer id, String name) {
         this.id = id;
         this.name = name;
     }
