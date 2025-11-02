@@ -41,7 +41,7 @@ jobs:
           restore-keys: ${{ runner.os }}-m2
 
       - name: Run tests with Maven
-        run: mvn clean test
+        run: mvn clean test -Dspring.profiles.active=test
 
       - name: Publish Test Results
         uses: EnricoMi/publish-unit-test-result-action@v2
