@@ -1,16 +1,12 @@
 package com.swe.project.controllers;
 
 import com.swe.project.models.DoctorResponse;
-import com.swe.project.models.FindDoctorByDepartment;
 import com.swe.project.models.createDoctorsRequest;
 import com.swe.project.models.createDoctorsResponse;
 import com.swe.project.services.user.DoctorService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 
 import java.util.List;
@@ -24,8 +20,8 @@ public class DoctorController {
     }
 
     @GetMapping("doctor")
-    public ResponseEntity<List<DoctorResponse>> getDoctor(@RequestBody FindDoctorByDepartment request){
-        return ResponseEntity.ok(doctorService.getDoctorsByDepartmentId(request.getDepartmentId()));
+    public ResponseEntity<List<DoctorResponse>> getDoctor(@RequestParam Integer departmentId){
+        return ResponseEntity.ok(doctorService.getDoctorsByDepartmentId(departmentId));
     }
 
     @PostMapping("doctor/create")

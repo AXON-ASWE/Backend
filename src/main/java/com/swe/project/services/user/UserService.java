@@ -14,7 +14,7 @@ public class UserService
         this.userRepository = userRepository;
     }
     public createUserResponse createUser(AuthRequest request){
-        // To do Hash the Password( later)
+        // TODO: Hash the Password (later)
         userRepository.save(new Users(request.getUsername(), request.getPassword()));
         return new createUserResponse(true);
     }
