@@ -1,8 +1,10 @@
 spring:
+  config: import: "optional:classpath:secret.yml"
   datasource:
     url: jdbc:postgresql://localhost:5433/axonproject
-    username: postgres
-    password: yasuo20gg
+    username: ${DB_USERNAME:postgres}
+    password: ${DB_PASSWORD:yasuo20gg}
+    driver-class-name: org.postgresql.Driver
   jpa:
     hibernate:
       ddl-auto: 'create-drop'
