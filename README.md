@@ -8,7 +8,7 @@ The application uses environment variables for database credentials. You can ove
 
 - `SPRING_DATASOURCE_URL`: Database connection URL (default: `jdbc:postgresql://localhost:5433/axonproject`)
 - `SPRING_DATASOURCE_USERNAME`: Database username (default: `postgres`)
-- `SPRING_DATASOURCE_PASSWORD`: Database password (default: `yasuo20gg`)
+- `SPRING_DATASOURCE_PASSWORD`: Database password (no public default - set this for production)
 
 #### Example Usage
 
