@@ -5,6 +5,7 @@ import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import lombok.ToString;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -27,19 +28,10 @@ public class Symptom {
     @Column(nullable = true)
     private String description;
 
-    // A no-argument constructor is required by JPA
-
-
-    // --- Getters and Setters ---
-    public Integer getId() {
-        return id;
-    }
     @Column(name = "TAG")
     private String tag;
 
-    public void setId(Integer id) {
-        this.id = id;
-    }
+    @ToString.Exclude
     @ManyToMany(mappedBy = "symptoms", fetch = FetchType.LAZY)
     private List<Departments> departments = new ArrayList<>();
 }

@@ -3,6 +3,7 @@ package com.swe.project.entities;
 import jakarta.persistence.*;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import lombok.ToString;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.time.LocalDateTime;
@@ -21,11 +22,13 @@ public class Appointments {
     /**
      * Many appointments belong to one patient.
      */
+    @ToString.Exclude
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "PATIENT_ID", nullable = false)
     private Patients patient;
 
 
+    @ToString.Exclude
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "DOCTOR_ID", nullable = false)
     private Doctors doctor;
@@ -45,8 +48,7 @@ public class Appointments {
     @Column(name = "STATUS")
     private String status;
 
-    @Lob // Use @Lob for potentially long text like notes
-    @Column(name = "NOTES")
+    @Column(name = "NOTES", columnDefinition = "TEXT")
     private String notes;
 
     @Column(name = "CREATED_AT", updatable = false, nullable = false)

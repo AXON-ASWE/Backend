@@ -5,6 +5,7 @@ import com.swe.project.models.AuthRequest;
 import com.swe.project.models.createUserResponse;
 import com.swe.project.repositories.UserRepository;
 import org.springframework.stereotype.Service;
+
 @Service
 public class UserService
 {
@@ -14,8 +15,11 @@ public class UserService
         this.userRepository = userRepository;
     }
     public createUserResponse createUser(AuthRequest request){
-        // To do Hash the Password( later)
-        userRepository.save(new Users(request.getUsername(), request.getPassword()));
+        // TODO: Hash the Password (later)
+        Users user = new Users();
+        user.setUsername(request.getUsername());
+        user.setPassword(request.getPassword());
+        userRepository.save(user);
         return new createUserResponse(true);
     }
 }

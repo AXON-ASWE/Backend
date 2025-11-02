@@ -1,7 +1,7 @@
 package com.swe.project.controllers;
 
 import com.swe.project.entities.Doctors;
-import com.swe.project.models.AuthRequest;
+import com.swe.project.models.DoctorResponse;
 import com.swe.project.models.FindDoctorByDepartment;
 import com.swe.project.models.createDoctorsRequest;
 import com.swe.project.models.createDoctorsResponse;
@@ -25,7 +25,7 @@ public class DoctorController {
     }
 
     @PostMapping("doctor")
-    public ResponseEntity<List<Doctors>> authenticate(@RequestBody FindDoctorByDepartment request){
+    public ResponseEntity<List<DoctorResponse>> authenticate(@RequestBody FindDoctorByDepartment request){
         return ResponseEntity.ok(doctorService.getDoctorsByDepartmentId(request.getDepartmentId()));
     }
 
