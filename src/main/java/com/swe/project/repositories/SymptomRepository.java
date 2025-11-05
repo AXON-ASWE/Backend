@@ -1,6 +1,6 @@
 package com.swe.project.repositories;
 
-import com.swe.project.entities.Symptom;
+import com.swe.project.entities.symptoms.Symptom;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

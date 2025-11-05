@@ -1,6 +1,6 @@
 package com.swe.project.services;
 
-import com.swe.project.entities.Symptom;
+import com.swe.project.entities.symptoms.Symptom;
 import com.swe.project.models.SymptomResponse;
 import com.swe.project.repositories.SymptomRepository;
 import lombok.RequiredArgsConstructor;

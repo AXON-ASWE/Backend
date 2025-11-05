@@ -1,7 +1,6 @@
 package com.swe.project.models;
 
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 
 public class RescheduleAppointmentRequest {
     LocalDate appointmentDate;

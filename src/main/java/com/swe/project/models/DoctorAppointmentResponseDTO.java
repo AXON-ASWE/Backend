@@ -1,12 +1,11 @@
 package com.swe.project.models;
 
-import com.swe.project.entities.Appointments;
+import com.swe.project.entities.appointments.Appointments;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor

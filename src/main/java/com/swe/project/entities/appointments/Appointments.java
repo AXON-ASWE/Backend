@@ -1,11 +1,13 @@
-package com.swe.project.entities;
+package com.swe.project.entities.appointments;
 
+import com.swe.project.entities.doctors.Doctors;
+import com.swe.project.entities.patients.Patients;
 import jakarta.persistence.*;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
+
 import java.time.LocalDate;
-import java.time.LocalTime;
 import java.time.LocalDateTime;
 
 @Data

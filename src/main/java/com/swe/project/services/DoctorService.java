@@ -1,7 +1,7 @@
 package com.swe.project.services;
 
-import com.swe.project.entities.Departments;
-import com.swe.project.entities.Doctors;
+import com.swe.project.entities.departments.Departments;
+import com.swe.project.entities.doctors.Doctors;
 import com.swe.project.models.CreateDoctorRequest;
 import com.swe.project.models.CreateDoctorResponse;
 import com.swe.project.models.DoctorResponse;
@@ -43,10 +43,10 @@ public class DoctorService {
 
         // 2. Create a new Doctors object (from Doctors.java file)
         Doctors newDoctor = new Doctors();
-        newDoctor.setDoctorName(request.getDoctorName());
-        newDoctor.setExperience(request.getExperience());
-        newDoctor.setDoctorEmail(request.getDoctorEmail());
-        newDoctor.setDoctorPhone(request.getDoctorPhone());
+        newDoctor.setFullName(request.getDoctorName());
+        newDoctor.setExperienceYears(request.getExperience());
+        newDoctor.setEmail(request.getDoctorEmail());
+        newDoctor.setPhone(request.getDoctorPhone());
 
         // 3. Assign the found department
         newDoctor.setDepartment(department);

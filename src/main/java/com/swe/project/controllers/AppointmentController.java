@@ -1,6 +1,6 @@
 package com.swe.project.controllers;
 
-import com.swe.project.entities.Appointments;
+import com.swe.project.entities.appointments.Appointments;
 import com.swe.project.models.*;
 import com.swe.project.services.AppointmentService;
 import lombok.RequiredArgsConstructor;
@@ -48,8 +48,8 @@ public class AppointmentController {
         );
         AppointmentResponseDTO response = new AppointmentResponseDTO(
                 appointment.getId(),
-                appointment.getDoctor().getDoctorName(),
-                appointment.getPatient().getUser().getUsername(),
+                appointment.getDoctor().getFullName(),
+                appointment.getPatient().getFullName(),
                 appointment.getAppointmentDate(),
                 appointment.getTimeSlot(),
                 appointment.getStatus()

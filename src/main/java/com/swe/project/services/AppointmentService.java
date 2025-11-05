@@ -1,8 +1,8 @@
 package com.swe.project.services;
 
-import com.swe.project.entities.Appointments;
-import com.swe.project.entities.Doctors;
-import com.swe.project.entities.Patients;
+import com.swe.project.entities.appointments.Appointments;
+import com.swe.project.entities.doctors.Doctors;
+import com.swe.project.entities.patients.Patients;
 import com.swe.project.models.DoctorAppointmentResponseDTO;
 import com.swe.project.models.PatientAppointmentResponseDTO;
 import com.swe.project.models.TimeSlotResponse;
@@ -79,7 +79,7 @@ public class AppointmentService {
             return null;
         }
         
-        List<Appointments> listPatientAppointment = appointmentRepository.findByPatient_Id(patientId);
+        List<Appointments> listPatientAppointment = appointmentRepository.findByPatient_UserId(patientId);
         return listPatientAppointment.stream()
                 .map(PatientAppointmentResponseDTO::new)
                 .collect(Collectors.toList());
@@ -92,7 +92,7 @@ public class AppointmentService {
             return null;
         }
         
-        List<Appointments> listPatientAppointment = appointmentRepository.findByDoctor_Id(doctorId);
+        List<Appointments> listPatientAppointment = appointmentRepository.findByDoctor_UserId(doctorId);
         return listPatientAppointment.stream()
                 .map(DoctorAppointmentResponseDTO::new)
                 .collect(Collectors.toList());
