@@ -1,23 +1,22 @@
-package com.swe.project.services.user;
+package com.swe.project.services;
 
 import com.swe.project.entities.Departments;
 import com.swe.project.entities.Doctors;
-import com.swe.project.models.createDoctorsRequest;
-import com.swe.project.models.createDoctorsResponse;
+import com.swe.project.models.CreateDoctorRequest;
+import com.swe.project.models.CreateDoctorResponse;
 import com.swe.project.models.DoctorResponse;
 import com.swe.project.repositories.DepartmentRepository;
 import com.swe.project.repositories.DoctorRepository;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
 import java.util.List;
 import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
 public class DoctorService {
-    @Autowired
     private final DoctorRepository doctorRepository;
     private final DepartmentRepository departmentRepository;
 
@@ -27,19 +26,19 @@ public class DoctorService {
                 .map(DoctorResponse::new)
                 .collect(Collectors.toList());
     }
+
     /**
      * Business logic to create a new Doctor profile
      */
     @Transactional
-    public createDoctorsResponse createDoctor(createDoctorsRequest request) {
-
+    public CreateDoctorResponse createDoctor(CreateDoctorRequest request) {
         // 1. Find the department
         Departments department = departmentRepository.findById(request.getDepartmentId())
                 .orElse(null);
 
         if (department == null) {
             // Return an error response if not found
-            return new createDoctorsResponse(false, "Department not found with ID: " + request.getDepartmentId());
+            return new CreateDoctorResponse(false, "Department not found with ID: " + request.getDepartmentId());
         }
 
         // 2. Create a new Doctors object (from Doctors.java file)
@@ -56,10 +55,10 @@ public class DoctorService {
         try {
             doctorRepository.save(newDoctor);
             // Return a success response
-            return new createDoctorsResponse(true);
+            return new CreateDoctorResponse(true);
         } catch (Exception e) {
             // Return an error response if the database throws an error
-            return new createDoctorsResponse(false, e.getMessage());
+            return new CreateDoctorResponse(false, e.getMessage());
         }
     }
 }

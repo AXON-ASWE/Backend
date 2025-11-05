@@ -1,9 +1,11 @@
 package com.swe.project.models;
+
 import lombok.Data;
-import java.time.LocalDate;
+import lombok.NoArgsConstructor;
 
 @Data
-public class createDoctorsRequest {
+@NoArgsConstructor
+public class CreateDoctorRequest {
     private String doctorName;
     private Integer departmentId;
     private int experience = 0;
