@@ -38,13 +38,6 @@ public class Appointments {
     @Temporal(TemporalType.DATE)
     private LocalDate appointmentDate;
 
-//    @Column(name = "START_TIME")
-//    @Temporal(TemporalType.TIME)
-//    private LocalTime startTime;
-//
-//    @Column(name = "END_TIME")
-//    @Temporal(TemporalType.TIME)
-//    private LocalTime endTime;
     @Column(name = "TIME_SLOT")
     private int timeSlot;
 
