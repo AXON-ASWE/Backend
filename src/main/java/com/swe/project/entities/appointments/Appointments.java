@@ -1,11 +1,13 @@
-package com.swe.project.entities;
+package com.swe.project.entities.appointments;
 
+import com.swe.project.entities.doctors.Doctors;
+import com.swe.project.entities.patients.Patients;
 import jakarta.persistence.*;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
+
 import java.time.LocalDate;
-import java.time.LocalTime;
 import java.time.LocalDateTime;
 
 @Data
@@ -38,13 +40,6 @@ public class Appointments {
     @Temporal(TemporalType.DATE)
     private LocalDate appointmentDate;
 
-//    @Column(name = "START_TIME")
-//    @Temporal(TemporalType.TIME)
-//    private LocalTime startTime;
-//
-//    @Column(name = "END_TIME")
-//    @Temporal(TemporalType.TIME)
-//    private LocalTime endTime;
     @Column(name = "TIME_SLOT")
     private int timeSlot;
 

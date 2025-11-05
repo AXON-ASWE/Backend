@@ -1,6 +1,6 @@
 package com.swe.project.models;
 
-import com.swe.project.entities.Appointments;
+import com.swe.project.entities.appointments.Appointments;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -18,7 +18,7 @@ public class PatientAppointmentResponseDTO {
     private String status;
     public PatientAppointmentResponseDTO(Appointments appointment) {
         appointmentId = appointment.getId();
-        doctorName = appointment.getDoctor().getDoctorName();
+        doctorName = appointment.getDoctor().getFullName();
         appointmentDate = appointment.getAppointmentDate();
         departmentName = appointment.getDoctor().getDepartment().getDepartmentName();
         status = appointment.getStatus();

@@ -2,196 +2,213 @@
 -- MOCK DATA FOR AXON PROJECT DATABASE
 -- ============================================
 
--- Insert Users (T_USER)
-INSERT INTO T_USER (id, username, password) VALUES
-(1, 'admin', '$2a$10$slYQmyNdGzTn7ZLBXBChFOC9f6kFjAqPhccnP6DxlWXx2lPk1C3G6'), -- password: admin123
-(2, 'john.doe', '$2a$10$slYQmyNdGzTn7ZLBXBChFOC9f6kFjAqPhccnP6DxlWXx2lPk1C3G6'), -- password: admin123
-(3, 'jane.smith', '$2a$10$slYQmyNdGzTn7ZLBXBChFOC9f6kFjAqPhccnP6DxlWXx2lPk1C3G6'),
-(4, 'bob.wilson', '$2a$10$slYQmyNdGzTn7ZLBXBChFOC9f6kFjAqPhccnP6DxlWXx2lPk1C3G6'),
-(5, 'alice.brown', '$2a$10$slYQmyNdGzTn7ZLBXBChFOC9f6kFjAqPhccnP6DxlWXx2lPk1C3G6'),
-(6, 'charlie.davis', '$2a$10$slYQmyNdGzTn7ZLBXBChFOC9f6kFjAqPhccnP6DxlWXx2lPk1C3G6');
+-- Insert Admins (T_ADMINS - extends Users)
+INSERT INTO T_ADMINS (EMAIL, PASSWORD_HASH, FULL_NAME, PHONE, GENDER, DATE_OF_BIRTH, ROLE, STATUS, CREATED_AT) VALUES
+('admin@hospital.com', '$2a$10$slYQmyNdGzTn7ZLBXBChFOC9f6kFjAqPhccnP6DxlWXx2lPk1C3G6', 'System Administrator', '555-9999', 'Other', '1985-01-15', 'ADMIN', 'ACTIVE', '2024-01-01');
+
+-- Insert Patients (T_PATIENTS - extends Users)
+INSERT INTO T_PATIENTS (EMAIL, PASSWORD_HASH, FULL_NAME, PHONE, GENDER, DATE_OF_BIRTH, ROLE, STATUS, CREATED_AT, ADDRESS, EMERGENCY_CONTACT, INSURANCE_NUMBER) VALUES
+('john.doe@email.com', '$2a$10$slYQmyNdGzTn7ZLBXBChFOC9f6kFjAqPhccnP6DxlWXx2lPk1C3G6', 'John Doe', '555-0201', 'Male', '1980-05-20', 'PATIENT', 'ACTIVE', '2024-01-15', '123 Main St, New York, NY 10001', '555-1001', 'INS-001-2024'),
+('jane.smith@email.com', '$2a$10$slYQmyNdGzTn7ZLBXBChFOC9f6kFjAqPhccnP6DxlWXx2lPk1C3G6', 'Jane Smith', '555-0202', 'Female', '1992-08-15', 'PATIENT', 'ACTIVE', '2024-01-16', '456 Oak Ave, Los Angeles, CA 90001', '555-1002', 'INS-002-2024'),
+('bob.wilson@email.com', '$2a$10$slYQmyNdGzTn7ZLBXBChFOC9f6kFjAqPhccnP6DxlWXx2lPk1C3G6', 'Bob Wilson', '555-0203', 'Male', '1988-03-10', 'PATIENT', 'ACTIVE', '2024-01-17', '789 Pine Rd, Chicago, IL 60601', '555-1003', 'INS-003-2024'),
+('alice.brown@email.com', '$2a$10$slYQmyNdGzTn7ZLBXBChFOC9f6kFjAqPhccnP6DxlWXx2lPk1C3G6', 'Alice Brown', '555-0204', 'Female', '1995-11-25', 'PATIENT', 'ACTIVE', '2024-01-18', '321 Elm St, Houston, TX 77001', '555-1004', 'INS-004-2024'),
+('charlie.davis@email.com', '$2a$10$slYQmyNdGzTn7ZLBXBChFOC9f6kFjAqPhccnP6DxlWXx2lPk1C3G6', 'Charlie Davis', '555-0205', 'Male', '1975-07-08', 'PATIENT', 'ACTIVE', '2024-01-19', '654 Maple Dr, Phoenix, AZ 85001', '555-1005', 'INS-005-2024');
 
 -- Insert Symptoms (T_SYMPTOM)
-INSERT INTO T_SYMPTOM (symptom_id, symptom_name, description, tag) VALUES
-(1, 'Fever', 'High body temperature', 'common'),
-(2, 'Headache', 'Pain in head region', 'common'),
-(3, 'Chest Pain', 'Discomfort in chest area', 'urgent'),
-(4, 'Shortness of Breath', 'Difficulty breathing', 'urgent'),
-(5, 'Cough', 'Persistent coughing', 'common'),
-(6, 'Fatigue', 'Extreme tiredness', 'common'),
-(7, 'Nausea', 'Feeling of sickness', 'common'),
-(8, 'Dizziness', 'Feeling lightheaded', 'common'),
-(9, 'Abdominal Pain', 'Pain in stomach area', 'moderate'),
-(10, 'Back Pain', 'Pain in back region', 'moderate'),
-(11, 'Joint Pain', 'Pain in joints', 'moderate'),
-(12, 'Skin Rash', 'Unusual skin condition', 'moderate'),
-(13, 'Anxiety', 'Feeling of worry or unease', 'mental'),
-(14, 'Depression', 'Persistent sadness', 'mental'),
-(15, 'Toothache', 'Pain in teeth or gums', 'dental'),
-(16, 'Blurred Vision', 'Unclear vision', 'eye'),
-(17, 'Ear Pain', 'Pain in ear', 'ent'),
-(18, 'Frequent Urination', 'Need to urinate often', 'urological'),
-(19, 'Irregular Periods', 'Abnormal menstrual cycle', 'gynecological'),
-(20, 'Memory Loss', 'Difficulty remembering', 'neurological');
+INSERT INTO T_SYMPTOM (SYMPTOM_NAME, DESCRIPTION, TAG) VALUES
+('Fever', 'High body temperature', 'common'),
+('Headache', 'Pain in head region', 'common'),
+('Chest Pain', 'Discomfort in chest area', 'urgent'),
+('Shortness of Breath', 'Difficulty breathing', 'urgent'),
+('Cough', 'Persistent coughing', 'common'),
+('Fatigue', 'Extreme tiredness', 'common'),
+('Nausea', 'Feeling of sickness', 'common'),
+('Dizziness', 'Feeling lightheaded', 'common'),
+('Abdominal Pain', 'Pain in stomach area', 'moderate'),
+('Back Pain', 'Pain in back region', 'moderate'),
+('Joint Pain', 'Pain in joints', 'moderate'),
+('Skin Rash', 'Unusual skin condition', 'moderate'),
+('Anxiety', 'Feeling of worry or unease', 'mental'),
+('Depression', 'Persistent sadness', 'mental'),
+('Toothache', 'Pain in teeth or gums', 'dental'),
+('Blurred Vision', 'Unclear vision', 'eye'),
+('Ear Pain', 'Pain in ear', 'ent'),
+('Frequent Urination', 'Need to urinate often', 'urological'),
+('Irregular Periods', 'Abnormal menstrual cycle', 'gynecological'),
+('Memory Loss', 'Difficulty remembering', 'neurological');
 
 -- Insert Departments (T_DEPARTMENT)
-INSERT INTO T_DEPARTMENT (id, department_name, description, location) VALUES
-(1, 'Cardiology', 'Heart and cardiovascular system care', 'Building A, Floor 3'),
-(2, 'Neurology', 'Brain and nervous system disorders', 'Building A, Floor 4'),
-(3, 'Orthopedics', 'Bone, joint, and muscle treatment', 'Building B, Floor 2'),
-(4, 'Pediatrics', 'Child healthcare', 'Building C, Floor 1'),
-(5, 'Dermatology', 'Skin conditions and treatment', 'Building B, Floor 3'),
-(6, 'Psychiatry', 'Mental health care', 'Building C, Floor 2'),
-(7, 'General Medicine', 'General health consultation', 'Building A, Floor 1'),
-(8, 'Emergency', 'Emergency medical care', 'Building A, Ground Floor'),
-(9, 'Dentistry', 'Dental care and oral health', 'Building B, Floor 1'),
-(10, 'Ophthalmology', 'Eye care and vision', 'Building C, Floor 3'),
-(11, 'ENT', 'Ear, Nose, and Throat care', 'Building B, Floor 4'),
-(12, 'Urology', 'Urinary system and male reproductive organs', 'Building A, Floor 5'),
-(13, 'Gynecology', 'Women health and reproductive system', 'Building C, Floor 4'),
-(14, 'Gastroenterology', 'Digestive system disorders', 'Building A, Floor 2');
+INSERT INTO T_DEPARTMENT (DEPARTMENT_NAME, DESCRIPTION, LOCATION) VALUES
+('Cardiology', 'Heart and cardiovascular system care', 'Building A, Floor 3'),
+('Neurology', 'Brain and nervous system disorders', 'Building A, Floor 4'),
+('Orthopedics', 'Bone, joint, and muscle treatment', 'Building B, Floor 2'),
+('Pediatrics', 'Child healthcare', 'Building C, Floor 1'),
+('Dermatology', 'Skin conditions and treatment', 'Building B, Floor 3'),
+('Psychiatry', 'Mental health care', 'Building C, Floor 2'),
+('General Medicine', 'General health consultation', 'Building A, Floor 1'),
+('Emergency', 'Emergency medical care', 'Building A, Ground Floor'),
+('Dentistry', 'Dental care and oral health', 'Building B, Floor 1'),
+('Ophthalmology', 'Eye care and vision', 'Building C, Floor 3'),
+('ENT', 'Ear, Nose, and Throat care', 'Building B, Floor 4'),
+('Urology', 'Urinary system and male reproductive organs', 'Building A, Floor 5'),
+('Gynecology', 'Women health and reproductive system', 'Building C, Floor 4'),
+('Gastroenterology', 'Digestive system disorders', 'Building A, Floor 2');
 
 -- Link Departments with Symptoms (T_DEPARTMENT_SYMPTOM)
--- Cardiology symptoms
-INSERT INTO T_DEPARTMENT_SYMPTOM (department_id, symptom_id) VALUES
+-- Cardiology symptoms (Chest Pain, Shortness of Breath, Fatigue, Dizziness)
+INSERT INTO T_DEPARTMENT_SYMPTOM (DEPARTMENT_ID, SYMPTOM_ID) VALUES
 (1, 3), (1, 4), (1, 6), (1, 8);
 
--- Neurology symptoms
-INSERT INTO T_DEPARTMENT_SYMPTOM (department_id, symptom_id) VALUES
+-- Neurology symptoms (Headache, Dizziness, Memory Loss)
+INSERT INTO T_DEPARTMENT_SYMPTOM (DEPARTMENT_ID, SYMPTOM_ID) VALUES
 (2, 2), (2, 8), (2, 20);
 
--- Orthopedics symptoms
-INSERT INTO T_DEPARTMENT_SYMPTOM (department_id, symptom_id) VALUES
+-- Orthopedics symptoms (Back Pain, Joint Pain)
+INSERT INTO T_DEPARTMENT_SYMPTOM (DEPARTMENT_ID, SYMPTOM_ID) VALUES
 (3, 10), (3, 11);
 
--- Pediatrics symptoms (common children symptoms)
-INSERT INTO T_DEPARTMENT_SYMPTOM (department_id, symptom_id) VALUES
+-- Pediatrics symptoms (Fever, Cough, Nausea)
+INSERT INTO T_DEPARTMENT_SYMPTOM (DEPARTMENT_ID, SYMPTOM_ID) VALUES
 (4, 1), (4, 5), (4, 7);
 
--- Dermatology symptoms
-INSERT INTO T_DEPARTMENT_SYMPTOM (department_id, symptom_id) VALUES
+-- Dermatology symptoms (Skin Rash)
+INSERT INTO T_DEPARTMENT_SYMPTOM (DEPARTMENT_ID, SYMPTOM_ID) VALUES
 (5, 12);
 
--- Psychiatry symptoms
-INSERT INTO T_DEPARTMENT_SYMPTOM (department_id, symptom_id) VALUES
+-- Psychiatry symptoms (Anxiety, Depression)
+INSERT INTO T_DEPARTMENT_SYMPTOM (DEPARTMENT_ID, SYMPTOM_ID) VALUES
 (6, 13), (6, 14);
 
--- General Medicine symptoms
-INSERT INTO T_DEPARTMENT_SYMPTOM (department_id, symptom_id) VALUES
+-- General Medicine symptoms (Fever, Headache, Cough, Fatigue, Nausea)
+INSERT INTO T_DEPARTMENT_SYMPTOM (DEPARTMENT_ID, SYMPTOM_ID) VALUES
 (7, 1), (7, 2), (7, 5), (7, 6), (7, 7);
 
--- Emergency symptoms
-INSERT INTO T_DEPARTMENT_SYMPTOM (department_id, symptom_id) VALUES
+-- Emergency symptoms (Chest Pain, Shortness of Breath, Dizziness)
+INSERT INTO T_DEPARTMENT_SYMPTOM (DEPARTMENT_ID, SYMPTOM_ID) VALUES
 (8, 3), (8, 4), (8, 8);
 
--- Dentistry symptoms
-INSERT INTO T_DEPARTMENT_SYMPTOM (department_id, symptom_id) VALUES
+-- Dentistry symptoms (Toothache)
+INSERT INTO T_DEPARTMENT_SYMPTOM (DEPARTMENT_ID, SYMPTOM_ID) VALUES
 (9, 15);
 
--- Ophthalmology symptoms
-INSERT INTO T_DEPARTMENT_SYMPTOM (department_id, symptom_id) VALUES
+-- Ophthalmology symptoms (Blurred Vision)
+INSERT INTO T_DEPARTMENT_SYMPTOM (DEPARTMENT_ID, SYMPTOM_ID) VALUES
 (10, 16);
 
--- ENT symptoms
-INSERT INTO T_DEPARTMENT_SYMPTOM (department_id, symptom_id) VALUES
+-- ENT symptoms (Ear Pain)
+INSERT INTO T_DEPARTMENT_SYMPTOM (DEPARTMENT_ID, SYMPTOM_ID) VALUES
 (11, 17);
 
--- Urology symptoms
-INSERT INTO T_DEPARTMENT_SYMPTOM (department_id, symptom_id) VALUES
+-- Urology symptoms (Frequent Urination)
+INSERT INTO T_DEPARTMENT_SYMPTOM (DEPARTMENT_ID, SYMPTOM_ID) VALUES
 (12, 18);
 
--- Gynecology symptoms
-INSERT INTO T_DEPARTMENT_SYMPTOM (department_id, symptom_id) VALUES
+-- Gynecology symptoms (Irregular Periods)
+INSERT INTO T_DEPARTMENT_SYMPTOM (DEPARTMENT_ID, SYMPTOM_ID) VALUES
 (13, 19);
 
--- Gastroenterology symptoms
-INSERT INTO T_DEPARTMENT_SYMPTOM (department_id, symptom_id) VALUES
+-- Gastroenterology symptoms (Nausea, Abdominal Pain)
+INSERT INTO T_DEPARTMENT_SYMPTOM (DEPARTMENT_ID, SYMPTOM_ID) VALUES
 (14, 7), (14, 9);
 
--- Insert Doctors (T_DOCTOR)
-INSERT INTO T_DOCTOR (id, doctor_name, department_id, experience, doctor_email, doctor_phone) VALUES
+-- Insert Doctors (T_DOCTOR - extends Users)
 -- Cardiology
-(1, 'Dr. Michael Chen', 1, 15, 'michael.chen@hospital.com', '555-0101'),
-(2, 'Dr. Sarah Johnson', 1, 12, 'sarah.johnson@hospital.com', '555-0102'),
+INSERT INTO T_DOCTOR (EMAIL, PASSWORD_HASH, FULL_NAME, PHONE, GENDER, DATE_OF_BIRTH, ROLE, STATUS, CREATED_AT, SPECIALIZATION, EXPERIENCE_YEARS, QUALIFICATIONS, DEPARTMENT_ID) VALUES
+('michael.chen@hospital.com', '$2a$10$slYQmyNdGzTn7ZLBXBChFOC9f6kFjAqPhccnP6DxlWXx2lPk1C3G6', 'Dr. Michael Chen', '555-0101', 'Male', '1975-03-12', 'DOCTOR', 'ACTIVE', '2024-01-01', 'Cardiology', 15, 'MD, FACC', 1),
+('sarah.johnson@hospital.com', '$2a$10$slYQmyNdGzTn7ZLBXBChFOC9f6kFjAqPhccnP6DxlWXx2lPk1C3G6', 'Dr. Sarah Johnson', '555-0102', 'Female', '1978-09-25', 'DOCTOR', 'ACTIVE', '2024-01-01', 'Cardiology', 12, 'MD, FACC', 1);
 
 -- Neurology
-(3, 'Dr. Robert Williams', 2, 20, 'robert.williams@hospital.com', '555-0103'),
-(4, 'Dr. Emily Davis', 2, 8, 'emily.davis@hospital.com', '555-0104'),
+INSERT INTO T_DOCTOR (EMAIL, PASSWORD_HASH, FULL_NAME, PHONE, GENDER, DATE_OF_BIRTH, ROLE, STATUS, CREATED_AT, SPECIALIZATION, EXPERIENCE_YEARS, QUALIFICATIONS, DEPARTMENT_ID) VALUES
+('robert.williams@hospital.com', '$2a$10$slYQmyNdGzTn7ZLBXBChFOC9f6kFjAqPhccnP6DxlWXx2lPk1C3G6', 'Dr. Robert Williams', '555-0103', 'Male', '1970-06-15', 'DOCTOR', 'ACTIVE', '2024-01-01', 'Neurology', 20, 'MD, PhD, FAAN', 2),
+('emily.davis@hospital.com', '$2a$10$slYQmyNdGzTn7ZLBXBChFOC9f6kFjAqPhccnP6DxlWXx2lPk1C3G6', 'Dr. Emily Davis', '555-0104', 'Female', '1982-12-08', 'DOCTOR', 'ACTIVE', '2024-01-01', 'Neurology', 8, 'MD, FAAN', 2);
 
 -- Orthopedics
-(5, 'Dr. James Martinez', 3, 18, 'james.martinez@hospital.com', '555-0105'),
-(6, 'Dr. Lisa Anderson', 3, 10, 'lisa.anderson@hospital.com', '555-0106'),
+INSERT INTO T_DOCTOR (EMAIL, PASSWORD_HASH, FULL_NAME, PHONE, GENDER, DATE_OF_BIRTH, ROLE, STATUS, CREATED_AT, SPECIALIZATION, EXPERIENCE_YEARS, QUALIFICATIONS, DEPARTMENT_ID) VALUES
+('james.martinez@hospital.com', '$2a$10$slYQmyNdGzTn7ZLBXBChFOC9f6kFjAqPhccnP6DxlWXx2lPk1C3G6', 'Dr. James Martinez', '555-0105', 'Male', '1972-04-22', 'DOCTOR', 'ACTIVE', '2024-01-01', 'Orthopedics', 18, 'MD, FAAOS', 3),
+('lisa.anderson@hospital.com', '$2a$10$slYQmyNdGzTn7ZLBXBChFOC9f6kFjAqPhccnP6DxlWXx2lPk1C3G6', 'Dr. Lisa Anderson', '555-0106', 'Female', '1980-11-30', 'DOCTOR', 'ACTIVE', '2024-01-01', 'Orthopedics', 10, 'MD, FAAOS', 3);
 
 -- Pediatrics
-(7, 'Dr. David Thompson', 4, 14, 'david.thompson@hospital.com', '555-0107'),
-(8, 'Dr. Jennifer White', 4, 9, 'jennifer.white@hospital.com', '555-0108'),
+INSERT INTO T_DOCTOR (EMAIL, PASSWORD_HASH, FULL_NAME, PHONE, GENDER, DATE_OF_BIRTH, ROLE, STATUS, CREATED_AT, SPECIALIZATION, EXPERIENCE_YEARS, QUALIFICATIONS, DEPARTMENT_ID) VALUES
+('david.thompson@hospital.com', '$2a$10$slYQmyNdGzTn7ZLBXBChFOC9f6kFjAqPhccnP6DxlWXx2lPk1C3G6', 'Dr. David Thompson', '555-0107', 'Male', '1976-08-14', 'DOCTOR', 'ACTIVE', '2024-01-01', 'Pediatrics', 14, 'MD, FAAP', 4),
+('jennifer.white@hospital.com', '$2a$10$slYQmyNdGzTn7ZLBXBChFOC9f6kFjAqPhccnP6DxlWXx2lPk1C3G6', 'Dr. Jennifer White', '555-0108', 'Female', '1983-02-18', 'DOCTOR', 'ACTIVE', '2024-01-01', 'Pediatrics', 9, 'MD, FAAP', 4);
 
 -- Dermatology
-(9, 'Dr. Christopher Lee', 5, 11, 'christopher.lee@hospital.com', '555-0109'),
-(10, 'Dr. Amanda Garcia', 5, 7, 'amanda.garcia@hospital.com', '555-0110'),
+INSERT INTO T_DOCTOR (EMAIL, PASSWORD_HASH, FULL_NAME, PHONE, GENDER, DATE_OF_BIRTH, ROLE, STATUS, CREATED_AT, SPECIALIZATION, EXPERIENCE_YEARS, QUALIFICATIONS, DEPARTMENT_ID) VALUES
+('christopher.lee@hospital.com', '$2a$10$slYQmyNdGzTn7ZLBXBChFOC9f6kFjAqPhccnP6DxlWXx2lPk1C3G6', 'Dr. Christopher Lee', '555-0109', 'Male', '1979-05-27', 'DOCTOR', 'ACTIVE', '2024-01-01', 'Dermatology', 11, 'MD, FAAD', 5),
+('amanda.garcia@hospital.com', '$2a$10$slYQmyNdGzTn7ZLBXBChFOC9f6kFjAqPhccnP6DxlWXx2lPk1C3G6', 'Dr. Amanda Garcia', '555-0110', 'Female', '1985-10-03', 'DOCTOR', 'ACTIVE', '2024-01-01', 'Dermatology', 7, 'MD, FAAD', 5);
 
 -- Psychiatry
-(11, 'Dr. Daniel Rodriguez', 6, 16, 'daniel.rodriguez@hospital.com', '555-0111'),
-(12, 'Dr. Patricia Martinez', 6, 13, 'patricia.martinez@hospital.com', '555-0112'),
+INSERT INTO T_DOCTOR (EMAIL, PASSWORD_HASH, FULL_NAME, PHONE, GENDER, DATE_OF_BIRTH, ROLE, STATUS, CREATED_AT, SPECIALIZATION, EXPERIENCE_YEARS, QUALIFICATIONS, DEPARTMENT_ID) VALUES
+('daniel.rodriguez@hospital.com', '$2a$10$slYQmyNdGzTn7ZLBXBChFOC9f6kFjAqPhccnP6DxlWXx2lPk1C3G6', 'Dr. Daniel Rodriguez', '555-0111', 'Male', '1974-07-19', 'DOCTOR', 'ACTIVE', '2024-01-01', 'Psychiatry', 16, 'MD, Board Certified', 6),
+('patricia.martinez@hospital.com', '$2a$10$slYQmyNdGzTn7ZLBXBChFOC9f6kFjAqPhccnP6DxlWXx2lPk1C3G6', 'Dr. Patricia Martinez', '555-0112', 'Female', '1977-01-24', 'DOCTOR', 'ACTIVE', '2024-01-01', 'Psychiatry', 13, 'MD, Board Certified', 6);
 
 -- General Medicine
-(13, 'Dr. Kevin Brown', 7, 10, 'kevin.brown@hospital.com', '555-0113'),
-(14, 'Dr. Michelle Wilson', 7, 8, 'michelle.wilson@hospital.com', '555-0114'),
+INSERT INTO T_DOCTOR (EMAIL, PASSWORD_HASH, FULL_NAME, PHONE, GENDER, DATE_OF_BIRTH, ROLE, STATUS, CREATED_AT, SPECIALIZATION, EXPERIENCE_YEARS, QUALIFICATIONS, DEPARTMENT_ID) VALUES
+('kevin.brown@hospital.com', '$2a$10$slYQmyNdGzTn7ZLBXBChFOC9f6kFjAqPhccnP6DxlWXx2lPk1C3G6', 'Dr. Kevin Brown', '555-0113', 'Male', '1980-09-11', 'DOCTOR', 'ACTIVE', '2024-01-01', 'General Medicine', 10, 'MD, ABIM', 7),
+('michelle.wilson@hospital.com', '$2a$10$slYQmyNdGzTn7ZLBXBChFOC9f6kFjAqPhccnP6DxlWXx2lPk1C3G6', 'Dr. Michelle Wilson', '555-0114', 'Female', '1984-04-16', 'DOCTOR', 'ACTIVE', '2024-01-01', 'General Medicine', 8, 'MD, ABIM', 7);
 
 -- Emergency
-(15, 'Dr. Steven Taylor', 8, 12, 'steven.taylor@hospital.com', '555-0115'),
-(16, 'Dr. Laura Thomas', 8, 9, 'laura.thomas@hospital.com', '555-0116'),
+INSERT INTO T_DOCTOR (EMAIL, PASSWORD_HASH, FULL_NAME, PHONE, GENDER, DATE_OF_BIRTH, ROLE, STATUS, CREATED_AT, SPECIALIZATION, EXPERIENCE_YEARS, QUALIFICATIONS, DEPARTMENT_ID) VALUES
+('steven.taylor@hospital.com', '$2a$10$slYQmyNdGzTn7ZLBXBChFOC9f6kFjAqPhccnP6DxlWXx2lPk1C3G6', 'Dr. Steven Taylor', '555-0115', 'Male', '1978-11-09', 'DOCTOR', 'ACTIVE', '2024-01-01', 'Emergency Medicine', 12, 'MD, ABEM', 8),
+('laura.thomas@hospital.com', '$2a$10$slYQmyNdGzTn7ZLBXBChFOC9f6kFjAqPhccnP6DxlWXx2lPk1C3G6', 'Dr. Laura Thomas', '555-0116', 'Female', '1983-06-28', 'DOCTOR', 'ACTIVE', '2024-01-01', 'Emergency Medicine', 9, 'MD, ABEM', 8);
 
 -- Dentistry
-(17, 'Dr. Brian Moore', 9, 15, 'brian.moore@hospital.com', '555-0117'),
-(18, 'Dr. Karen Jackson', 9, 11, 'karen.jackson@hospital.com', '555-0118'),
+INSERT INTO T_DOCTOR (EMAIL, PASSWORD_HASH, FULL_NAME, PHONE, GENDER, DATE_OF_BIRTH, ROLE, STATUS, CREATED_AT, SPECIALIZATION, EXPERIENCE_YEARS, QUALIFICATIONS, DEPARTMENT_ID) VALUES
+('brian.moore@hospital.com', '$2a$10$slYQmyNdGzTn7ZLBXBChFOC9f6kFjAqPhccnP6DxlWXx2lPk1C3G6', 'Dr. Brian Moore', '555-0117', 'Male', '1975-02-14', 'DOCTOR', 'ACTIVE', '2024-01-01', 'Dentistry', 15, 'DDS', 9),
+('karen.jackson@hospital.com', '$2a$10$slYQmyNdGzTn7ZLBXBChFOC9f6kFjAqPhccnP6DxlWXx2lPk1C3G6', 'Dr. Karen Jackson', '555-0118', 'Female', '1979-08-21', 'DOCTOR', 'ACTIVE', '2024-01-01', 'Dentistry', 11, 'DDS', 9);
 
 -- Ophthalmology
-(19, 'Dr. Richard Martin', 10, 17, 'richard.martin@hospital.com', '555-0119'),
-(20, 'Dr. Nancy Lee', 10, 10, 'nancy.lee@hospital.com', '555-0120'),
+INSERT INTO T_DOCTOR (EMAIL, PASSWORD_HASH, FULL_NAME, PHONE, GENDER, DATE_OF_BIRTH, ROLE, STATUS, CREATED_AT, SPECIALIZATION, EXPERIENCE_YEARS, QUALIFICATIONS, DEPARTMENT_ID) VALUES
+('richard.martin@hospital.com', '$2a$10$slYQmyNdGzTn7ZLBXBChFOC9f6kFjAqPhccnP6DxlWXx2lPk1C3G6', 'Dr. Richard Martin', '555-0119', 'Male', '1973-12-05', 'DOCTOR', 'ACTIVE', '2024-01-01', 'Ophthalmology', 17, 'MD, FACS', 10),
+('nancy.lee@hospital.com', '$2a$10$slYQmyNdGzTn7ZLBXBChFOC9f6kFjAqPhccnP6DxlWXx2lPk1C3G6', 'Dr. Nancy Lee', '555-0120', 'Female', '1980-03-17', 'DOCTOR', 'ACTIVE', '2024-01-01', 'Ophthalmology', 10, 'MD, FACS', 10);
 
 -- ENT
-(21, 'Dr. Paul Harris', 11, 14, 'paul.harris@hospital.com', '555-0121'),
-(22, 'Dr. Sandra Clark', 11, 9, 'sandra.clark@hospital.com', '555-0122'),
+INSERT INTO T_DOCTOR (EMAIL, PASSWORD_HASH, FULL_NAME, PHONE, GENDER, DATE_OF_BIRTH, ROLE, STATUS, CREATED_AT, SPECIALIZATION, EXPERIENCE_YEARS, QUALIFICATIONS, DEPARTMENT_ID) VALUES
+('paul.harris@hospital.com', '$2a$10$slYQmyNdGzTn7ZLBXBChFOC9f6kFjAqPhccnP6DxlWXx2lPk1C3G6', 'Dr. Paul Harris', '555-0121', 'Male', '1976-07-23', 'DOCTOR', 'ACTIVE', '2024-01-01', 'ENT', 14, 'MD, FACS', 11),
+('sandra.clark@hospital.com', '$2a$10$slYQmyNdGzTn7ZLBXBChFOC9f6kFjAqPhccnP6DxlWXx2lPk1C3G6', 'Dr. Sandra Clark', '555-0122', 'Female', '1983-01-09', 'DOCTOR', 'ACTIVE', '2024-01-01', 'ENT', 9, 'MD, FACS', 11);
 
 -- Urology
-(23, 'Dr. Mark Lewis', 12, 19, 'mark.lewis@hospital.com', '555-0123'),
-(24, 'Dr. Barbara Walker', 12, 12, 'barbara.walker@hospital.com', '555-0124'),
+INSERT INTO T_DOCTOR (EMAIL, PASSWORD_HASH, FULL_NAME, PHONE, GENDER, DATE_OF_BIRTH, ROLE, STATUS, CREATED_AT, SPECIALIZATION, EXPERIENCE_YEARS, QUALIFICATIONS, DEPARTMENT_ID) VALUES
+('mark.lewis@hospital.com', '$2a$10$slYQmyNdGzTn7ZLBXBChFOC9f6kFjAqPhccnP6DxlWXx2lPk1C3G6', 'Dr. Mark Lewis', '555-0123', 'Male', '1971-10-30', 'DOCTOR', 'ACTIVE', '2024-01-01', 'Urology', 19, 'MD, FACS', 12),
+('barbara.walker@hospital.com', '$2a$10$slYQmyNdGzTn7ZLBXBChFOC9f6kFjAqPhccnP6DxlWXx2lPk1C3G6', 'Dr. Barbara Walker', '555-0124', 'Female', '1978-05-12', 'DOCTOR', 'ACTIVE', '2024-01-01', 'Urology', 12, 'MD, FACS', 12);
 
 -- Gynecology
-(25, 'Dr. Thomas Hall', 13, 16, 'thomas.hall@hospital.com', '555-0125'),
-(26, 'Dr. Elizabeth Allen', 13, 11, 'elizabeth.allen@hospital.com', '555-0126'),
+INSERT INTO T_DOCTOR (EMAIL, PASSWORD_HASH, FULL_NAME, PHONE, GENDER, DATE_OF_BIRTH, ROLE, STATUS, CREATED_AT, SPECIALIZATION, EXPERIENCE_YEARS, QUALIFICATIONS, DEPARTMENT_ID) VALUES
+('thomas.hall@hospital.com', '$2a$10$slYQmyNdGzTn7ZLBXBChFOC9f6kFjAqPhccnP6DxlWXx2lPk1C3G6', 'Dr. Thomas Hall', '555-0125', 'Male', '1974-09-06', 'DOCTOR', 'ACTIVE', '2024-01-01', 'Gynecology', 16, 'MD, FACOG', 13),
+('elizabeth.allen@hospital.com', '$2a$10$slYQmyNdGzTn7ZLBXBChFOC9f6kFjAqPhccnP6DxlWXx2lPk1C3G6', 'Dr. Elizabeth Allen', '555-0126', 'Female', '1979-04-20', 'DOCTOR', 'ACTIVE', '2024-01-01', 'Gynecology', 11, 'MD, FACOG', 13);
 
 -- Gastroenterology
-(27, 'Dr. Joseph Young', 14, 13, 'joseph.young@hospital.com', '555-0127'),
-(28, 'Dr. Susan King', 14, 10, 'susan.king@hospital.com', '555-0128');
-
--- Insert Patients (T_PATIENT)
-INSERT INTO T_PATIENT (id, user_id, address, medical_history, emergency_contact, insurance_number) VALUES
-(1, 2, '123 Main St, New York, NY 10001', 'Hypertension, Type 2 Diabetes', '555-1001', 'INS-001-2024'),
-(2, 3, '456 Oak Ave, Los Angeles, CA 90001', 'Asthma', '555-1002', 'INS-002-2024'),
-(3, 4, '789 Pine Rd, Chicago, IL 60601', 'None', '555-1003', 'INS-003-2024'),
-(4, 5, '321 Elm St, Houston, TX 77001', 'Allergies (Peanuts)', '555-1004', 'INS-004-2024'),
-(5, 6, '654 Maple Dr, Phoenix, AZ 85001', 'Previous heart surgery (2020)', '555-1005', 'INS-005-2024');
+INSERT INTO T_DOCTOR (EMAIL, PASSWORD_HASH, FULL_NAME, PHONE, GENDER, DATE_OF_BIRTH, ROLE, STATUS, CREATED_AT, SPECIALIZATION, EXPERIENCE_YEARS, QUALIFICATIONS, DEPARTMENT_ID) VALUES
+('joseph.young@hospital.com', '$2a$10$slYQmyNdGzTn7ZLBXBChFOC9f6kFjAqPhccnP6DxlWXx2lPk1C3G6', 'Dr. Joseph Young', '555-0127', 'Male', '1977-11-14', 'DOCTOR', 'ACTIVE', '2024-01-01', 'Gastroenterology', 13, 'MD, FACG', 14),
+('susan.king@hospital.com', '$2a$10$slYQmyNdGzTn7ZLBXBChFOC9f6kFjAqPhccnP6DxlWXx2lPk1C3G6', 'Dr. Susan King', '555-0128', 'Female', '1980-06-08', 'DOCTOR', 'ACTIVE', '2024-01-01', 'Gastroenterology', 10, 'MD, FACG', 14);
 
 -- Insert Appointments (T_APPOINTMENT)
-INSERT INTO T_APPOINTMENT (patient_id, doctor_id, appointment_date, time_slot, status, notes, created_at) VALUES
+-- Note: Patient IDs and Doctor IDs will be auto-generated. 
+-- Assuming sequential IDs: Patients 2-6, Doctors 7-34 (after 1 admin and 5 patients)
+-- For safety, use actual generated IDs after first run or adjust accordingly
+
 -- Upcoming appointments
-(1, 1, '2025-11-05', 5, 'SCHEDULED', 'Regular cardiology checkup', '2025-10-28 10:00:00'),
-(2, 7, '2025-11-06',7, 'SCHEDULED', 'Asthma follow-up', '2025-10-29 14:30:00'),
-( 3, 13, '2025-11-07',11, 'SCHEDULED', 'General health consultation', '2025-10-30 09:15:00'),
-(4, 5, '2025-11-08',8, 'SCHEDULED', 'Joint pain examination', '2025-10-31 16:20:00'),
-(5, 1, '2025-11-10',13, 'SCHEDULED', 'Post-surgery follow-up', '2025-11-01 08:00:00'),
+INSERT INTO T_APPOINTMENT (PATIENT_ID, DOCTOR_ID, APPOINTMENT_DATE, TIME_SLOT, STATUS, NOTES, CREATED_AT) VALUES
+-- Patient 1 (John Doe, USER_ID should be 2) with Dr. Michael Chen (USER_ID should be 7)
+(2, 7, '2025-11-05', 5, 'SCHEDULED', 'Regular cardiology checkup', '2025-10-28 10:00:00'),
+-- Patient 2 (Jane Smith, USER_ID should be 3) with Dr. David Thompson (USER_ID should be 13)
+(3, 13, '2025-11-06', 7, 'SCHEDULED', 'Asthma follow-up', '2025-10-29 14:30:00'),
+-- Patient 3 (Bob Wilson, USER_ID should be 4) with Dr. Kevin Brown (USER_ID should be 19)
+(4, 19, '2025-11-07', 11, 'SCHEDULED', 'General health consultation', '2025-10-30 09:15:00'),
+-- Patient 4 (Alice Brown, USER_ID should be 5) with Dr. James Martinez (USER_ID should be 11)
+(5, 11, '2025-11-08', 8, 'SCHEDULED', 'Joint pain examination', '2025-10-31 16:20:00'),
+-- Patient 4 (Alice Brown, USER_ID should be 5) with Dr. Michael Chen (USER_ID should be 7)
+(5, 7, '2025-11-10', 13, 'SCHEDULED', 'Post-surgery follow-up', '2025-11-01 08:00:00');
 
--- Past appointments
-(1, 13, '2025-10-20',5, 'COMPLETED', 'Annual checkup - all clear', '2025-10-15 11:00:00'),
-(2, 3, '2025-10-22',8, 'COMPLETED', 'Headache consultation', '2025-10-18 13:30:00'),
-(3, 14, '2025-10-25',9, 'COMPLETED', 'Fever and cold', '2025-10-20 10:00:00'),
-(4, 9, '2025-10-28',12, 'COMPLETED', 'Skin rash treatment', '2025-10-23 15:45:00'),
-( 5, 2, '2025-10-30',8, 'COMPLETED', 'Cardiac monitoring', '2025-10-25 09:30:00'),
+-- Past appointments (completed)
+INSERT INTO T_APPOINTMENT (PATIENT_ID, DOCTOR_ID, APPOINTMENT_DATE, TIME_SLOT, STATUS, NOTES, CREATED_AT) VALUES
+(2, 19, '2025-10-20', 5, 'COMPLETED', 'Annual checkup - all clear', '2025-10-15 11:00:00'),
+(3, 9, '2025-10-22', 8, 'COMPLETED', 'Headache consultation', '2025-10-18 13:30:00'),
+(4, 20, '2025-10-25', 9, 'COMPLETED', 'Fever and cold', '2025-10-20 10:00:00'),
+(5, 15, '2025-10-28', 12, 'COMPLETED', 'Skin rash treatment', '2025-10-23 15:45:00'),
+(2, 8, '2025-10-30', 8, 'COMPLETED', 'Cardiac monitoring', '2025-10-25 09:30:00');
 
--- Cancelled appointment
-( 2, 4, '2025-11-01', 6, 'SCHEDULED', 'Patient requested cancellation', '2025-10-26 12:00:00'),
-(1, 4, '2025-11-01', 7, 'SCHEDULED', 'Patient requested cancellation', '2025-10-26 12:00:00'),
-( 2, 4, '2025-11-01', 8, 'SCHEDULED', 'Patient requested cancellation', '2025-10-26 12:00:00'),
-( 3, 4, '2025-11-01', 9, 'SCHEDULED', 'Patient requested cancellation', '2025-10-26 12:00:00');
+-- Cancelled appointments
+INSERT INTO T_APPOINTMENT (PATIENT_ID, DOCTOR_ID, APPOINTMENT_DATE, TIME_SLOT, STATUS, NOTES, CREATED_AT) VALUES
+(3, 10, '2025-11-01', 6, 'CANCELLED', 'Patient requested cancellation', '2025-10-26 12:00:00'),
+(2, 10, '2025-11-01', 7, 'CANCELLED', 'Scheduling conflict', '2025-10-26 12:00:00');

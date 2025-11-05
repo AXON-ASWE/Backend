@@ -5,16 +5,16 @@ import lombok.NoArgsConstructor;
 
 @Data
 @NoArgsConstructor
-public class CreateUserResponse {
+public class CreateDoctorResponse {
     private Boolean success;
     private String message;
 
-    public CreateUserResponse(Boolean success) {
+    public CreateDoctorResponse(Boolean success) {
         this.success = success;
-        this.message = success ? "User created successfully" : "User creation failed";
+        this.message = success ? "Doctor created successfully" : "Doctor creation failed";
     }
 
-    public CreateUserResponse(Boolean success, String message) {
+    public CreateDoctorResponse(Boolean success, String message) {
         this.success = success;
         this.message = message;
     }
