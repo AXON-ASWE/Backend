@@ -34,7 +34,7 @@ public class JwtUtil {
      * @param role User's role
      * @return JWT token string
      */
-    public String generateToken(Long userId, String email, RoleName role, boolean isRefresh) {
+    public String generateToken(Integer userId, String email, RoleName role, boolean isRefresh) {
         Map<String, Object> claims = new HashMap<>();
         claims.put("userId", userId);
         claims.put("email", email);
