@@ -5,8 +5,9 @@ import com.swe.project.exception.UserRegistrationException;
 import com.swe.project.models.authentication.AuthenticationResponse;
 import com.swe.project.models.patient.PatientRegistrationDto;
 import com.swe.project.repositories.PatientRepository;
+import com.swe.project.repositories.UserRepository;
+import com.swe.project.entities.users.Users;
 import com.swe.project.services.authentication.AuthenticationService;
-import com.swe.project.utils.JwtUtil;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -18,6 +19,7 @@ public class PatientAuthenticationServiceImpl implements PatientAuthenticationSe
     private final PasswordEncoder passwordEncoder;
     private final PatientRepository patientRepository;
     private final AuthenticationService authenticationService;
+    private final UserRepository userRepository;
 
     @Override
     public AuthenticationResponse registerPatient(PatientRegistrationDto registrationDto) {
@@ -30,7 +32,15 @@ public class PatientAuthenticationServiceImpl implements PatientAuthenticationSe
         if (patients != null) {
             throw new UserRegistrationException(registrationDto.getEmail());
         }
+
         Patients newPatient = PatientUtils.toEntity(registrationDto, passwordEncoder);
+
+        // Persist the user first to avoid TransientPropertyValueException when saving the patient
+        if (newPatient.getUser() != null) {
+            Users savedUser = userRepository.save(newPatient.getUser());
+            newPatient.setUser(savedUser);
+        }
+
         patientRepository.save(newPatient);
 
         return authenticationService.generateResponse(newPatient.getUser());

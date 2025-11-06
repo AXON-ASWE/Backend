@@ -20,12 +20,12 @@ public class AuthenticationService {
 
     public AuthenticationResponse login(AuthLoginRequest request) {
 
-        if (!passwordEncoder.matches(request.getPassword(), request.getPassword())) {
-            throw new UserWrongPasswordException();
-        }
-
         Users user = userRepository.findByEmail(request.getEmail())
                 .orElseThrow(UserNotFoundException::new);
+
+        if (!passwordEncoder.matches(request.getPassword(), user.getPasswordHash())) {
+            throw new UserWrongPasswordException();
+        }
 
         return generateResponse(user);
     }

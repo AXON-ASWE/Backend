@@ -50,7 +50,7 @@ public class SecurityConfig {
                     "/",
                     "/home",
                     "/api/patient/auth/**",
-                    "/api/patient/mail/**",
+                    "/api/auth/**",
                     "/api/doctor/auth/**"
                 ).permitAll()
                 .anyRequest().authenticated()
