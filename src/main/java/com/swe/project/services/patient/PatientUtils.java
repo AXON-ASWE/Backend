@@ -15,9 +15,7 @@ public class PatientUtils {
                 .fullName(dto.getFullName())
                 .email(dto.getEmail())
                 .passwordHash(
-                        (passwordEncoder != null)
-                                ? passwordEncoder.encode(dto.getPassword())
-                                : dto.getPassword()
+                                 dto.getPassword()
                 )
                 .role(RoleName.PATIENT)
                 .createdAt(LocalDate.now())

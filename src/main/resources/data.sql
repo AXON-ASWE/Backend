@@ -12,31 +12,31 @@
 
 -- Admin Users
 INSERT INTO t_user (user_id, email, password_hash, full_name, phone, gender, date_of_birth, role, status, created_at) VALUES
-(1, 'admin@hospital.com', '$2a$10$N9qo8uLOickgx2ZMRZoMyeIjZAgcfl7p92ldGxad68LJZdL17lhWy', 'Nguyễn Văn Admin', '0901234567', 'Male', '1980-01-15', 'ADMIN', 'Active', '2024-01-01'),
-(2, 'admin2@hospital.com', '$2a$10$N9qo8uLOickgx2ZMRZoMyeIjZAgcfl7p92ldGxad68LJZdL17lhWy', 'Trần Thị Quản Trị', '0901234568', 'Female', '1985-03-20', 'ADMIN', 'Active', '2024-01-01');
+(1, 'admin@hospital.com', 'pass1234', 'Nguyễn Văn Admin', '0901234567', 'Male', '1980-01-15', 'ADMIN', 'Active', '2024-01-01'),
+(2, 'admin2@hospital.com', 'pass1234', 'Trần Thị Quản Trị', '0901234568', 'Female', '1985-03-20', 'ADMIN', 'Active', '2024-01-01');
 
 -- Doctor Users
 INSERT INTO t_user (user_id, email, password_hash, full_name, phone, gender, date_of_birth, role, status, created_at) VALUES
-(3, 'doctor.nguyen@hospital.com', '$2a$10$N9qo8uLOickgx2ZMRZoMyeIjZAgcfl7p92ldGxad68LJZdL17lhWy', 'Bs. Nguyễn Văn Hùng', '0912345678', 'Male', '1975-06-10', 'DOCTOR', 'Active', '2024-01-02'),
-(4, 'doctor.tran@hospital.com', '$2a$10$N9qo8uLOickgx2ZMRZoMyeIjZAgcfl7p92ldGxad68LJZdL17lhWy', 'Bs. Trần Thị Mai', '0912345679', 'Female', '1980-08-25', 'DOCTOR', 'Active', '2024-01-02'),
-(5, 'doctor.le@hospital.com', '$2a$10$N9qo8uLOickgx2ZMRZoMyeIjZAgcfl7p92ldGxad68LJZdL17lhWy', 'Bs. Lê Minh Tuấn', '0912345680', 'Male', '1982-11-05', 'DOCTOR', 'Active', '2024-01-02'),
-(6, 'doctor.pham@hospital.com', '$2a$10$N9qo8uLOickgx2ZMRZoMyeIjZAgcfl7p92ldGxad68LJZdL17lhWy', 'Bs. Phạm Thị Lan', '0912345681', 'Female', '1978-04-15', 'DOCTOR', 'Active', '2024-01-02'),
-(7, 'doctor.hoang@hospital.com', '$2a$10$N9qo8uLOickgx2ZMRZoMyeIjZAgcfl7p92ldGxad68LJZdL17lhWy', 'Bs. Hoàng Văn Đức', '0912345682', 'Male', '1983-09-30', 'DOCTOR', 'Active', '2024-01-02'),
-(8, 'doctor.vu@hospital.com', '$2a$10$N9qo8uLOickgx2ZMRZoMyeIjZAgcfl7p92ldGxad68LJZdL17lhWy', 'Bs. Vũ Thị Hương', '0912345683', 'Female', '1981-07-12', 'DOCTOR', 'Active', '2024-01-02');
+(3, 'doctor.nguyen@hospital.com', 'pass1234', 'Bs. Nguyễn Văn Hùng', '0912345678', 'Male', '1975-06-10', 'DOCTOR', 'Active', '2024-01-02'),
+(4, 'doctor.tran@hospital.com', 'pass1234', 'Bs. Trần Thị Mai', '0912345679', 'Female', '1980-08-25', 'DOCTOR', 'Active', '2024-01-02'),
+(5, 'doctor.le@hospital.com', 'pass1234', 'Bs. Lê Minh Tuấn', '0912345680', 'Male', '1982-11-05', 'DOCTOR', 'Active', '2024-01-02'),
+(6, 'doctor.pham@hospital.com', 'pass1234', 'Bs. Phạm Thị Lan', '0912345681', 'Female', '1978-04-15', 'DOCTOR', 'Active', '2024-01-02'),
+(7, 'doctor.hoang@hospital.com', 'pass1234', 'Bs. Hoàng Văn Đức', '0912345682', 'Male', '1983-09-30', 'DOCTOR', 'Active', '2024-01-02'),
+(8, 'doctor.vu@hospital.com', 'pass1234', 'Bs. Vũ Thị Hương', '0912345683', 'Female', '1981-07-12', 'DOCTOR', 'Active', '2024-01-02');
 
 -- Patient Users
 INSERT INTO t_user (user_id, email, password_hash, full_name, phone, gender, date_of_birth, role, status, created_at) VALUES
-(9, 'patient1@gmail.com', '$2a$10$N9qo8uLOickgx2ZMRZoMyeIjZAgcfl7p92ldGxad68LJZdL17lhWy', 'Nguyễn Thị Lan', '0923456789', 'Female', '1990-03-15', 'PATIENT', 'Active', '2024-02-01'),
-(10, 'patient2@gmail.com', '$2a$10$N9qo8uLOickgx2ZMRZoMyeIjZAgcfl7p92ldGxad68LJZdL17lhWy', 'Trần Văn Nam', '0923456790', 'Male', '1985-07-20', 'PATIENT', 'Active', '2024-02-02'),
-(11, 'patient3@gmail.com', '$2a$10$N9qo8uLOickgx2ZMRZoMyeIjZAgcfl7p92ldGxad68LJZdL17lhWy', 'Lê Thị Hoa', '0923456791', 'Female', '1992-11-08', 'PATIENT', 'Active', '2024-02-03'),
-(12, 'patient4@gmail.com', '$2a$10$N9qo8uLOickgx2ZMRZoMyeIjZAgcfl7p92ldGxad68LJZdL17lhWy', 'Phạm Văn Bình', '0923456792', 'Male', '1988-05-25', 'PATIENT', 'Active', '2024-02-04'),
-(13, 'patient5@gmail.com', '$2a$10$N9qo8uLOickgx2ZMRZoMyeIjZAgcfl7p92ldGxad68LJZdL17lhWy', 'Hoàng Thị Mai', '0923456793', 'Female', '1995-09-14', 'PATIENT', 'Active', '2024-02-05'),
-(14, 'patient6@gmail.com', '$2a$10$N9qo8uLOickgx2ZMRZoMyeIjZAgcfl7p92ldGxad68LJZdL17lhWy', 'Vũ Văn Toàn', '0923456794', 'Male', '1987-12-03', 'PATIENT', 'Active', '2024-02-06'),
-(15, 'patient7@gmail.com', '$2a$10$N9qo8uLOickgx2ZMRZoMyeIjZAgcfl7p92ldGxad68LJZdL17lhWy', 'Đặng Thị Thu', '0923456795', 'Female', '1993-02-28', 'PATIENT', 'Active', '2024-02-07'),
-(16, 'patient8@gmail.com', '$2a$10$N9qo8uLOickgx2ZMRZoMyeIjZAgcfl7p92ldGxad68LJZdL17lhWy', 'Ngô Văn Khánh', '0923456796', 'Male', '1991-06-17', 'PATIENT', 'Active', '2024-02-08');
+(9, 'patient1@gmail.com', 'pass1234', 'Nguyễn Thị Lan', '0923456789', 'Female', '1990-03-15', 'PATIENT', 'Active', '2024-02-01'),
+(10, 'patient2@gmail.com', 'pass1234', 'Trần Văn Nam', '0923456790', 'Male', '1985-07-20', 'PATIENT', 'Active', '2024-02-02'),
+(11, 'patient3@gmail.com', 'pass1234', 'Lê Thị Hoa', '0923456791', 'Female', '1992-11-08', 'PATIENT', 'Active', '2024-02-03'),
+(12, 'patient4@gmail.com', 'pass1234', 'Phạm Văn Bình', '0923456792', 'Male', '1988-05-25', 'PATIENT', 'Active', '2024-02-04'),
+(13, 'patient5@gmail.com', 'pass1234', 'Hoàng Thị Mai', '0923456793', 'Female', '1995-09-14', 'PATIENT', 'Active', '2024-02-05'),
+(14, 'patient6@gmail.com', 'pass1234', 'Vũ Văn Toàn', '0923456794', 'Male', '1987-12-03', 'PATIENT', 'Active', '2024-02-06'),
+(15, 'patient7@gmail.com', 'pass1234', 'Đặng Thị Thu', '0923456795', 'Female', '1993-02-28', 'PATIENT', 'Active', '2024-02-07'),
+(16, 'patient8@gmail.com', 'pass1234', 'Ngô Văn Khánh', '0923456796', 'Male', '1991-06-17', 'PATIENT', 'Active', '2024-02-08');
 
 -- Reset sequence for user_id
-ALTER SEQUENCE t_user_user_id_seq RESTART WITH 17;
+ALTER SEQUENCE t_user_user_id_seq RESTART WITH 30;
 
 -- =====================================================
 -- 2. INSERT DEPARTMENTS (T_DEPARTMENT)
@@ -199,33 +199,36 @@ INSERT INTO t_doctor_workshift (doctor_id, day_of_week, start_time, end_time) VA
 -- Các cuộc hẹn trong tương lai và quá khứ
 INSERT INTO t_appointment (appointment_id, patient_id, doctor_id, appointment_date, time_slot, status, notes, created_at) VALUES
 -- Appointments đã hoàn thành
-(1, 1, 1, '2024-10-15', 1, 'Completed', 'Khám định kỳ tim mạch. Bệnh nhân đã được kiểm tra ECG.', '2024-10-10 09:30:00'),
-(2, 2, 2, '2024-10-18', 2, 'Completed', 'Tái khám tiểu đường. Kết quả đường huyết ổn định.', '2024-10-12 10:15:00'),
-(3, 3, 3, '2024-10-20', 1, 'Completed', 'Khám đau bụng. Chẩn đoán viêm dạ dày nhẹ.', '2024-10-15 14:20:00'),
-(4, 4, 4, '2024-10-22', 3, 'Completed', 'Khám đau đầu mạn tính. Đã chụp CT scan não.', '2024-10-17 11:00:00'),
+(1, 1, 1, '2025-10-15', 1, 'SCHEDULED', 'Khám định kỳ tim mạch. Bệnh nhân đã được kiểm tra ECG.', '2024-10-10 09:30:00'),
+(2, 2, 2, '2025-10-18', 2, 'SCHEDULED', 'Tái khám tiểu đường. Kết quả đường huyết ổn định.', '2024-10-12 10:15:00'),
+(3, 3, 3, '2025-10-20', 1, 'SCHEDULED', 'Khám đau bụng. Chẩn đoán viêm dạ dày nhẹ.', '2024-10-15 14:20:00'),
+(4, 4, 4, '2025-10-22', 3, 'SCHEDULED', 'Khám đau đầu mạn tính. Đã chụp CT scan não.', '2024-10-17 11:00:00'),
 
 -- Appointments đã xác nhận (sắp tới)
-(5, 5, 5, '2024-11-08', 2, 'Confirmed', 'Khám dị ứng da, mẩn đỏ', '2024-11-01 08:45:00'),
-(6, 6, 6, '2024-11-09', 1, 'Confirmed', 'Khám viêm họng, ho kéo dài', '2024-11-02 09:30:00'),
-(7, 7, 1, '2024-11-10', 3, 'Confirmed', 'Khám kiểm tra sức khỏe tim mạch định kỳ', '2024-11-03 10:00:00'),
-(8, 8, 2, '2024-11-11', 1, 'Confirmed', 'Tái khám tuyến giáp', '2024-11-04 11:30:00'),
+(5, 5, 5, '2025-11-08', 2, 'COMPLETED', 'Khám dị ứng da, mẩn đỏ', '2024-11-01 08:45:00'),
+(6, 6, 6, '2025-11-09', 1, 'COMPLETED', 'Khám viêm họng, ho kéo dài', '2024-11-02 09:30:00'),
+(7, 7, 1, '2025-11-10', 3, 'COMPLETED', 'Khám kiểm tra sức khỏe tim mạch định kỳ', '2024-11-03 10:00:00'),
+(8, 8, 2, '2025-11-11', 1, 'COMPLETED', 'Tái khám tuyến giáp', '2024-11-04 11:30:00'),
 
 -- Appointments đang chờ xác nhận
-(9, 1, 3, '2024-11-12', 2, 'Pending', 'Khám đau dạ dày', '2024-11-05 14:00:00'),
-(10, 2, 4, '2024-11-13', 3, 'Pending', 'Khám chóng mặt thường xuyên', '2024-11-05 15:30:00'),
+(9, 1, 4, '2025-11-05', 2, 'SCHEDULED', 'Khám đau dạ dày', '2024-11-05 14:00:00'),
+(10, 2, 4, '2025-11-06', 3, 'SCHEDULED', 'Khám chóng mặt thường xuyên', '2024-11-05 15:30:00'),
 
 -- Appointments bị hủy
-(11, 3, 5, '2024-10-25', 1, 'Cancelled', 'Bệnh nhân hủy lịch hẹn', '2024-10-20 16:00:00'),
-(12, 4, 6, '2024-10-28', 2, 'Cancelled', 'Bác sĩ bận công việc đột xuất', '2024-10-23 09:00:00'),
-
+(11, 3, 5, '2025-11-06', 1, 'SCHEDULED', 'Bệnh nhân hủy lịch hẹn', '2024-10-20 16:00:00'),
+(12, 4, 5, '2025-11-06', 2, 'SCHEDULED', 'Bác sĩ bận công việc đột xuất', '2024-10-23 09:00:00'),
+(17, 1, 5, '2025-11-06', 3, 'SCHEDULED', 'Bệnh nhân hủy lịch hẹn', '2024-10-20 16:00:00'),
+(18, 2, 5, '2025-11-06', 4, 'SCHEDULED', 'Bác sĩ bận công việc đột xuất', '2024-10-23 09:00:00'),
+(19, 5, 5, '2025-11-06', 5, 'SCHEDULED', 'Bệnh nhân hủy lịch hẹn', '2024-10-20 16:00:00'),
+(20, 6, 5, '2025-11-06', 6, 'SCHEDULED', 'Bác sĩ bận công việc đột xuất', '2024-10-23 09:00:00'),
 -- Appointments trong tương lai xa
-(13, 5, 1, '2024-11-15', 1, 'Confirmed', 'Kiểm tra huyết áp định kỳ', '2024-11-06 10:00:00'),
-(14, 6, 2, '2024-11-16', 2, 'Pending', 'Khám sức khỏe tổng quát', '2024-11-06 11:00:00'),
-(15, 7, 3, '2024-11-17', 3, 'Confirmed', 'Tái khám sau điều trị dạ dày', '2024-11-06 13:00:00'),
-(16, 8, 4, '2024-11-18', 1, 'Pending', 'Khám đau nửa đầu migraine', '2024-11-06 14:00:00');
+(13, 5, 1, '2025-11-15', 1, 'CANCELLED', 'Kiểm tra huyết áp định kỳ', '2024-11-06 10:00:00'),
+(14, 6, 2, '2025-11-16', 2, 'CANCELLED', 'Khám sức khỏe tổng quát', '2024-11-06 11:00:00'),
+(15, 7, 3, '2025-11-17', 3, 'CANCELLED', 'Tái khám sau điều trị dạ dày', '2024-11-06 13:00:00'),
+(16, 8, 4, '2025-11-18', 1, 'CANCELLED', 'Khám đau nửa đầu migraine', '2024-11-06 14:00:00');
 
 -- Reset sequence for appointment_id
-ALTER SEQUENCE t_appointment_appointment_id_seq RESTART WITH 17;
+ALTER SEQUENCE t_appointment_appointment_id_seq RESTART WITH 21;
 
 -- =====================================================
 -- END OF MOCK DATA

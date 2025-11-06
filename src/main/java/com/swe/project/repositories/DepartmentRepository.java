@@ -12,12 +12,12 @@ import java.util.List;
 @Repository
 public interface DepartmentRepository extends JpaRepository<Departments, Integer> {
     @Query(value = """
-    SELECT d.id AS departmentId,
+    SELECT d.department_id AS departmentId,
            d.department_name AS departmentName
     FROM t_department_symptom ds
-    JOIN t_department d ON ds.department_id = d.id
+    JOIN t_department d ON ds.department_id = d.department_id
     WHERE ds.symptom_id IN (:symptomIds)
-    GROUP BY d.id, d.department_name
+    GROUP BY d.department_id, d.department_name
     ORDER BY COUNT(ds.symptom_id) DESC
 """, nativeQuery = true)
     List<DepartmentSuggestionDTO> findDepartmentsByMostMatchingSymptoms(@Param("symptomIds") List<Integer> symptomIds);

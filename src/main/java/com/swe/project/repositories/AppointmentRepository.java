@@ -53,6 +53,6 @@ public interface AppointmentRepository extends JpaRepository<Appointments,Intege
             @Param("createdAt") LocalDateTime createdAt
     );
 
-    List<Appointments> findByPatient_User_UserId(Integer userId);
-    List<Appointments> findByDoctor_User_UserId(Integer userId);
+    List<Appointments> findByPatient_PatientId(Integer userId);
+    List<Appointments> findByDoctor_DoctorId(Integer userId);
 }

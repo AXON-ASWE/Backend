@@ -7,6 +7,7 @@ import com.swe.project.services.DoctorService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -15,7 +16,7 @@ import java.util.List;
 @RequiredArgsConstructor
 public class DoctorController {
     private final DoctorService doctorService;
-
+    private final PasswordEncoder passwordEncoder;
     @GetMapping("doctor")
     public ResponseEntity<List<DoctorResponse>> getDoctor(@RequestParam Integer departmentId) {
         return ResponseEntity.ok(doctorService.getDoctorsByDepartmentId(departmentId));
@@ -23,7 +24,7 @@ public class DoctorController {
 
     @PostMapping("doctor/create")
     public ResponseEntity<CreateDoctorResponse> createDoctorProfile(@RequestBody CreateDoctorRequest request) {
-        CreateDoctorResponse response = doctorService.createDoctor(request);
+        CreateDoctorResponse response = doctorService.createDoctor(request,passwordEncoder);
         // error
         if (!response.getSuccess()) {
             return new ResponseEntity<>(response, HttpStatus.BAD_REQUEST);
