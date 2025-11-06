@@ -1,4 +1,4 @@
-package com.swe.project.models.patient;
+package com.swe.project.models.authentication;
 
 import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.validation.constraints.Email;
@@ -12,7 +12,7 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class PatientLoginDto {
+public class AuthLoginRequest {
     @NotBlank(message = "Email không được để trống.")
     @Email(message = "Email không hợp lệ. Vui lòng nhập đúng định dạng email.")
     @Schema(example = "patient01@gmail.com", description = "Địa chỉ email hợp lệ của bệnh nhân")

@@ -79,7 +79,7 @@ public class AppointmentService {
             return null;
         }
         
-        List<Appointments> listPatientAppointment = appointmentRepository.findByPatient_UserId(patientId);
+        List<Appointments> listPatientAppointment = appointmentRepository.findByPatient_User_UserId(patientId);
         return listPatientAppointment.stream()
                 .map(PatientAppointmentResponseDTO::new)
                 .collect(Collectors.toList());
@@ -92,7 +92,7 @@ public class AppointmentService {
             return null;
         }
         
-        List<Appointments> listPatientAppointment = appointmentRepository.findByDoctor_UserId(doctorId);
+        List<Appointments> listPatientAppointment = appointmentRepository.findByDoctor_User_UserId(doctorId);
         return listPatientAppointment.stream()
                 .map(DoctorAppointmentResponseDTO::new)
                 .collect(Collectors.toList());

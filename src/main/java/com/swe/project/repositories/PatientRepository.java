@@ -7,5 +7,6 @@ import org.springframework.data.jpa.repository.Query;
 import java.util.Optional;
 
 public interface PatientRepository extends JpaRepository<Patients, Integer> {
+    @Query("SELECT p FROM Patients p WHERE p.user.email = :email AND p.user.status = :status")
     Optional<Patients> findByEmailAndStatus(String email, String status);
 }

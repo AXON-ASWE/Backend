@@ -18,12 +18,12 @@ public class DoctorResponse {
     private String doctorPhone;
 
     public DoctorResponse(Doctors doctor) {
-        this.id = doctor.getUserId();
-        this.doctorName = doctor.getFullName();
+        this.id = doctor.getUser().getUserId();
+        this.doctorName = doctor.getUser().getFullName();
         this.departmentId = doctor.getDepartment().getId();
         this.departmentName = doctor.getDepartment().getDepartmentName();
         this.experience = doctor.getExperienceYears();
-        this.doctorEmail = doctor.getEmail();
-        this.doctorPhone = doctor.getPhone();
+        this.doctorEmail = doctor.getUser().getEmail();
+        this.doctorPhone = doctor.getUser().getPhone();
     }
 }

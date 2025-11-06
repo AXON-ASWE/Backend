@@ -2,15 +2,19 @@ package com.swe.project.services;
 
 import com.swe.project.entities.departments.Departments;
 import com.swe.project.entities.doctors.Doctors;
+import com.swe.project.entities.users.RoleName;
+import com.swe.project.entities.users.Users;
 import com.swe.project.models.CreateDoctorRequest;
 import com.swe.project.models.CreateDoctorResponse;
 import com.swe.project.models.DoctorResponse;
 import com.swe.project.repositories.DepartmentRepository;
 import com.swe.project.repositories.DoctorRepository;
+import com.swe.project.repositories.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.time.LocalDate;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -19,6 +23,7 @@ import java.util.stream.Collectors;
 public class DoctorService {
     private final DoctorRepository doctorRepository;
     private final DepartmentRepository departmentRepository;
+    private final UserRepository userRepository;
 
     public List<DoctorResponse> getDoctorsByDepartmentId(Integer departmentId) {
         List<Doctors> doctors = doctorRepository.findByDepartment_Id(departmentId);
@@ -41,15 +46,24 @@ public class DoctorService {
             return new CreateDoctorResponse(false, "Department not found with ID: " + request.getDepartmentId());
         }
 
-        // 2. Create a new Doctors object (from Doctors.java file)
-        Doctors newDoctor = new Doctors();
-        newDoctor.setFullName(request.getDoctorName());
-        newDoctor.setExperienceYears(request.getExperience());
-        newDoctor.setEmail(request.getDoctorEmail());
-        newDoctor.setPhone(request.getDoctorPhone());
+        // 2. Create a new Users object
+        Users newUser = Users.builder()
+                .fullName(request.getDoctorName())
+                .email(request.getDoctorEmail())
+                .phone(request.getDoctorPhone())
+                .role(RoleName.DOCTOR)
+                .status("ACTIVE")
+                .createdAt(LocalDate.now())
+                .build();
 
-        // 3. Assign the found department
-        newDoctor.setDepartment(department);
+        newUser = userRepository.save(newUser);
+
+        // 3. Create a new Doctors object
+        Doctors newDoctor = Doctors.builder()
+                .user(newUser)
+                .experienceYears(request.getExperience())
+                .department(department)
+                .build();
 
         // 4. Save to the database
         try {

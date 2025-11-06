@@ -48,8 +48,8 @@ public class AppointmentController {
         );
         AppointmentResponseDTO response = new AppointmentResponseDTO(
                 appointment.getId(),
-                appointment.getDoctor().getFullName(),
-                appointment.getPatient().getFullName(),
+                appointment.getDoctor().getUser().getFullName(),
+                appointment.getPatient().getUser().getFullName(),
                 appointment.getAppointmentDate(),
                 appointment.getTimeSlot(),
                 appointment.getStatus()
