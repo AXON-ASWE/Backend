@@ -3,6 +3,7 @@ package com.swe.project.services.patientService;
 import com.swe.project.entities.patients.Patients;
 import com.swe.project.exception.UserNotFoundException;
 import com.swe.project.exception.UserRegistrationException;
+import com.swe.project.exception.UserWrongPasswordException;
 import com.swe.project.models.authentication.AuthenticationResponse;
 import com.swe.project.models.patient.PatientRegistrationDto;
 import com.swe.project.repositories.PatientRepository;
@@ -62,6 +63,39 @@ public class PatientAuthenticationServiceImpl implements PatientAuthenticationSe
 
         patients.setStatus("ACTIVE");
         patientRepository.save(patients);
+
+        String accessToken = jwtUtil.generateToken(
+                patients.getUserId(),
+                patients.getEmail(),
+                patients.getRole(),
+                false
+        );
+
+        String refreshToken = jwtUtil.generateToken(
+                patients.getUserId(),
+                patients.getEmail(),
+                patients.getRole(),
+                true
+        );
+
+        return AuthenticationResponse.builder()
+                .accessToken(accessToken)
+                .refreshToken(refreshToken)
+                .build();
+    }
+
+    @Override
+    public AuthenticationResponse loginPatient(String email, String password) {
+        Patients patients = patientRepository.findByEmailAndStatus(
+                email,
+                "ACTIVE"
+        ).orElseThrow(
+                UserNotFoundException::new
+        );
+
+        if (!passwordEncoder.matches(password, patients.getPasswordHash())) {
+            throw new UserWrongPasswordException();
+        }
 
         String accessToken = jwtUtil.generateToken(
                 patients.getUserId(),

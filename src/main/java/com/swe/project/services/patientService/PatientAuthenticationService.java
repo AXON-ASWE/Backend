@@ -6,4 +6,5 @@ import com.swe.project.models.patient.PatientRegistrationDto;
 public interface PatientAuthenticationService {
     void registerPatient(PatientRegistrationDto registrationDto);
     AuthenticationResponse activatePatientAccount(String email);
+    AuthenticationResponse loginPatient(String email, String password);
 }
