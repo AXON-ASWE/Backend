@@ -37,7 +37,8 @@ public class Users {
     private LocalDate dateOfBirth;
 
     @Column(name = "ROLE", nullable = false)
-    private String role;
+    @Enumerated(EnumType.STRING)
+    private RoleName role;
 
     @Column(name = "STATUS", nullable = false)
     private String status;
