@@ -21,10 +21,6 @@ public class AdminController {
         this.adminRegistrationService = adminRegistrationService;
     }
 
-    @GetMapping("/ping")
-    public ResponseEntity<String> ping() {
-        return ResponseEntity.ok("admin ok");
-    }
 
     // Đăng ký admin lần đầu (di chuyển từ AuthenticationController)
     @PostMapping("/register-admin")
