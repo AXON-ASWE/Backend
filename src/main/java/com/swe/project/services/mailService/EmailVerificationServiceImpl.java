@@ -1,11 +1,9 @@
 package com.swe.project.services.mailService;
 
-import com.swe.project.constant.Constants;
 import com.swe.project.entities.verification.VerificationToken;
 import com.swe.project.repositories.VerificationTokenRepository;
 import jakarta.mail.MessagingException;
 import lombok.RequiredArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;

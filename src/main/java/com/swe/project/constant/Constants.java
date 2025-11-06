@@ -20,6 +20,7 @@ public final class Constants {
 
     // Registration / login
     public static final String USER_ALREADY_EXISTS = "Người dùng với email %s đã tồn tại.";
+    public static final String INVALID_PASSWORD = "Mật khẩu không hợp lệ.";
     public static final String INVALID_EMAIL_OR_PASSWORD = "Email hoặc mật khẩu không hợp lệ";
     public static final String UNAUTHORIZED = "Bạn chưa đăng nhập";
     public static final String FORBIDDEN = "Bạn không có quyền thực hiện hành động này";
