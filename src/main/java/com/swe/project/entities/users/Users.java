@@ -30,7 +30,7 @@ public class Users {
     @Column(name = "FULL_NAME", nullable = false)
     private String fullName;
 
-    @Column(name = "PHONE", nullable = false)
+    @Column(name = "PHONE")
     private String phone;
 
     @Column(name = "GENDER")
@@ -47,6 +47,7 @@ public class Users {
     private String status;
 
     @Column(nullable = false, updatable = false, name = "CREATED_AT")
-    private LocalDate createdAt;
+    @Builder.Default
+    private LocalDate createdAt = LocalDate.now();
 
 }
