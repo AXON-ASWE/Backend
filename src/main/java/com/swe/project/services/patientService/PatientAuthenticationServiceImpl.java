@@ -1,6 +1,7 @@
 package com.swe.project.services.patientService;
 
 import com.swe.project.entities.patients.Patients;
+import com.swe.project.exception.UserRegistrationException;
 import com.swe.project.models.patient.PatientRegistrationDto;
 import com.swe.project.models.patient.PatientRegistrationResponseDto;
 import com.swe.project.repositories.PatientRepository;
@@ -22,9 +23,17 @@ public class PatientAuthenticationServiceImpl implements PatientAuthenticationSe
     public PatientRegistrationResponseDto registerPatient(PatientRegistrationDto registrationDto) {
 
         Patients newPatient = PatientUtils.toEntity(registrationDto, passwordEncoder);
+
+        if (patientRepository.existsByEmail(newPatient.getEmail())) {
+            throw new UserRegistrationException(newPatient.getEmail());
+        }
+
         newPatient = patientRepository.save(newPatient);
+
         String accessToken = jwtUtil.generateToken(newPatient.getUserId(), newPatient.getEmail(), newPatient.getRole(), false);
+
         String refreshToken = jwtUtil.generateToken(newPatient.getUserId(), newPatient.getEmail(), newPatient.getRole(), true);
+
         return PatientRegistrationResponseDto.builder()
                 .accessToken(accessToken)
                 .refreshToken(refreshToken)

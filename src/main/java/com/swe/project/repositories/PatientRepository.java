@@ -4,4 +4,5 @@ import com.swe.project.entities.patients.Patients;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface PatientRepository extends JpaRepository<Patients, Integer> {
+    boolean existsByEmail(String email);
 }
