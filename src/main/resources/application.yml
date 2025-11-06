@@ -21,6 +21,21 @@ spring:
       data-locations: classpath:data.sql
       encoding: UTF-8
 
+  mail:
+    host: smtp.gmail.com
+    port: 587
+    username: hcmutbku@gmail.com
+    password: muktkdfqcwdmjjtv
+    properties:
+      mail:
+        smtp:
+          auth: true
+          starttls:
+            enable: true
+          connectiontimeout: 5000
+          timeout: 5000
+          writetimeout: 5000
+
 # OpenAPI/Swagger Configuration
 springdoc:
   api-docs:
@@ -42,4 +57,8 @@ springdoc:
 application:
   openapi:
     dev-url: http://localhost:8080
-    prod-url:
+  frontend:
+    url: http://localhost:3000
+  email:
+    verification:
+      expiry: 24

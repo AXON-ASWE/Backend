@@ -2,8 +2,10 @@ package com.swe.project.entities.users;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import lombok.experimental.SuperBuilder;
 
 import java.time.LocalDate;
 
@@ -11,6 +13,7 @@ import java.time.LocalDate;
 @NoArgsConstructor
 @AllArgsConstructor
 @MappedSuperclass
+@SuperBuilder
 public class Users {
 
     @Id
@@ -27,7 +30,7 @@ public class Users {
     @Column(name = "FULL_NAME", nullable = false)
     private String fullName;
 
-    @Column(name = "PHONE", nullable = false)
+    @Column(name = "PHONE")
     private String phone;
 
     @Column(name = "GENDER")
@@ -37,12 +40,14 @@ public class Users {
     private LocalDate dateOfBirth;
 
     @Column(name = "ROLE", nullable = false)
-    private String role;
+    @Enumerated(EnumType.STRING)
+    private RoleName role;
 
     @Column(name = "STATUS", nullable = false)
     private String status;
 
     @Column(nullable = false, updatable = false, name = "CREATED_AT")
-    private LocalDate createdAt;
+    @Builder.Default
+    private LocalDate createdAt = LocalDate.now();
 
 }

@@ -1,4 +1,4 @@
-package com.swe.project.models;
+package com.swe.project.models.authentication;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -9,8 +9,7 @@ import lombok.NoArgsConstructor;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class AuthResponse {
-    private String token;
-    private String username;
-    private String message;
+public class AuthenticationResponse {
+    private String accessToken;
+    private String refreshToken;
 }
