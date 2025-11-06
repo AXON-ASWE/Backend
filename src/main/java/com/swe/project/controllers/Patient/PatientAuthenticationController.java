@@ -1,7 +1,6 @@
 package com.swe.project.controllers.Patient;
 
 import com.swe.project.models.patient.PatientRegistrationDto;
-import com.swe.project.models.patient.PatientRegistrationResponseDto;
 import com.swe.project.services.patientService.PatientAuthenticationService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -18,9 +17,12 @@ public class PatientAuthenticationController {
     private final PatientAuthenticationService patientAuthenticationService;
 
     @PostMapping("/register")
-    public ResponseEntity<PatientRegistrationResponseDto> registerPatient(@RequestBody PatientRegistrationDto registrationDto) {
+    public ResponseEntity<String> registerPatient(@RequestBody PatientRegistrationDto registrationDto) {
+
+        patientAuthenticationService.registerPatient(registrationDto);
+
         return ResponseEntity.ok(
-                patientAuthenticationService.registerPatient(registrationDto)
+            "Đăng kí thành công, vui lòng kiểm tra email để xác nhận tài khoản."
         );
     }
 }

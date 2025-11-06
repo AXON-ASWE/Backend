@@ -20,7 +20,7 @@ public class PatientUtils {
                 )
                 .role(RoleName.PATIENT)
                 .createdAt(LocalDate.now())
-                .status("ACTIVE")
+                .status("INACTIVE")
                 .build();
     }
 }

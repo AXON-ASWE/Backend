@@ -1,5 +1,4 @@
-package com.swe.project.models.patient;
-
+package com.swe.project.models.authentication;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -7,10 +6,10 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Data
-@AllArgsConstructor
-@NoArgsConstructor
 @Builder
-public class PatientRegistrationResponseDto {
+@NoArgsConstructor
+@AllArgsConstructor
+public class AuthenticationResponse {
     private String accessToken;
     private String refreshToken;
 }
