@@ -35,9 +35,6 @@ INSERT INTO t_user (user_id, email, password_hash, full_name, phone, gender, dat
 (15, 'patient7@gmail.com', 'pass1234', 'Đặng Thị Thu', '0923456795', 'Female', '1993-02-28', 'PATIENT', 'Active', '2024-02-07'),
 (16, 'patient8@gmail.com', 'pass1234', 'Ngô Văn Khánh', '0923456796', 'Male', '1991-06-17', 'PATIENT', 'Active', '2024-02-08');
 
--- Reset sequence for user_id
-ALTER SEQUENCE t_user_user_id_seq RESTART WITH 30;
-
 -- =====================================================
 -- 2. INSERT DEPARTMENTS (T_DEPARTMENT)
 -- =====================================================
@@ -49,8 +46,6 @@ INSERT INTO t_department (department_id, department_name, description, location)
 (5, 'Khoa Da Liễu', 'Chuyên khoa về các bệnh da liễu, dị ứng da', 'Tầng 1, Khu C'),
 (6, 'Khoa Tai Mũi Họng', 'Điều trị các bệnh về tai, mũi, họng', 'Tầng 2, Khu C');
 
--- Reset sequence for department_id
-ALTER SEQUENCE t_department_department_id_seq RESTART WITH 7;
 
 -- =====================================================
 -- 3. INSERT SYMPTOMS (T_SYMPTOM)
@@ -81,9 +76,6 @@ INSERT INTO t_symptom (symptom_id, symptom_name, description, tag) VALUES
 (17, 'Đau họng', 'Đau, khó nuốt', 'ent'),
 (18, 'Nghẹt mũi', 'Khó thở qua mũi', 'ent'),
 (19, 'Ù tai', 'Tai kêu, ù tai', 'ent');
-
--- Reset sequence for symptom_id
-ALTER SEQUENCE t_symptom_symptom_id_seq RESTART WITH 20;
 
 -- =====================================================
 -- 4. INSERT DEPARTMENT-SYMPTOM RELATIONSHIPS (T_DEPARTMENT_SYMPTOM)
@@ -125,9 +117,6 @@ INSERT INTO t_patient (patient_id, user_id, address, emergency_contact, insuranc
 (7, 15, '147 Pasteur, Quận 1, TP.HCM', '0987654327', 'BH123456795'),
 (8, 16, '258 Điện Biên Phủ, Quận Bình Thạnh, TP.HCM', '0987654328', 'BH123456796');
 
--- Reset sequence for patient_id
-ALTER SEQUENCE t_patient_patient_id_seq RESTART WITH 9;
-
 -- =====================================================
 -- 6. INSERT DOCTORS (T_DOCTOR)
 -- =====================================================
@@ -138,9 +127,6 @@ INSERT INTO t_doctor (doctor_id, user_id, specialization, experience_years, qual
 (4, 6, 'Thần Kinh', 18, 'Bác sĩ chuyên khoa II Thần Kinh, Giáo sư Y học', 4),
 (5, 7, 'Da Liễu', 8, 'Bác sĩ chuyên khoa I Da Liễu', 5),
 (6, 8, 'Tai Mũi Họng', 14, 'Bác sĩ chuyên khoa II Tai Mũi Họng, Thạc sĩ Y học', 6);
-
--- Reset sequence for doctor_id
-ALTER SEQUENCE t_doctor_doctor_id_seq RESTART WITH 7;
 
 -- =====================================================
 -- 7. INSERT DOCTOR WORKSHIFTS (T_DOCTOR_WORKSHIFT)
@@ -226,9 +212,6 @@ INSERT INTO t_appointment (appointment_id, patient_id, doctor_id, appointment_da
 (14, 6, 2, '2025-11-16', 2, 'CANCELLED', 'Khám sức khỏe tổng quát', '2024-11-06 11:00:00'),
 (15, 7, 3, '2025-11-17', 3, 'CANCELLED', 'Tái khám sau điều trị dạ dày', '2024-11-06 13:00:00'),
 (16, 8, 4, '2025-11-18', 1, 'CANCELLED', 'Khám đau nửa đầu migraine', '2024-11-06 14:00:00');
-
--- Reset sequence for appointment_id
-ALTER SEQUENCE t_appointment_appointment_id_seq RESTART WITH 21;
 
 -- =====================================================
 -- END OF MOCK DATA
