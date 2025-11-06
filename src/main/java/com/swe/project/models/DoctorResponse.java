@@ -1,6 +1,6 @@
 package com.swe.project.models;
 
-import com.swe.project.entities.Doctors;
+import com.swe.project.entities.doctors.Doctors;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -18,12 +18,12 @@ public class DoctorResponse {
     private String doctorPhone;
 
     public DoctorResponse(Doctors doctor) {
-        this.id = doctor.getId();
-        this.doctorName = doctor.getDoctorName();
+        this.id = doctor.getUser().getUserId();
+        this.doctorName = doctor.getUser().getFullName();
         this.departmentId = doctor.getDepartment().getId();
         this.departmentName = doctor.getDepartment().getDepartmentName();
-        this.experience = doctor.getExperience();
-        this.doctorEmail = doctor.getDoctorEmail();
-        this.doctorPhone = doctor.getDoctorPhone();
+        this.experience = doctor.getExperienceYears();
+        this.doctorEmail = doctor.getUser().getEmail();
+        this.doctorPhone = doctor.getUser().getPhone();
     }
 }

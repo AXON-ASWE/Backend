@@ -8,7 +8,7 @@ spring:
     driver-class-name: org.postgresql.Driver
   jpa:
     hibernate:
-      ddl-auto: 'create-drop'
+      ddl-auto: create-drop
     show-sql: true
     properties:
       hibernate:
@@ -42,4 +42,8 @@ springdoc:
 application:
   openapi:
     dev-url: http://localhost:8080
-    prod-url:
+  frontend:
+    url: http://localhost:3000
+  email:
+    verification:
+      expiry: 24

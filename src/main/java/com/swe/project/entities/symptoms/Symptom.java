@@ -1,11 +1,12 @@
-package com.swe.project.entities;
+package com.swe.project.entities.symptoms;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.swe.project.entities.departments.Departments;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
+
 import java.util.ArrayList;
 import java.util.List;
 

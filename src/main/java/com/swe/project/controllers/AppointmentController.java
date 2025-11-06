@@ -1,50 +1,105 @@
 package com.swe.project.controllers;
 
-import com.swe.project.entities.Appointments;
-import com.swe.project.models.AppointmentResponseDTO;
-import com.swe.project.models.CreateAppointmentRequestDTO;
-import com.swe.project.models.TimeSlotResponse;
-import com.swe.project.services.user.AppointmentService;
-import com.swe.project.services.user.DoctorService;
-import org.springframework.beans.factory.annotation.Autowired;
+import com.swe.project.entities.appointments.Appointments;
+import com.swe.project.models.*;
+import com.swe.project.services.AppointmentService;
+import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDate;
+import java.util.List;
 
 @RestController
 @RequestMapping("/appointment")
+@RequiredArgsConstructor
 public class AppointmentController {
-    @Autowired
     private final AppointmentService appointmentService;
-
-    public AppointmentController(AppointmentService appointmentService) {
-        this.appointmentService = appointmentService;
-    }
 
     @GetMapping("/available")
     public ResponseEntity<TimeSlotResponse> getAvailableAppointment(
             @RequestParam Integer doctorId,
-            @RequestParam Integer patientId,
             @RequestParam LocalDate date
-    ){
-        return ResponseEntity.ok(appointmentService.getListOfAvailableAppointment(doctorId,patientId,date));
+    ) {
+        Integer userId = ((Number) SecurityContextHolder.getContext()
+                .getAuthentication()
+                .getPrincipal()).intValue();
+        String role =  (String) SecurityContextHolder.getContext().getAuthentication().getAuthorities().stream()
+                .map(GrantedAuthority::getAuthority)
+                .findFirst()
+                .orElse(null);
+        if(!role.equals("ROLE_PATIENT")){
+            return ResponseEntity.status(401).build();
+        }
+
+
+        return ResponseEntity.ok(appointmentService.getListOfAvailableAppointment(doctorId, userId, date));
     }
+
+    @GetMapping("/patient")
+    public ResponseEntity<List<PatientAppointmentResponseDTO>> getPatientAppointment() {
+        Integer userId = ((Number) SecurityContextHolder.getContext()
+                .getAuthentication()
+                .getPrincipal()).intValue();
+        String role =  (String) SecurityContextHolder.getContext().getAuthentication().getAuthorities().stream()
+                .map(GrantedAuthority::getAuthority)
+                .findFirst()
+                .orElse(null);
+        if(!role.equals("ROLE_PATIENT")){
+            return ResponseEntity.status(401).build();
+        }
+        List<PatientAppointmentResponseDTO> listPatientAppointments = appointmentService.getListPatientAppointments(userId);
+        return ResponseEntity.ok(listPatientAppointments);
+    }
+
+    @GetMapping("/doctor")
+    public ResponseEntity<List<DoctorAppointmentResponseDTO>> getDoctorAppointment() {
+        Integer userId = ((Number) SecurityContextHolder.getContext()
+                .getAuthentication()
+                .getPrincipal()).intValue();
+        String role =  (String) SecurityContextHolder.getContext().getAuthentication().getAuthorities().stream()
+                .map(GrantedAuthority::getAuthority)
+                .findFirst()
+                .orElse(null);
+        if(!role.equals("ROLE_DOCTOR")){
+            return ResponseEntity.status(401).build();
+        }
+        List<DoctorAppointmentResponseDTO> listPatientAppointments = appointmentService.getListDoctorAppointments(userId);
+        return ResponseEntity.ok(listPatientAppointments);
+    }
+
     @PostMapping("/create")
-    public ResponseEntity<AppointmentResponseDTO> createAppointment(
-            @RequestBody CreateAppointmentRequestDTO  request
-            ){
-        Appointments appointment = appointmentService.createAppointment(request.getPatientId(),request.getDoctorId(),request.getDate(),request.getTimeSlot(),request.getNotes());
+    public ResponseEntity<AppointmentResponseDTO> createAppointment(@RequestBody CreateAppointmentRequestDTO request) {
+        Integer userId = ((Number) SecurityContextHolder.getContext()
+                .getAuthentication()
+                .getPrincipal()).intValue();
+        String role =  (String) SecurityContextHolder.getContext().getAuthentication().getAuthorities().stream()
+                .map(GrantedAuthority::getAuthority)
+                .findFirst()
+                .orElse(null);
+        if(!role.equals("ROLE_PATIENT")){
+            return ResponseEntity.status(401).build();
+        }
+        Appointments appointment = appointmentService.createAppointment(
+                userId,
+                request.getDoctorId(),
+                request.getDate(),
+                request.getTimeSlot(),
+                request.getNotes()
+        );
         AppointmentResponseDTO response = new AppointmentResponseDTO(
                 appointment.getId(),
-                appointment.getDoctor().getDoctorName(),
-                appointment.getPatient().getUser().getUsername(),
+                appointment.getDoctor().getUser().getFullName(),
+                appointment.getPatient().getUser().getFullName(),
                 appointment.getAppointmentDate(),
                 appointment.getTimeSlot(),
                 appointment.getStatus()
         );
         return ResponseEntity.status(201).body(response);
     }
+
     @PutMapping("/{id}/cancel")
     public ResponseEntity<String> cancelAppointment(@PathVariable Integer id) {
         boolean success = appointmentService.cancelAppointment(id);
@@ -52,6 +107,16 @@ public class AppointmentController {
             return ResponseEntity.ok("Appointment cancelled successfully");
         } else {
             return ResponseEntity.badRequest().body("Unable to cancel appointment — either not found or not in SCHEDULED state");
+        }
+    }
+
+    @PutMapping("/{id}/reschedule")
+    public ResponseEntity<String> rescheduleAppointment(@PathVariable Integer id, @RequestBody RescheduleAppointmentRequest request) {
+        boolean success = appointmentService.rescheduleAppointment(id, request.getAppointmentDate(), request.getTimeSlot());
+        if (success) {
+            return ResponseEntity.ok("Appointment rescheduled successfully");
+        } else {
+            return ResponseEntity.badRequest().body("Unable to rescheduled appointment");
         }
     }
 }

@@ -1,6 +1,6 @@
 package com.swe.project.repositories;
 
-import com.swe.project.entities.Appointments;
+import com.swe.project.entities.appointments.Appointments;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
@@ -9,6 +9,7 @@ import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.List;
 
 @Repository
@@ -29,8 +30,29 @@ public interface AppointmentRepository extends JpaRepository<Appointments,Intege
     and (status = 'COMPLETED' OR status = 'SCHEDULED')
 """, nativeQuery = true)
     List<Integer> getListOfDoctorScheduledAppointment(@Param("doctorId") Integer doctorId, @Param("appointmentDate") LocalDate appointmentDate);
+
+
     @Modifying
     @Transactional
     @Query("UPDATE Appointments a SET a.status = 'CANCELLED' WHERE a.id = :appointmentId")
     int cancelAppointment(Integer appointmentId);
+
+    @Modifying
+    @Transactional
+    @Query("""
+    UPDATE Appointments a 
+    SET a.appointmentDate = :appointmentDate,
+        a.timeSlot = :timeSlot,
+        a.createdAt = :createdAt
+    WHERE a.id = :appointmentId
+""")
+    int updateAppointment(
+            @Param("appointmentId") Integer appointmentId,
+            @Param("appointmentDate") LocalDate appointmentDate,
+            @Param("timeSlot") int timeSlot,
+            @Param("createdAt") LocalDateTime createdAt
+    );
+
+    List<Appointments> findByPatient_PatientId(Integer userId);
+    List<Appointments> findByDoctor_DoctorId(Integer userId);
 }

@@ -1,197 +1,218 @@
--- ============================================
--- MOCK DATA FOR AXON PROJECT DATABASE
--- ============================================
+-- =====================================================
+-- MOCK DATA FOR AXON ACTIVE PROJECT DATABASE
+-- =====================================================
+-- Thứ tự insert: Users -> Patients/Doctors -> Departments -> Symptoms -> Department_Symptom -> Doctor_Workshift -> Appointments
+-- =====================================================
 
--- Insert Users (T_USER)
-INSERT INTO T_USER (id, username, password) VALUES
-(1, 'admin', '$2a$10$slYQmyNdGzTn7ZLBXBChFOC9f6kFjAqPhccnP6DxlWXx2lPk1C3G6'), -- password: admin123
-(2, 'john.doe', '$2a$10$slYQmyNdGzTn7ZLBXBChFOC9f6kFjAqPhccnP6DxlWXx2lPk1C3G6'), -- password: admin123
-(3, 'jane.smith', '$2a$10$slYQmyNdGzTn7ZLBXBChFOC9f6kFjAqPhccnP6DxlWXx2lPk1C3G6'),
-(4, 'bob.wilson', '$2a$10$slYQmyNdGzTn7ZLBXBChFOC9f6kFjAqPhccnP6DxlWXx2lPk1C3G6'),
-(5, 'alice.brown', '$2a$10$slYQmyNdGzTn7ZLBXBChFOC9f6kFjAqPhccnP6DxlWXx2lPk1C3G6'),
-(6, 'charlie.davis', '$2a$10$slYQmyNdGzTn7ZLBXBChFOC9f6kFjAqPhccnP6DxlWXx2lPk1C3G6');
+-- =====================================================
+-- 1. INSERT USERS (T_USER)
+-- =====================================================
+-- Password: "password123" đã được hash bằng BCrypt
+-- Có thể thay đổi password hash nếu cần
 
--- Insert Symptoms (T_SYMPTOM)
-INSERT INTO T_SYMPTOM (symptom_id, symptom_name, description, tag) VALUES
-(1, 'Fever', 'High body temperature', 'common'),
-(2, 'Headache', 'Pain in head region', 'common'),
-(3, 'Chest Pain', 'Discomfort in chest area', 'urgent'),
-(4, 'Shortness of Breath', 'Difficulty breathing', 'urgent'),
-(5, 'Cough', 'Persistent coughing', 'common'),
-(6, 'Fatigue', 'Extreme tiredness', 'common'),
-(7, 'Nausea', 'Feeling of sickness', 'common'),
-(8, 'Dizziness', 'Feeling lightheaded', 'common'),
-(9, 'Abdominal Pain', 'Pain in stomach area', 'moderate'),
-(10, 'Back Pain', 'Pain in back region', 'moderate'),
-(11, 'Joint Pain', 'Pain in joints', 'moderate'),
-(12, 'Skin Rash', 'Unusual skin condition', 'moderate'),
-(13, 'Anxiety', 'Feeling of worry or unease', 'mental'),
-(14, 'Depression', 'Persistent sadness', 'mental'),
-(15, 'Toothache', 'Pain in teeth or gums', 'dental'),
-(16, 'Blurred Vision', 'Unclear vision', 'eye'),
-(17, 'Ear Pain', 'Pain in ear', 'ent'),
-(18, 'Frequent Urination', 'Need to urinate often', 'urological'),
-(19, 'Irregular Periods', 'Abnormal menstrual cycle', 'gynecological'),
-(20, 'Memory Loss', 'Difficulty remembering', 'neurological');
+-- Admin Users
+INSERT INTO t_user (user_id, email, password_hash, full_name, phone, gender, date_of_birth, role, status, created_at) VALUES
+(1, 'admin@hospital.com', 'pass1234', 'Nguyễn Văn Admin', '0901234567', 'Male', '1980-01-15', 'ADMIN', 'Active', '2024-01-01'),
+(2, 'admin2@hospital.com', 'pass1234', 'Trần Thị Quản Trị', '0901234568', 'Female', '1985-03-20', 'ADMIN', 'Active', '2024-01-01');
 
--- Insert Departments (T_DEPARTMENT)
-INSERT INTO T_DEPARTMENT (id, department_name, description, location) VALUES
-(1, 'Cardiology', 'Heart and cardiovascular system care', 'Building A, Floor 3'),
-(2, 'Neurology', 'Brain and nervous system disorders', 'Building A, Floor 4'),
-(3, 'Orthopedics', 'Bone, joint, and muscle treatment', 'Building B, Floor 2'),
-(4, 'Pediatrics', 'Child healthcare', 'Building C, Floor 1'),
-(5, 'Dermatology', 'Skin conditions and treatment', 'Building B, Floor 3'),
-(6, 'Psychiatry', 'Mental health care', 'Building C, Floor 2'),
-(7, 'General Medicine', 'General health consultation', 'Building A, Floor 1'),
-(8, 'Emergency', 'Emergency medical care', 'Building A, Ground Floor'),
-(9, 'Dentistry', 'Dental care and oral health', 'Building B, Floor 1'),
-(10, 'Ophthalmology', 'Eye care and vision', 'Building C, Floor 3'),
-(11, 'ENT', 'Ear, Nose, and Throat care', 'Building B, Floor 4'),
-(12, 'Urology', 'Urinary system and male reproductive organs', 'Building A, Floor 5'),
-(13, 'Gynecology', 'Women health and reproductive system', 'Building C, Floor 4'),
-(14, 'Gastroenterology', 'Digestive system disorders', 'Building A, Floor 2');
+-- Doctor Users
+INSERT INTO t_user (user_id, email, password_hash, full_name, phone, gender, date_of_birth, role, status, created_at) VALUES
+(3, 'doctor.nguyen@hospital.com', 'pass1234', 'Bs. Nguyễn Văn Hùng', '0912345678', 'Male', '1975-06-10', 'DOCTOR', 'Active', '2024-01-02'),
+(4, 'doctor.tran@hospital.com', 'pass1234', 'Bs. Trần Thị Mai', '0912345679', 'Female', '1980-08-25', 'DOCTOR', 'Active', '2024-01-02'),
+(5, 'doctor.le@hospital.com', 'pass1234', 'Bs. Lê Minh Tuấn', '0912345680', 'Male', '1982-11-05', 'DOCTOR', 'Active', '2024-01-02'),
+(6, 'doctor.pham@hospital.com', 'pass1234', 'Bs. Phạm Thị Lan', '0912345681', 'Female', '1978-04-15', 'DOCTOR', 'Active', '2024-01-02'),
+(7, 'doctor.hoang@hospital.com', 'pass1234', 'Bs. Hoàng Văn Đức', '0912345682', 'Male', '1983-09-30', 'DOCTOR', 'Active', '2024-01-02'),
+(8, 'doctor.vu@hospital.com', 'pass1234', 'Bs. Vũ Thị Hương', '0912345683', 'Female', '1981-07-12', 'DOCTOR', 'Active', '2024-01-02');
 
--- Link Departments with Symptoms (T_DEPARTMENT_SYMPTOM)
--- Cardiology symptoms
-INSERT INTO T_DEPARTMENT_SYMPTOM (department_id, symptom_id) VALUES
-(1, 3), (1, 4), (1, 6), (1, 8);
+-- Patient Users
+INSERT INTO t_user (user_id, email, password_hash, full_name, phone, gender, date_of_birth, role, status, created_at) VALUES
+(9, 'patient1@gmail.com', 'pass1234', 'Nguyễn Thị Lan', '0923456789', 'Female', '1990-03-15', 'PATIENT', 'Active', '2024-02-01'),
+(10, 'patient2@gmail.com', 'pass1234', 'Trần Văn Nam', '0923456790', 'Male', '1985-07-20', 'PATIENT', 'Active', '2024-02-02'),
+(11, 'patient3@gmail.com', 'pass1234', 'Lê Thị Hoa', '0923456791', 'Female', '1992-11-08', 'PATIENT', 'Active', '2024-02-03'),
+(12, 'patient4@gmail.com', 'pass1234', 'Phạm Văn Bình', '0923456792', 'Male', '1988-05-25', 'PATIENT', 'Active', '2024-02-04'),
+(13, 'patient5@gmail.com', 'pass1234', 'Hoàng Thị Mai', '0923456793', 'Female', '1995-09-14', 'PATIENT', 'Active', '2024-02-05'),
+(14, 'patient6@gmail.com', 'pass1234', 'Vũ Văn Toàn', '0923456794', 'Male', '1987-12-03', 'PATIENT', 'Active', '2024-02-06'),
+(15, 'patient7@gmail.com', 'pass1234', 'Đặng Thị Thu', '0923456795', 'Female', '1993-02-28', 'PATIENT', 'Active', '2024-02-07'),
+(16, 'patient8@gmail.com', 'pass1234', 'Ngô Văn Khánh', '0923456796', 'Male', '1991-06-17', 'PATIENT', 'Active', '2024-02-08');
 
--- Neurology symptoms
-INSERT INTO T_DEPARTMENT_SYMPTOM (department_id, symptom_id) VALUES
-(2, 2), (2, 8), (2, 20);
+-- =====================================================
+-- 2. INSERT DEPARTMENTS (T_DEPARTMENT)
+-- =====================================================
+INSERT INTO t_department (department_id, department_name, description, location) VALUES
+(1, 'Khoa Tim Mạch', 'Chuyên về điều trị các bệnh về tim mạch, huyết áp, nhồi máu cơ tim', 'Tầng 3, Khu A'),
+(2, 'Khoa Nội Tiết', 'Điều trị các bệnh về nội tiết, tiểu đường, tuyến giáp', 'Tầng 2, Khu A'),
+(3, 'Khoa Tiêu Hóa', 'Chuyên khoa về dạ dày, ruột, gan mật', 'Tầng 4, Khu B'),
+(4, 'Khoa Thần Kinh', 'Điều trị các bệnh về thần kinh, đau đầu, đột quỵ', 'Tầng 5, Khu A'),
+(5, 'Khoa Da Liễu', 'Chuyên khoa về các bệnh da liễu, dị ứng da', 'Tầng 1, Khu C'),
+(6, 'Khoa Tai Mũi Họng', 'Điều trị các bệnh về tai, mũi, họng', 'Tầng 2, Khu C');
 
--- Orthopedics symptoms
-INSERT INTO T_DEPARTMENT_SYMPTOM (department_id, symptom_id) VALUES
-(3, 10), (3, 11);
 
--- Pediatrics symptoms (common children symptoms)
-INSERT INTO T_DEPARTMENT_SYMPTOM (department_id, symptom_id) VALUES
-(4, 1), (4, 5), (4, 7);
+-- =====================================================
+-- 3. INSERT SYMPTOMS (T_SYMPTOM)
+-- =====================================================
+INSERT INTO t_symptom (symptom_id, symptom_name, description, tag) VALUES
+-- Tim Mạch
+(1, 'Đau ngực', 'Cảm giác đau, tức ngực, khó thở', 'cardiac'),
+(2, 'Tim đập nhanh', 'Nhịp tim tăng cao bất thường', 'cardiac'),
+(3, 'Huyết áp cao', 'Tăng huyết áp liên tục', 'cardiac'),
+-- Nội Tiết
+(4, 'Khát nước nhiều', 'Cảm giác khát liên tục, tiểu nhiều', 'endocrine'),
+(5, 'Tăng/giảm cân đột ngột', 'Thay đổi cân nặng không rõ nguyên nhân', 'endocrine'),
+(6, 'Mệt mỏi kéo dài', 'Cảm thấy mệt mỏi, uể oải thường xuyên', 'endocrine'),
+-- Tiêu Hóa
+(7, 'Đau bụng', 'Đau vùng bụng, khó chịu', 'digestive'),
+(8, 'Buồn nôn', 'Cảm giác buồn nôn, nôn mửa', 'digestive'),
+(9, 'Tiêu chảy', 'Đi ngoài nhiều lần, phân lỏng', 'digestive'),
+(10, 'Táo bón', 'Khó đi ngoài, phân cứng', 'digestive'),
+-- Thần Kinh
+(11, 'Đau đầu', 'Đau đầu dữ dội, kéo dài', 'neurological'),
+(12, 'Chóng mặt', 'Cảm giác chóng mặt, mất thăng bằng', 'neurological'),
+(13, 'Tê liệt', 'Tê, liệt tay chân', 'neurological'),
+-- Da Liễu
+(14, 'Ngứa da', 'Da bị ngứa, đỏ, khó chịu', 'dermatological'),
+(15, 'Phát ban', 'Xuất hiện các vết ban đỏ trên da', 'dermatological'),
+(16, 'Mụn', 'Da bị mụn, viêm', 'dermatological'),
+-- Tai Mũi Họng
+(17, 'Đau họng', 'Đau, khó nuốt', 'ent'),
+(18, 'Nghẹt mũi', 'Khó thở qua mũi', 'ent'),
+(19, 'Ù tai', 'Tai kêu, ù tai', 'ent');
 
--- Dermatology symptoms
-INSERT INTO T_DEPARTMENT_SYMPTOM (department_id, symptom_id) VALUES
-(5, 12);
+-- =====================================================
+-- 4. INSERT DEPARTMENT-SYMPTOM RELATIONSHIPS (T_DEPARTMENT_SYMPTOM)
+-- =====================================================
+-- Tim Mạch
+INSERT INTO t_department_symptom (department_id, symptom_id) VALUES
+(1, 1), (1, 2), (1, 3), (1, 12);
 
--- Psychiatry symptoms
-INSERT INTO T_DEPARTMENT_SYMPTOM (department_id, symptom_id) VALUES
-(6, 13), (6, 14);
+-- Nội Tiết
+INSERT INTO t_department_symptom (department_id, symptom_id) VALUES
+(2, 4), (2, 5), (2, 6);
 
--- General Medicine symptoms
-INSERT INTO T_DEPARTMENT_SYMPTOM (department_id, symptom_id) VALUES
-(7, 1), (7, 2), (7, 5), (7, 6), (7, 7);
+-- Tiêu Hóa
+INSERT INTO t_department_symptom (department_id, symptom_id) VALUES
+(3, 7), (3, 8), (3, 9), (3, 10);
 
--- Emergency symptoms
-INSERT INTO T_DEPARTMENT_SYMPTOM (department_id, symptom_id) VALUES
-(8, 3), (8, 4), (8, 8);
+-- Thần Kinh
+INSERT INTO t_department_symptom (department_id, symptom_id) VALUES
+(4, 11), (4, 12), (4, 13);
 
--- Dentistry symptoms
-INSERT INTO T_DEPARTMENT_SYMPTOM (department_id, symptom_id) VALUES
-(9, 15);
+-- Da Liễu
+INSERT INTO t_department_symptom (department_id, symptom_id) VALUES
+(5, 14), (5, 15), (5, 16);
 
--- Ophthalmology symptoms
-INSERT INTO T_DEPARTMENT_SYMPTOM (department_id, symptom_id) VALUES
-(10, 16);
+-- Tai Mũi Họng
+INSERT INTO t_department_symptom (department_id, symptom_id) VALUES
+(6, 17), (6, 18), (6, 19);
 
--- ENT symptoms
-INSERT INTO T_DEPARTMENT_SYMPTOM (department_id, symptom_id) VALUES
-(11, 17);
+-- =====================================================
+-- 5. INSERT PATIENTS (T_PATIENT)
+-- =====================================================
+INSERT INTO t_patient (patient_id, user_id, address, emergency_contact, insurance_number) VALUES
+(1, 9, '123 Lê Lợi, Quận 1, TP.HCM', '0987654321', 'BH123456789'),
+(2, 10, '456 Trần Hưng Đạo, Quận 5, TP.HCM', '0987654322', 'BH123456790'),
+(3, 11, '789 Nguyễn Trãi, Quận 1, TP.HCM', '0987654323', 'BH123456791'),
+(4, 12, '321 Hai Bà Trưng, Quận 3, TP.HCM', '0987654324', 'BH123456792'),
+(5, 13, '654 Cách Mạng Tháng 8, Quận 10, TP.HCM', '0987654325', 'BH123456793'),
+(6, 14, '987 Võ Văn Tần, Quận 3, TP.HCM', '0987654326', 'BH123456794'),
+(7, 15, '147 Pasteur, Quận 1, TP.HCM', '0987654327', 'BH123456795'),
+(8, 16, '258 Điện Biên Phủ, Quận Bình Thạnh, TP.HCM', '0987654328', 'BH123456796');
 
--- Urology symptoms
-INSERT INTO T_DEPARTMENT_SYMPTOM (department_id, symptom_id) VALUES
-(12, 18);
+-- =====================================================
+-- 6. INSERT DOCTORS (T_DOCTOR)
+-- =====================================================
+INSERT INTO t_doctor (doctor_id, user_id, specialization, experience_years, qualifications, department_id) VALUES
+(1, 3, 'Tim Mạch Học', 15, 'Bác sĩ chuyên khoa II Tim Mạch, Thạc sĩ Y học', 1),
+(2, 4, 'Nội Tiết', 12, 'Bác sĩ chuyên khoa I Nội Tiết, Tiến sĩ Y học', 2),
+(3, 5, 'Tiêu Hóa', 10, 'Bác sĩ chuyên khoa I Tiêu Hóa', 3),
+(4, 6, 'Thần Kinh', 18, 'Bác sĩ chuyên khoa II Thần Kinh, Giáo sư Y học', 4),
+(5, 7, 'Da Liễu', 8, 'Bác sĩ chuyên khoa I Da Liễu', 5),
+(6, 8, 'Tai Mũi Họng', 14, 'Bác sĩ chuyên khoa II Tai Mũi Họng, Thạc sĩ Y học', 6);
 
--- Gynecology symptoms
-INSERT INTO T_DEPARTMENT_SYMPTOM (department_id, symptom_id) VALUES
-(13, 19);
+-- =====================================================
+-- 7. INSERT DOCTOR WORKSHIFTS (T_DOCTOR_WORKSHIFT)
+-- =====================================================
+-- Bác sĩ 1 (Tim Mạch): Thứ 2, 4, 6
+INSERT INTO t_doctor_workshift (doctor_id, day_of_week, start_time, end_time) VALUES
+(1, 'MONDAY', '08:00:00', '12:00:00'),
+(1, 'MONDAY', '13:00:00', '17:00:00'),
+(1, 'WEDNESDAY', '08:00:00', '12:00:00'),
+(1, 'WEDNESDAY', '13:00:00', '17:00:00'),
+(1, 'FRIDAY', '08:00:00', '12:00:00'),
+(1, 'FRIDAY', '13:00:00', '17:00:00');
 
--- Gastroenterology symptoms
-INSERT INTO T_DEPARTMENT_SYMPTOM (department_id, symptom_id) VALUES
-(14, 7), (14, 9);
+-- Bác sĩ 2 (Nội Tiết): Thứ 3, 5, 7
+INSERT INTO t_doctor_workshift (doctor_id, day_of_week, start_time, end_time) VALUES
+(2, 'TUESDAY', '08:00:00', '12:00:00'),
+(2, 'TUESDAY', '13:00:00', '17:00:00'),
+(2, 'THURSDAY', '08:00:00', '12:00:00'),
+(2, 'THURSDAY', '13:00:00', '17:00:00'),
+(2, 'SATURDAY', '08:00:00', '12:00:00');
 
--- Insert Doctors (T_DOCTOR)
-INSERT INTO T_DOCTOR (id, doctor_name, department_id, experience, doctor_email, doctor_phone) VALUES
--- Cardiology
-(1, 'Dr. Michael Chen', 1, 15, 'michael.chen@hospital.com', '555-0101'),
-(2, 'Dr. Sarah Johnson', 1, 12, 'sarah.johnson@hospital.com', '555-0102'),
+-- Bác sĩ 3 (Tiêu Hóa): Thứ 2, 3, 4
+INSERT INTO t_doctor_workshift (doctor_id, day_of_week, start_time, end_time) VALUES
+(3, 'MONDAY', '08:00:00', '12:00:00'),
+(3, 'TUESDAY', '13:00:00', '17:00:00'),
+(3, 'WEDNESDAY', '08:00:00', '12:00:00'),
+(3, 'THURSDAY', '13:00:00', '17:00:00');
 
--- Neurology
-(3, 'Dr. Robert Williams', 2, 20, 'robert.williams@hospital.com', '555-0103'),
-(4, 'Dr. Emily Davis', 2, 8, 'emily.davis@hospital.com', '555-0104'),
+-- Bác sĩ 4 (Thần Kinh): Thứ 4, 5, 6
+INSERT INTO t_doctor_workshift (doctor_id, day_of_week, start_time, end_time) VALUES
+(4, 'WEDNESDAY', '08:00:00', '12:00:00'),
+(4, 'WEDNESDAY', '13:00:00', '17:00:00'),
+(4, 'THURSDAY', '08:00:00', '12:00:00'),
+(4, 'FRIDAY', '13:00:00', '17:00:00'),
+(4, 'SATURDAY', '08:00:00', '12:00:00');
 
--- Orthopedics
-(5, 'Dr. James Martinez', 3, 18, 'james.martinez@hospital.com', '555-0105'),
-(6, 'Dr. Lisa Anderson', 3, 10, 'lisa.anderson@hospital.com', '555-0106'),
+-- Bác sĩ 5 (Da Liễu): Thứ 2, 4, 6, 7
+INSERT INTO t_doctor_workshift (doctor_id, day_of_week, start_time, end_time) VALUES
+(5, 'MONDAY', '13:00:00', '17:00:00'),
+(5, 'WEDNESDAY', '13:00:00', '17:00:00'),
+(5, 'FRIDAY', '08:00:00', '12:00:00'),
+(5, 'FRIDAY', '13:00:00', '17:00:00'),
+(5, 'SATURDAY', '08:00:00', '12:00:00');
 
--- Pediatrics
-(7, 'Dr. David Thompson', 4, 14, 'david.thompson@hospital.com', '555-0107'),
-(8, 'Dr. Jennifer White', 4, 9, 'jennifer.white@hospital.com', '555-0108'),
+-- Bác sĩ 6 (Tai Mũi Họng): Thứ 3, 5, 7
+INSERT INTO t_doctor_workshift (doctor_id, day_of_week, start_time, end_time) VALUES
+(6, 'TUESDAY', '08:00:00', '12:00:00'),
+(6, 'TUESDAY', '13:00:00', '17:00:00'),
+(6, 'THURSDAY', '08:00:00', '12:00:00'),
+(6, 'THURSDAY', '13:00:00', '17:00:00'),
+(6, 'SATURDAY', '13:00:00', '17:00:00');
 
--- Dermatology
-(9, 'Dr. Christopher Lee', 5, 11, 'christopher.lee@hospital.com', '555-0109'),
-(10, 'Dr. Amanda Garcia', 5, 7, 'amanda.garcia@hospital.com', '555-0110'),
+-- =====================================================
+-- 8. INSERT APPOINTMENTS (T_APPOINTMENT)
+-- =====================================================
+-- Các cuộc hẹn trong tương lai và quá khứ
+INSERT INTO t_appointment (appointment_id, patient_id, doctor_id, appointment_date, time_slot, status, notes, created_at) VALUES
+-- Appointments đã hoàn thành
+(1, 1, 1, '2025-10-15', 1, 'SCHEDULED', 'Khám định kỳ tim mạch. Bệnh nhân đã được kiểm tra ECG.', '2024-10-10 09:30:00'),
+(2, 2, 2, '2025-10-18', 2, 'SCHEDULED', 'Tái khám tiểu đường. Kết quả đường huyết ổn định.', '2024-10-12 10:15:00'),
+(3, 3, 3, '2025-10-20', 1, 'SCHEDULED', 'Khám đau bụng. Chẩn đoán viêm dạ dày nhẹ.', '2024-10-15 14:20:00'),
+(4, 4, 4, '2025-10-22', 3, 'SCHEDULED', 'Khám đau đầu mạn tính. Đã chụp CT scan não.', '2024-10-17 11:00:00'),
 
--- Psychiatry
-(11, 'Dr. Daniel Rodriguez', 6, 16, 'daniel.rodriguez@hospital.com', '555-0111'),
-(12, 'Dr. Patricia Martinez', 6, 13, 'patricia.martinez@hospital.com', '555-0112'),
+-- Appointments đã xác nhận (sắp tới)
+(5, 5, 5, '2025-11-08', 2, 'COMPLETED', 'Khám dị ứng da, mẩn đỏ', '2024-11-01 08:45:00'),
+(6, 6, 6, '2025-11-09', 1, 'COMPLETED', 'Khám viêm họng, ho kéo dài', '2024-11-02 09:30:00'),
+(7, 7, 1, '2025-11-10', 3, 'COMPLETED', 'Khám kiểm tra sức khỏe tim mạch định kỳ', '2024-11-03 10:00:00'),
+(8, 8, 2, '2025-11-11', 1, 'COMPLETED', 'Tái khám tuyến giáp', '2024-11-04 11:30:00'),
 
--- General Medicine
-(13, 'Dr. Kevin Brown', 7, 10, 'kevin.brown@hospital.com', '555-0113'),
-(14, 'Dr. Michelle Wilson', 7, 8, 'michelle.wilson@hospital.com', '555-0114'),
+-- Appointments đang chờ xác nhận
+(9, 1, 4, '2025-11-05', 2, 'SCHEDULED', 'Khám đau dạ dày', '2024-11-05 14:00:00'),
+(10, 2, 4, '2025-11-06', 3, 'SCHEDULED', 'Khám chóng mặt thường xuyên', '2024-11-05 15:30:00'),
 
--- Emergency
-(15, 'Dr. Steven Taylor', 8, 12, 'steven.taylor@hospital.com', '555-0115'),
-(16, 'Dr. Laura Thomas', 8, 9, 'laura.thomas@hospital.com', '555-0116'),
+-- Appointments bị hủy
+(11, 3, 5, '2025-11-06', 1, 'SCHEDULED', 'Bệnh nhân hủy lịch hẹn', '2024-10-20 16:00:00'),
+(12, 4, 5, '2025-11-06', 2, 'SCHEDULED', 'Bác sĩ bận công việc đột xuất', '2024-10-23 09:00:00'),
+(17, 1, 5, '2025-11-06', 3, 'SCHEDULED', 'Bệnh nhân hủy lịch hẹn', '2024-10-20 16:00:00'),
+(18, 2, 5, '2025-11-06', 4, 'SCHEDULED', 'Bác sĩ bận công việc đột xuất', '2024-10-23 09:00:00'),
+(19, 5, 5, '2025-11-06', 5, 'SCHEDULED', 'Bệnh nhân hủy lịch hẹn', '2024-10-20 16:00:00'),
+(20, 6, 5, '2025-11-06', 6, 'SCHEDULED', 'Bác sĩ bận công việc đột xuất', '2024-10-23 09:00:00'),
+-- Appointments trong tương lai xa
+(13, 5, 1, '2025-11-15', 1, 'CANCELLED', 'Kiểm tra huyết áp định kỳ', '2024-11-06 10:00:00'),
+(14, 6, 2, '2025-11-16', 2, 'CANCELLED', 'Khám sức khỏe tổng quát', '2024-11-06 11:00:00'),
+(15, 7, 3, '2025-11-17', 3, 'CANCELLED', 'Tái khám sau điều trị dạ dày', '2024-11-06 13:00:00'),
+(16, 8, 4, '2025-11-18', 1, 'CANCELLED', 'Khám đau nửa đầu migraine', '2024-11-06 14:00:00');
 
--- Dentistry
-(17, 'Dr. Brian Moore', 9, 15, 'brian.moore@hospital.com', '555-0117'),
-(18, 'Dr. Karen Jackson', 9, 11, 'karen.jackson@hospital.com', '555-0118'),
-
--- Ophthalmology
-(19, 'Dr. Richard Martin', 10, 17, 'richard.martin@hospital.com', '555-0119'),
-(20, 'Dr. Nancy Lee', 10, 10, 'nancy.lee@hospital.com', '555-0120'),
-
--- ENT
-(21, 'Dr. Paul Harris', 11, 14, 'paul.harris@hospital.com', '555-0121'),
-(22, 'Dr. Sandra Clark', 11, 9, 'sandra.clark@hospital.com', '555-0122'),
-
--- Urology
-(23, 'Dr. Mark Lewis', 12, 19, 'mark.lewis@hospital.com', '555-0123'),
-(24, 'Dr. Barbara Walker', 12, 12, 'barbara.walker@hospital.com', '555-0124'),
-
--- Gynecology
-(25, 'Dr. Thomas Hall', 13, 16, 'thomas.hall@hospital.com', '555-0125'),
-(26, 'Dr. Elizabeth Allen', 13, 11, 'elizabeth.allen@hospital.com', '555-0126'),
-
--- Gastroenterology
-(27, 'Dr. Joseph Young', 14, 13, 'joseph.young@hospital.com', '555-0127'),
-(28, 'Dr. Susan King', 14, 10, 'susan.king@hospital.com', '555-0128');
-
--- Insert Patients (T_PATIENT)
-INSERT INTO T_PATIENT (id, user_id, address, medical_history, emergency_contact, insurance_number) VALUES
-(1, 2, '123 Main St, New York, NY 10001', 'Hypertension, Type 2 Diabetes', '555-1001', 'INS-001-2024'),
-(2, 3, '456 Oak Ave, Los Angeles, CA 90001', 'Asthma', '555-1002', 'INS-002-2024'),
-(3, 4, '789 Pine Rd, Chicago, IL 60601', 'None', '555-1003', 'INS-003-2024'),
-(4, 5, '321 Elm St, Houston, TX 77001', 'Allergies (Peanuts)', '555-1004', 'INS-004-2024'),
-(5, 6, '654 Maple Dr, Phoenix, AZ 85001', 'Previous heart surgery (2020)', '555-1005', 'INS-005-2024');
-
--- Insert Appointments (T_APPOINTMENT)
-INSERT INTO T_APPOINTMENT (patient_id, doctor_id, appointment_date, time_slot, status, notes, created_at) VALUES
--- Upcoming appointments
-(1, 1, '2025-11-05', 5, 'SCHEDULED', 'Regular cardiology checkup', '2025-10-28 10:00:00'),
-(2, 7, '2025-11-06',7, 'SCHEDULED', 'Asthma follow-up', '2025-10-29 14:30:00'),
-( 3, 13, '2025-11-07',11, 'SCHEDULED', 'General health consultation', '2025-10-30 09:15:00'),
-(4, 5, '2025-11-08',8, 'SCHEDULED', 'Joint pain examination', '2025-10-31 16:20:00'),
-(5, 1, '2025-11-10',13, 'SCHEDULED', 'Post-surgery follow-up', '2025-11-01 08:00:00'),
-
--- Past appointments
-(1, 13, '2025-10-20',5, 'COMPLETED', 'Annual checkup - all clear', '2025-10-15 11:00:00'),
-(2, 3, '2025-10-22',8, 'COMPLETED', 'Headache consultation', '2025-10-18 13:30:00'),
-(3, 14, '2025-10-25',9, 'COMPLETED', 'Fever and cold', '2025-10-20 10:00:00'),
-(4, 9, '2025-10-28',12, 'COMPLETED', 'Skin rash treatment', '2025-10-23 15:45:00'),
-( 5, 2, '2025-10-30',8, 'COMPLETED', 'Cardiac monitoring', '2025-10-25 09:30:00'),
-
--- Cancelled appointment
-( 2, 4, '2025-11-01', 6, 'SCHEDULED', 'Patient requested cancellation', '2025-10-26 12:00:00'),
-(1, 4, '2025-11-01', 7, 'SCHEDULED', 'Patient requested cancellation', '2025-10-26 12:00:00'),
-( 2, 4, '2025-11-01', 8, 'SCHEDULED', 'Patient requested cancellation', '2025-10-26 12:00:00'),
-( 3, 4, '2025-11-01', 9, 'SCHEDULED', 'Patient requested cancellation', '2025-10-26 12:00:00');
+-- =====================================================
+-- END OF MOCK DATA
+-- =====================================================
