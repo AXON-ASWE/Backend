@@ -214,12 +214,7 @@ INSERT INTO t_appointment (appointment_id, patient_id, doctor_id, appointment_da
 (16, 8, 4, '2025-11-18', 1, 'CANCELLED', 'Khám đau nửa đầu migraine', '2024-11-06 14:00:00');
 
 
-SELECT setval(pg_get_serial_sequence('t_user', 'user_id'), (SELECT MAX(user_id) FROM t_user));
-SELECT setval(pg_get_serial_sequence('t_department', 'department_id'), (SELECT MAX(department_id) FROM t_department));
-SELECT setval(pg_get_serial_sequence('t_symptom', 'symptom_id'), (SELECT MAX(symptom_id) FROM t_symptom));
-SELECT setval(pg_get_serial_sequence('t_patient', 'patient_id'), (SELECT MAX(patient_id) FROM t_patient));
-SELECT setval(pg_get_serial_sequence('t_doctor', 'doctor_id'), (SELECT MAX(doctor_id) FROM t_doctor));
-SELECT setval(pg_get_serial_sequence('t_appointment', 'appointment_id'), (SELECT MAX(appointment_id) FROM t_appointment));
+
 -- =====================================================
 -- END OF MOCK DATA
 -- =====================================================
