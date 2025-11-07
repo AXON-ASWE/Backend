@@ -37,6 +37,7 @@ public class AuthenticationService {
 
         String accessToken = jwtUtil.generateToken(
                 user.getUserId(),
+                user.getFullName(),
                 user.getEmail(),
                 user.getRole(),
                 false
@@ -44,6 +45,7 @@ public class AuthenticationService {
 
         String refreshToken = jwtUtil.generateToken(
                 user.getUserId(),
+                user.getFullName(),
                 user.getEmail(),
                 user.getRole(),
                 true
