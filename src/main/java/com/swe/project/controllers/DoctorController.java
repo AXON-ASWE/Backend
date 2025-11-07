@@ -19,16 +19,17 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
+@RequestMapping("/api/admin")
 @RequiredArgsConstructor
 public class DoctorController {
     private final DoctorService doctorService;
     private final PasswordEncoder passwordEncoder;
-    @GetMapping("doctor")
-    public ResponseEntity<List<DoctorResponse>> getDoctor(@RequestParam Integer departmentId) {
-        return ResponseEntity.ok(doctorService.getDoctorsByDepartmentId(departmentId));
-    }
+//    @GetMapping("doctor")
+//    public ResponseEntity<List<DoctorResponse>> getDoctor(@RequestParam Integer departmentId) {
+//        return ResponseEntity.ok(doctorService.getDoctorsByDepartmentId(departmentId));
+//    }
 
-    @PostMapping("doctor/create")
+    @PostMapping("doctor")
     public ResponseEntity<CreateDoctorResponse> createDoctorProfile(@RequestBody CreateDoctorRequest request) {
         CreateDoctorResponse response = doctorService.createDoctor(request,passwordEncoder);
         // error
@@ -41,7 +42,7 @@ public class DoctorController {
     }
 
     @Operation(summary = "Get all doctors", description = "Retrieves a list of all doctors in the system.")
-    @GetMapping("/doctors")
+    @GetMapping("/doctor")
     public ResponseEntity<List<DoctorResponse>> getAllDoctors() {
         return ResponseEntity.ok(doctorService.getAllDoctors());
     }
@@ -52,7 +53,7 @@ public class DoctorController {
             @ApiResponse(responseCode = "200", description = "Successfully retrieved doctor details"),
             @ApiResponse(responseCode = "404", description = "Doctor not found with the provided ID")
     })
-    @GetMapping("/doctors/{id}")
+    @GetMapping("/doctor/{id}")
     public ResponseEntity<DoctorDetailResponse> getDoctorById(
             @Parameter(description = "The ID of the doctor to retrieve", required = true)
             @PathVariable Integer id) {
@@ -65,7 +66,7 @@ public class DoctorController {
             @ApiResponse(responseCode = "200", description = "Doctor profile updated successfully"),
             @ApiResponse(responseCode = "404", description = "Doctor not found with the provided ID")
     })
-    @PutMapping("/doctors/{id}")
+    @PutMapping("/doctor/{id}")
     public ResponseEntity<DoctorDetailResponse> updateDoctor(
             @Parameter(description = "The ID of the doctor to update", required = true)
             @PathVariable Integer id,
@@ -80,7 +81,7 @@ public class DoctorController {
             @ApiResponse(responseCode = "204", description = "Doctor deactivated successfully"),
             @ApiResponse(responseCode = "404", description = "Doctor not found with the provided ID")
     })
-    @DeleteMapping("/doctors/{id}")
+    @DeleteMapping("/doctor/{id}")
     public ResponseEntity<Void> deactivateDoctor(
             @Parameter(description = "The ID of the doctor to deactivate", required = true)
             @PathVariable Integer id) {

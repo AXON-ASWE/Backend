@@ -19,7 +19,7 @@ import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import java.util.List;
 
 @RestController
-@RequestMapping("/symptoms")
+@RequestMapping("/api/admin")
 @RequiredArgsConstructor
 @Tag(name = "Symptom Controller", description = "APIs for managing symptoms")
 public class SymptomController {
@@ -30,7 +30,7 @@ public class SymptomController {
             description = "Retrieves a simplified list of all symptoms, containing only their ID and name. Requires authentication."
     )
     @ApiResponse(responseCode = "200", description = "Successfully retrieved the list of symptoms")
-    @GetMapping("/names")
+    @GetMapping("/symptom")
     public ResponseEntity<List<SymptomResponse>> getAllSymptoms() {
         return ResponseEntity.ok(symptomService.getAllSymptoms());
     }
@@ -43,7 +43,7 @@ public class SymptomController {
             @ApiResponse(responseCode = "200", description = "Successfully retrieved the symptom details"),
             @ApiResponse(responseCode = "404", description = "Symptom not found with the provided ID", content = @Content)
     })
-    @GetMapping("/{id}")
+    @GetMapping("/symptom/{id}")
     public ResponseEntity<SymptomDetailResponse> getSymptomById(
             @Parameter(description = "The ID of the symptom to retrieve", required = true, example = "19")
             @PathVariable Integer id) {
@@ -60,7 +60,7 @@ public class SymptomController {
                     @ApiResponse(responseCode = "403", description = "Forbidden - User does not have permission to add symptoms")
             }
     )
-    @PostMapping
+    @PostMapping("/symptom")
     public ResponseEntity<SymptomResponse> addSymptom(@RequestBody AddSymptomRequest request) {
         SymptomResponse newSymptom = symptomService.addSymptom(request);
         return new ResponseEntity<>(newSymptom, HttpStatus.CREATED);
@@ -74,7 +74,7 @@ public class SymptomController {
             @ApiResponse(responseCode = "200", description = "Symptom updated successfully"),
             @ApiResponse(responseCode = "404", description = "Symptom not found with the provided ID", content = @Content)
     })
-    @PutMapping("/{id}")
+    @PutMapping("/symptom/{id}")
     public ResponseEntity<SymptomResponse> updateSymptom(
             @Parameter(description = "The ID of the symptom to update", required = true, example = "19")
             @PathVariable Integer id,
@@ -92,7 +92,7 @@ public class SymptomController {
             @ApiResponse(responseCode = "404", description = "Symptom not found with the provided ID", content = @Content),
             @ApiResponse(responseCode = "500", description = "Internal server error, possibly due to a foreign key constraint violation if the symptom is still in use.")
     })
-    @DeleteMapping("/{id}")
+    @DeleteMapping("/symptom/{id}")
     public ResponseEntity<Void> deleteSymptom(
             @Parameter(description = "The ID of the symptom to delete", required = true, example = "19")
             @PathVariable Integer id) {

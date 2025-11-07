@@ -1,5 +1,6 @@
 package com.swe.project.services;
 
+import com.swe.project.entities.appointments.Appointments;
 import com.swe.project.entities.departments.Departments;
 import com.swe.project.entities.doctors.Doctors;
 import com.swe.project.entities.users.RoleName;
@@ -9,6 +10,7 @@ import com.swe.project.models.DoctorDetailResponse;
 import com.swe.project.models.CreateDoctorRequest;
 import com.swe.project.models.CreateDoctorResponse;
 import com.swe.project.models.DoctorResponse;
+import com.swe.project.repositories.AppointmentRepository;
 import com.swe.project.repositories.DepartmentRepository;
 import com.swe.project.repositories.DoctorRepository;
 import com.swe.project.repositories.UserRepository;
@@ -29,9 +31,9 @@ public class DoctorService {
     private final DoctorRepository doctorRepository;
     private final DepartmentRepository departmentRepository;
     private final UserRepository userRepository;
-
+    private final AppointmentRepository appointmentRepository;
     public List<DoctorResponse> getDoctorsByDepartmentId(Integer departmentId) {
-        List<Doctors> doctors = doctorRepository.findByDepartment_Id(departmentId);
+        List<Doctors> doctors = doctorRepository.findActiveDoctorsByDepartmentId(departmentId);
         return doctors.stream()
                 .map(DoctorResponse::new)
                 .collect(Collectors.toList());
@@ -134,7 +136,12 @@ public class DoctorService {
 
         // 3. Change the user's status.
         user.setStatus("INACTIVE");
-
+        List<Appointments> appointments = appointmentRepository.findByDoctor_DoctorId(id);
+        appointments.forEach(appointment -> {
+            if(appointment.getStatus().equals("SCHEDULED")) {
+                appointment.setStatus("CANCELLED");
+            }
+        });
         // The @Transactional annotation ensures this change is saved to the database.
     }
 }

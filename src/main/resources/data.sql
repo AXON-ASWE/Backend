@@ -12,28 +12,28 @@
 
 -- Admin Users
 INSERT INTO t_user (user_id, email, password_hash, full_name, phone, gender, date_of_birth, role, status, created_at) VALUES
-(1, 'admin@hospital.com', 'pass1234', 'Nguyễn Văn Admin', '0901234567', 'Male', '1980-01-15', 'ADMIN', 'Active', '2024-01-01'),
-(2, 'admin2@hospital.com', 'pass1234', 'Trần Thị Quản Trị', '0901234568', 'Female', '1985-03-20', 'ADMIN', 'Active', '2024-01-01');
+(1, 'admin@hospital.com', 'pass1234', 'Nguyễn Văn Admin', '0901234567', 'Male', '1980-01-15', 'ADMIN', 'ACTIVE', '2024-01-01'),
+(2, 'admin2@hospital.com', 'pass1234', 'Trần Thị Quản Trị', '0901234568', 'Female', '1985-03-20', 'ADMIN', 'ACTIVE', '2024-01-01');
 
 -- Doctor Users
 INSERT INTO t_user (user_id, email, password_hash, full_name, phone, gender, date_of_birth, role, status, created_at) VALUES
-(3, 'doctor.nguyen@hospital.com', 'pass1234', 'Bs. Nguyễn Văn Hùng', '0912345678', 'Male', '1975-06-10', 'DOCTOR', 'Active', '2024-01-02'),
-(4, 'doctor.tran@hospital.com', 'pass1234', 'Bs. Trần Thị Mai', '0912345679', 'Female', '1980-08-25', 'DOCTOR', 'Active', '2024-01-02'),
-(5, 'doctor.le@hospital.com', 'pass1234', 'Bs. Lê Minh Tuấn', '0912345680', 'Male', '1982-11-05', 'DOCTOR', 'Active', '2024-01-02'),
-(6, 'doctor.pham@hospital.com', 'pass1234', 'Bs. Phạm Thị Lan', '0912345681', 'Female', '1978-04-15', 'DOCTOR', 'Active', '2024-01-02'),
-(7, 'doctor.hoang@hospital.com', 'pass1234', 'Bs. Hoàng Văn Đức', '0912345682', 'Male', '1983-09-30', 'DOCTOR', 'Active', '2024-01-02'),
-(8, 'doctor.vu@hospital.com', 'pass1234', 'Bs. Vũ Thị Hương', '0912345683', 'Female', '1981-07-12', 'DOCTOR', 'Active', '2024-01-02');
+(3, 'doctor.nguyen@hospital.com', 'pass1234', 'Bs. Nguyễn Văn Hùng', '0912345678', 'Male', '1975-06-10', 'DOCTOR', 'ACTIVE', '2024-01-02'),
+(4, 'doctor.tran@hospital.com', 'pass1234', 'Bs. Trần Thị Mai', '0912345679', 'Female', '1980-08-25', 'DOCTOR', 'ACTIVE', '2024-01-02'),
+(5, 'doctor.le@hospital.com', 'pass1234', 'Bs. Lê Minh Tuấn', '0912345680', 'Male', '1982-11-05', 'DOCTOR', 'ACTIVE', '2024-01-02'),
+(6, 'doctor.pham@hospital.com', 'pass1234', 'Bs. Phạm Thị Lan', '0912345681', 'Female', '1978-04-15', 'DOCTOR', 'ACTIVE', '2024-01-02'),
+(7, 'doctor.hoang@hospital.com', 'pass1234', 'Bs. Hoàng Văn Đức', '0912345682', 'Male', '1983-09-30', 'DOCTOR', 'ACTIVE', '2024-01-02'),
+(8, 'doctor.vu@hospital.com', 'pass1234', 'Bs. Vũ Thị Hương', '0912345683', 'Female', '1981-07-12', 'DOCTOR', 'ACTIVE', '2024-01-02');
 
 -- Patient Users
 INSERT INTO t_user (user_id, email, password_hash, full_name, phone, gender, date_of_birth, role, status, created_at) VALUES
-(9, 'patient1@gmail.com', 'pass1234', 'Nguyễn Thị Lan', '0923456789', 'Female', '1990-03-15', 'PATIENT', 'Active', '2024-02-01'),
-(10, 'patient2@gmail.com', 'pass1234', 'Trần Văn Nam', '0923456790', 'Male', '1985-07-20', 'PATIENT', 'Active', '2024-02-02'),
-(11, 'patient3@gmail.com', 'pass1234', 'Lê Thị Hoa', '0923456791', 'Female', '1992-11-08', 'PATIENT', 'Active', '2024-02-03'),
-(12, 'patient4@gmail.com', 'pass1234', 'Phạm Văn Bình', '0923456792', 'Male', '1988-05-25', 'PATIENT', 'Active', '2024-02-04'),
-(13, 'patient5@gmail.com', 'pass1234', 'Hoàng Thị Mai', '0923456793', 'Female', '1995-09-14', 'PATIENT', 'Active', '2024-02-05'),
-(14, 'patient6@gmail.com', 'pass1234', 'Vũ Văn Toàn', '0923456794', 'Male', '1987-12-03', 'PATIENT', 'Active', '2024-02-06'),
-(15, 'patient7@gmail.com', 'pass1234', 'Đặng Thị Thu', '0923456795', 'Female', '1993-02-28', 'PATIENT', 'Active', '2024-02-07'),
-(16, 'patient8@gmail.com', 'pass1234', 'Ngô Văn Khánh', '0923456796', 'Male', '1991-06-17', 'PATIENT', 'Active', '2024-02-08');
+(9, 'patient1@gmail.com', 'pass1234', 'Nguyễn Thị Lan', '0923456789', 'Female', '1990-03-15', 'PATIENT', 'ACTIVE', '2024-02-01'),
+(10, 'patient2@gmail.com', 'pass1234', 'Trần Văn Nam', '0923456790', 'Male', '1985-07-20', 'PATIENT', 'ACTIVE', '2024-02-02'),
+(11, 'patient3@gmail.com', 'pass1234', 'Lê Thị Hoa', '0923456791', 'Female', '1992-11-08', 'PATIENT', 'ACTIVE', '2024-02-03'),
+(12, 'patient4@gmail.com', 'pass1234', 'Phạm Văn Bình', '0923456792', 'Male', '1988-05-25', 'PATIENT', 'ACTIVE', '2024-02-04'),
+(13, 'patient5@gmail.com', 'pass1234', 'Hoàng Thị Mai', '0923456793', 'Female', '1995-09-14', 'PATIENT', 'ACTIVE', '2024-02-05'),
+(14, 'patient6@gmail.com', 'pass1234', 'Vũ Văn Toàn', '0923456794', 'Male', '1987-12-03', 'PATIENT', 'ACTIVE', '2024-02-06'),
+(15, 'patient7@gmail.com', 'pass1234', 'Đặng Thị Thu', '0923456795', 'Female', '1993-02-28', 'PATIENT', 'ACTIVE', '2024-02-07'),
+(16, 'patient8@gmail.com', 'pass1234', 'Ngô Văn Khánh', '0923456796', 'Male', '1991-06-17', 'PATIENT', 'ACTIVE', '2024-02-08');
 
 -- =====================================================
 -- 2. INSERT DEPARTMENTS (T_DEPARTMENT)
