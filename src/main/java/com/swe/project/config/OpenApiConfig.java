@@ -1,5 +1,7 @@
 package com.swe.project.config;
-
+import io.swagger.v3.oas.models.Components;
+import io.swagger.v3.oas.models.security.SecurityRequirement;
+import io.swagger.v3.oas.models.security.SecurityScheme;
 import io.swagger.v3.oas.models.OpenAPI;
 import io.swagger.v3.oas.models.info.Contact;
 import io.swagger.v3.oas.models.info.Info;
@@ -42,7 +44,24 @@ public class OpenApiConfig {
                 .description("This API exposes endpoints for the Axon Advanced Software Engineering Project.")
                 .license(mitLicense);
 
-        OpenAPI openAPI = new OpenAPI().info(info).servers(List.of(devServer));
+        final String securitySchemeName = "bearerAuth";
+
+        OpenAPI openAPI = new OpenAPI()
+                .info(info)
+                .servers(List.of(devServer))
+                // Add a global security requirement
+                .addSecurityItem(new SecurityRequirement().addList(securitySchemeName))
+                // Define the security scheme component
+                .components(
+                        new Components()
+                                .addSecuritySchemes(securitySchemeName,
+                                        new SecurityScheme()
+                                                .name(securitySchemeName)
+                                                .type(SecurityScheme.Type.HTTP)
+                                                .scheme("bearer")
+                                                .bearerFormat("JWT")
+                                )
+                );
 
         // Add production server if configured
         if (prodUrl != null && !prodUrl.isEmpty()) {
