@@ -40,7 +40,8 @@ public class AdminRegistrationService {
         Users admin = new Users(
                 null, // userId tự sinh
                 request.getEmail(),
-                passwordEncoder.encode(request.getPassword()),
+                //passwordEncoder.encode(request.getPassword()),
+                request.getPassword(),
                 request.getFullName(),
                 null, // phone
                 null, // gender

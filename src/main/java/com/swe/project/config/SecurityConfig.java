@@ -56,7 +56,7 @@ public class SecurityConfig {
                     "/api/doctor/auth/**"
                 ).permitAll()
                 // Allow first admin registration without authentication
-                .requestMatchers("/api/admin/register-admin").permitAll()
+                .requestMatchers("/api/admin/register").permitAll()
                 // Admin endpoints require ADMIN role
                 .requestMatchers("/api/admin/**").hasRole("ADMIN")
                 .anyRequest().authenticated()

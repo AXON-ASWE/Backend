@@ -38,7 +38,7 @@ public class AdminController {
 
     // ==================== ADMIN REGISTRATION ====================
     
-    @PostMapping("/register-admin")
+    @PostMapping("/register")
     @Operation(summary = "Đăng ký admin lần đầu")
     public ResponseEntity<AuthenticationResponse> registerAdmin(@RequestBody @Valid AdminRegistrationRequest request) {
         return ResponseEntity.ok(adminRegistrationService.register(request));
@@ -62,12 +62,9 @@ public class AdminController {
 
     @DeleteMapping("/patient/{patientId}")
     @Operation(summary = "Xóa bệnh nhân (soft delete)")
-    public ResponseEntity<Map<String, Object>> deletePatient(@PathVariable Integer patientId) {
+    public ResponseEntity<Void> deletePatient(@PathVariable Integer patientId) {
         adminPatientService.deletePatient(patientId);
-        Map<String, Object> body = new HashMap<>();
-        body.put("success", true);
-        body.put("message", "Patient deleted successfully");
-        body.put("patientId", patientId);
-        return ResponseEntity.ok(body);
+        
+        return ResponseEntity.noContent().build();
     }
 }
