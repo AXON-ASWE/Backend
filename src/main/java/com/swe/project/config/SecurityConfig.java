@@ -1,7 +1,6 @@
 package com.swe.project.config;
 
 import com.swe.project.config.filter.JwtAuthenticationFilter;
-import lombok.AllArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -19,10 +18,13 @@ import java.util.List;
 
 @Configuration
 @EnableWebSecurity
-@AllArgsConstructor
 public class SecurityConfig {
 
     private final JwtAuthenticationFilter jwtAuthenticationFilter;
+
+    public SecurityConfig(JwtAuthenticationFilter jwtAuthenticationFilter) {
+        this.jwtAuthenticationFilter = jwtAuthenticationFilter;
+    }
 
     /**
      * Configure BCrypt password encoder for secure password hashing
@@ -53,6 +55,10 @@ public class SecurityConfig {
                     "/api/auth/**",
                     "/api/doctor/auth/**"
                 ).permitAll()
+                // Allow first admin registration without authentication
+                .requestMatchers("/api/admin/register").permitAll()
+                // Admin endpoints require ADMIN role
+                .requestMatchers("/api/admin/**").hasRole("ADMIN")
                 .anyRequest().authenticated()
             )
             .addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class);

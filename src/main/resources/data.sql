@@ -213,6 +213,8 @@ INSERT INTO t_appointment (appointment_id, patient_id, doctor_id, appointment_da
 (15, 7, 3, '2025-11-17', 3, 'CANCELLED', 'Tái khám sau điều trị dạ dày', '2024-11-06 13:00:00'),
 (16, 8, 4, '2025-11-18', 1, 'CANCELLED', 'Khám đau nửa đầu migraine', '2024-11-06 14:00:00');
 
+
+
 -- =====================================================
 -- RESET SEQUENCES TO PREVENT DUPLICATE KEY ERRORS
 -- =====================================================
