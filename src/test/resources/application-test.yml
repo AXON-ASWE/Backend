@@ -16,8 +16,7 @@ spring:
     defer-datasource-initialization: true
   sql:
     init:
-      mode: always
-      data-locations: classpath:data.sql
+      mode: never  # Disable data.sql for tests - tests should manage their own data
       encoding: UTF-8
   h2:
     console:
