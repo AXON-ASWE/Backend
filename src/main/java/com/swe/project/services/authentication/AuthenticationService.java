@@ -23,7 +23,10 @@ public class AuthenticationService {
         Users user = userRepository.findByEmail(request.getEmail())
                 .orElseThrow(UserNotFoundException::new);
 
-        if (!passwordEncoder.matches(request.getPassword(), user.getPasswordHash())) {
+//        if (!passwordEncoder.matches(request.getPassword(), user.getPasswordHash())) {
+//            throw new UserWrongPasswordException();
+//        }
+        if (!request.getPassword().equals(user.getPasswordHash())) {
             throw new UserWrongPasswordException();
         }
 

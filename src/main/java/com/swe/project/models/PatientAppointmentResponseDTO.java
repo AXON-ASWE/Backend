@@ -16,8 +16,10 @@ public class PatientAppointmentResponseDTO {
     private String departmentName;
     private int timeSlot;
     private String status;
+    private Integer doctorId;
     public PatientAppointmentResponseDTO(Appointments appointment) {
         appointmentId = appointment.getId();
+        doctorId = appointment.getDoctor().getUser().getUserId();
         doctorName = appointment.getDoctor().getUser().getFullName();
         appointmentDate = appointment.getAppointmentDate();
         departmentName = appointment.getDoctor().getDepartment().getDepartmentName();

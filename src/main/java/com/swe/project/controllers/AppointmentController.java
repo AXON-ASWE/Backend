@@ -5,6 +5,8 @@ import com.swe.project.models.*;
 import com.swe.project.services.AppointmentService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDate;
@@ -19,28 +21,69 @@ public class AppointmentController {
     @GetMapping("/available")
     public ResponseEntity<TimeSlotResponse> getAvailableAppointment(
             @RequestParam Integer doctorId,
-            @RequestParam Integer patientId,
             @RequestParam LocalDate date
     ) {
-        return ResponseEntity.ok(appointmentService.getListOfAvailableAppointment(doctorId, patientId, date));
+        Integer userId = ((Number) SecurityContextHolder.getContext()
+                .getAuthentication()
+                .getPrincipal()).intValue();
+        String role =  (String) SecurityContextHolder.getContext().getAuthentication().getAuthorities().stream()
+                .map(GrantedAuthority::getAuthority)
+                .findFirst()
+                .orElse(null);
+        if(!role.equals("ROLE_PATIENT")){
+            return ResponseEntity.status(401).build();
+        }
+
+
+        return ResponseEntity.ok(appointmentService.getListOfAvailableAppointment(doctorId, userId, date));
     }
 
     @GetMapping("/patient")
-    public ResponseEntity<List<PatientAppointmentResponseDTO>> getPatientAppointment(@RequestParam Integer patientId) {
-        List<PatientAppointmentResponseDTO> listPatientAppointments = appointmentService.getListPatientAppointments(patientId);
+    public ResponseEntity<List<PatientAppointmentResponseDTO>> getPatientAppointment() {
+        Integer userId = ((Number) SecurityContextHolder.getContext()
+                .getAuthentication()
+                .getPrincipal()).intValue();
+        String role =  (String) SecurityContextHolder.getContext().getAuthentication().getAuthorities().stream()
+                .map(GrantedAuthority::getAuthority)
+                .findFirst()
+                .orElse(null);
+        if(!role.equals("ROLE_PATIENT")){
+            return ResponseEntity.status(401).build();
+        }
+        List<PatientAppointmentResponseDTO> listPatientAppointments = appointmentService.getListPatientAppointments(userId);
         return ResponseEntity.ok(listPatientAppointments);
     }
 
     @GetMapping("/doctor")
-    public ResponseEntity<List<DoctorAppointmentResponseDTO>> getDoctorAppointment(@RequestParam Integer doctorId) {
-        List<DoctorAppointmentResponseDTO> listPatientAppointments = appointmentService.getListDoctorAppointments(doctorId);
+    public ResponseEntity<List<DoctorAppointmentResponseDTO>> getDoctorAppointment() {
+        Integer userId = ((Number) SecurityContextHolder.getContext()
+                .getAuthentication()
+                .getPrincipal()).intValue();
+        String role =  (String) SecurityContextHolder.getContext().getAuthentication().getAuthorities().stream()
+                .map(GrantedAuthority::getAuthority)
+                .findFirst()
+                .orElse(null);
+        if(!role.equals("ROLE_DOCTOR")){
+            return ResponseEntity.status(401).build();
+        }
+        List<DoctorAppointmentResponseDTO> listPatientAppointments = appointmentService.getListDoctorAppointments(userId);
         return ResponseEntity.ok(listPatientAppointments);
     }
 
     @PostMapping("/create")
     public ResponseEntity<AppointmentResponseDTO> createAppointment(@RequestBody CreateAppointmentRequestDTO request) {
+        Integer userId = ((Number) SecurityContextHolder.getContext()
+                .getAuthentication()
+                .getPrincipal()).intValue();
+        String role =  (String) SecurityContextHolder.getContext().getAuthentication().getAuthorities().stream()
+                .map(GrantedAuthority::getAuthority)
+                .findFirst()
+                .orElse(null);
+        if(!role.equals("ROLE_PATIENT")){
+            return ResponseEntity.status(401).build();
+        }
         Appointments appointment = appointmentService.createAppointment(
-                request.getPatientId(),
+                userId,
                 request.getDoctorId(),
                 request.getDate(),
                 request.getTimeSlot(),

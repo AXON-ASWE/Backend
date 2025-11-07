@@ -11,4 +11,5 @@ public class CreateDoctorRequest {
     private int experience = 0;
     private String doctorEmail;
     private String doctorPhone;
+    private String password;
 }

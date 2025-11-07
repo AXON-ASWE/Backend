@@ -11,6 +11,7 @@ import com.swe.project.repositories.DepartmentRepository;
 import com.swe.project.repositories.DoctorRepository;
 import com.swe.project.repositories.UserRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -36,7 +37,7 @@ public class DoctorService {
      * Business logic to create a new Doctor profile
      */
     @Transactional
-    public CreateDoctorResponse createDoctor(CreateDoctorRequest request) {
+    public CreateDoctorResponse createDoctor(CreateDoctorRequest request, PasswordEncoder passwordEncoder) {
         // 1. Find the department
         Departments department = departmentRepository.findById(request.getDepartmentId())
                 .orElse(null);
@@ -48,6 +49,9 @@ public class DoctorService {
 
         // 2. Create a new Users object
         Users newUser = Users.builder()
+                .passwordHash(
+                         request.getPassword()
+                )
                 .fullName(request.getDoctorName())
                 .email(request.getDoctorEmail())
                 .phone(request.getDoctorPhone())
@@ -63,6 +67,7 @@ public class DoctorService {
                 .user(newUser)
                 .experienceYears(request.getExperience())
                 .department(department)
+                .specialization("Bac si chuyen khoa")
                 .build();
 
         // 4. Save to the database
