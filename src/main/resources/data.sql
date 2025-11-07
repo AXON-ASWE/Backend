@@ -214,5 +214,18 @@ INSERT INTO t_appointment (appointment_id, patient_id, doctor_id, appointment_da
 (16, 8, 4, '2025-11-18', 1, 'CANCELLED', 'Khám đau nửa đầu migraine', '2024-11-06 14:00:00');
 
 -- =====================================================
+-- RESET SEQUENCES TO PREVENT DUPLICATE KEY ERRORS
+-- =====================================================
+-- Reset sequence cho t_user để bắt đầu từ ID tiếp theo sau dữ liệu đã insert
+SELECT setval('t_user_user_id_seq', (SELECT MAX(user_id) FROM t_user));
+
+-- Reset sequence cho các bảng khác
+SELECT setval('t_department_department_id_seq', (SELECT MAX(department_id) FROM t_department));
+SELECT setval('t_symptom_symptom_id_seq', (SELECT MAX(symptom_id) FROM t_symptom));
+SELECT setval('t_patient_patient_id_seq', (SELECT MAX(patient_id) FROM t_patient));
+SELECT setval('t_doctor_doctor_id_seq', (SELECT MAX(doctor_id) FROM t_doctor));
+SELECT setval('t_appointment_appointment_id_seq', (SELECT MAX(appointment_id) FROM t_appointment));
+
+-- =====================================================
 -- END OF MOCK DATA
 -- =====================================================
