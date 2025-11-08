@@ -11,12 +11,12 @@
 -- Có thể thay đổi password hash nếu cần
 
 -- Admin Users
-INSERT INTO t_user (user_id, email, password_hash, full_name, phone, gender, date_of_birth, role, status, created_at) VALUES
+INSERT INTO T_USER (USER_ID, EMAIL, PASSWORD_HASH, FULL_NAME, PHONE, GENDER, DATE_OF_BIRTH, ROLE, STATUS, CREATED_AT) VALUES
 (1, 'admin@hospital.com', 'pass1234', 'Nguyễn Văn Admin', '0901234567', 'Male', '1980-01-15', 'ADMIN', 'ACTIVE', '2024-01-01'),
 (2, 'admin2@hospital.com', 'pass1234', 'Trần Thị Quản Trị', '0901234568', 'Female', '1985-03-20', 'ADMIN', 'ACTIVE', '2024-01-01');
 
 -- Doctor Users
-INSERT INTO t_user (user_id, email, password_hash, full_name, phone, gender, date_of_birth, role, status, created_at) VALUES
+INSERT INTO T_USER (USER_ID, EMAIL, PASSWORD_HASH, FULL_NAME, PHONE, GENDER, DATE_OF_BIRTH, ROLE, STATUS, CREATED_AT) VALUES
 (3, 'doctor.nguyen@hospital.com', 'pass1234', 'Bs. Nguyễn Văn Hùng', '0912345678', 'Male', '1975-06-10', 'DOCTOR', 'ACTIVE', '2024-01-02'),
 (4, 'doctor.tran@hospital.com', 'pass1234', 'Bs. Trần Thị Mai', '0912345679', 'Female', '1980-08-25', 'DOCTOR', 'ACTIVE', '2024-01-02'),
 (5, 'doctor.le@hospital.com', 'pass1234', 'Bs. Lê Minh Tuấn', '0912345680', 'Male', '1982-11-05', 'DOCTOR', 'ACTIVE', '2024-01-02'),
@@ -25,7 +25,7 @@ INSERT INTO t_user (user_id, email, password_hash, full_name, phone, gender, dat
 (8, 'doctor.vu@hospital.com', 'pass1234', 'Bs. Vũ Thị Hương', '0912345683', 'Female', '1981-07-12', 'DOCTOR', 'ACTIVE', '2024-01-02');
 
 -- Patient Users
-INSERT INTO t_user (user_id, email, password_hash, full_name, phone, gender, date_of_birth, role, status, created_at) VALUES
+INSERT INTO T_USER (USER_ID, EMAIL, PASSWORD_HASH, FULL_NAME, PHONE, GENDER, DATE_OF_BIRTH, ROLE, STATUS, CREATED_AT) VALUES
 (9, 'patient1@gmail.com', 'pass1234', 'Nguyễn Thị Lan', '0923456789', 'Female', '1990-03-15', 'PATIENT', 'ACTIVE', '2024-02-01'),
 (10, 'patient2@gmail.com', 'pass1234', 'Trần Văn Nam', '0923456790', 'Male', '1985-07-20', 'PATIENT', 'ACTIVE', '2024-02-02'),
 (11, 'patient3@gmail.com', 'pass1234', 'Lê Thị Hoa', '0923456791', 'Female', '1992-11-08', 'PATIENT', 'ACTIVE', '2024-02-03'),
@@ -38,7 +38,7 @@ INSERT INTO t_user (user_id, email, password_hash, full_name, phone, gender, dat
 -- =====================================================
 -- 2. INSERT DEPARTMENTS (T_DEPARTMENT)
 -- =====================================================
-INSERT INTO t_department (department_id, department_name, description, location) VALUES
+INSERT INTO T_DEPARTMENT (DEPARTMENT_ID, DEPARTMENT_NAME, DESCRIPTION, LOCATION) VALUES
 (1, 'Khoa Tim Mạch', 'Chuyên về điều trị các bệnh về tim mạch, huyết áp, nhồi máu cơ tim', 'Tầng 3, Khu A'),
 (2, 'Khoa Nội Tiết', 'Điều trị các bệnh về nội tiết, tiểu đường, tuyến giáp', 'Tầng 2, Khu A'),
 (3, 'Khoa Tiêu Hóa', 'Chuyên khoa về dạ dày, ruột, gan mật', 'Tầng 4, Khu B'),
@@ -50,7 +50,7 @@ INSERT INTO t_department (department_id, department_name, description, location)
 -- =====================================================
 -- 3. INSERT SYMPTOMS (T_SYMPTOM)
 -- =====================================================
-INSERT INTO t_symptom (symptom_id, symptom_name, description, tag) VALUES
+INSERT INTO T_SYMPTOM (SYMPTOM_ID, SYMPTOM_NAME, DESCRIPTION, TAG) VALUES
 -- Tim Mạch
 (1, 'Đau ngực', 'Cảm giác đau, tức ngực, khó thở', 'cardiac'),
 (2, 'Tim đập nhanh', 'Nhịp tim tăng cao bất thường', 'cardiac'),
@@ -81,33 +81,33 @@ INSERT INTO t_symptom (symptom_id, symptom_name, description, tag) VALUES
 -- 4. INSERT DEPARTMENT-SYMPTOM RELATIONSHIPS (T_DEPARTMENT_SYMPTOM)
 -- =====================================================
 -- Tim Mạch
-INSERT INTO t_department_symptom (department_id, symptom_id) VALUES
+INSERT INTO T_DEPARTMENT_SYMPTOM (DEPARTMENT_ID, SYMPTOM_ID) VALUES
 (1, 1), (1, 2), (1, 3), (1, 12);
 
 -- Nội Tiết
-INSERT INTO t_department_symptom (department_id, symptom_id) VALUES
+INSERT INTO T_DEPARTMENT_SYMPTOM (DEPARTMENT_ID, SYMPTOM_ID) VALUES
 (2, 4), (2, 5), (2, 6);
 
 -- Tiêu Hóa
-INSERT INTO t_department_symptom (department_id, symptom_id) VALUES
+INSERT INTO T_DEPARTMENT_SYMPTOM (DEPARTMENT_ID, SYMPTOM_ID) VALUES
 (3, 7), (3, 8), (3, 9), (3, 10);
 
 -- Thần Kinh
-INSERT INTO t_department_symptom (department_id, symptom_id) VALUES
+INSERT INTO T_DEPARTMENT_SYMPTOM (DEPARTMENT_ID, SYMPTOM_ID) VALUES
 (4, 11), (4, 12), (4, 13);
 
 -- Da Liễu
-INSERT INTO t_department_symptom (department_id, symptom_id) VALUES
+INSERT INTO T_DEPARTMENT_SYMPTOM (DEPARTMENT_ID, SYMPTOM_ID) VALUES
 (5, 14), (5, 15), (5, 16);
 
 -- Tai Mũi Họng
-INSERT INTO t_department_symptom (department_id, symptom_id) VALUES
+INSERT INTO T_DEPARTMENT_SYMPTOM (DEPARTMENT_ID, SYMPTOM_ID) VALUES
 (6, 17), (6, 18), (6, 19);
 
 -- =====================================================
 -- 5. INSERT PATIENTS (T_PATIENT)
 -- =====================================================
-INSERT INTO t_patient (patient_id, user_id, address, emergency_contact, insurance_number) VALUES
+INSERT INTO T_PATIENT (PATIENT_ID, USER_ID, ADDRESS, EMERGENCY_CONTACT, INSURANCE_NUMBER) VALUES
 (1, 9, '123 Lê Lợi, Quận 1, TP.HCM', '0987654321', 'BH123456789'),
 (2, 10, '456 Trần Hưng Đạo, Quận 5, TP.HCM', '0987654322', 'BH123456790'),
 (3, 11, '789 Nguyễn Trãi, Quận 1, TP.HCM', '0987654323', 'BH123456791'),
@@ -120,7 +120,7 @@ INSERT INTO t_patient (patient_id, user_id, address, emergency_contact, insuranc
 -- =====================================================
 -- 6. INSERT DOCTORS (T_DOCTOR)
 -- =====================================================
-INSERT INTO t_doctor (doctor_id, user_id, specialization, experience_years, qualifications, department_id) VALUES
+INSERT INTO T_DOCTOR (DOCTOR_ID, USER_ID, SPECIALIZATION, EXPERIENCE_YEARS, QUALIFICATIONS, DEPARTMENT_ID) VALUES
 (1, 3, 'Tim Mạch Học', 15, 'Bác sĩ chuyên khoa II Tim Mạch, Thạc sĩ Y học', 1),
 (2, 4, 'Nội Tiết', 12, 'Bác sĩ chuyên khoa I Nội Tiết, Tiến sĩ Y học', 2),
 (3, 5, 'Tiêu Hóa', 10, 'Bác sĩ chuyên khoa I Tiêu Hóa', 3),
@@ -132,7 +132,7 @@ INSERT INTO t_doctor (doctor_id, user_id, specialization, experience_years, qual
 -- 7. INSERT DOCTOR WORKSHIFTS (T_DOCTOR_WORKSHIFT)
 -- =====================================================
 -- Bác sĩ 1 (Tim Mạch): Thứ 2, 4, 6
-INSERT INTO t_doctor_workshift (doctor_id, day_of_week, start_time, end_time) VALUES
+INSERT INTO T_DOCTOR_WORKSHIFT (DOCTOR_ID, DAY_OF_WEEK, START_TIME, END_TIME) VALUES
 (1, 'MONDAY', '08:00:00', '12:00:00'),
 (1, 'MONDAY', '13:00:00', '17:00:00'),
 (1, 'WEDNESDAY', '08:00:00', '12:00:00'),
@@ -141,7 +141,7 @@ INSERT INTO t_doctor_workshift (doctor_id, day_of_week, start_time, end_time) VA
 (1, 'FRIDAY', '13:00:00', '17:00:00');
 
 -- Bác sĩ 2 (Nội Tiết): Thứ 3, 5, 7
-INSERT INTO t_doctor_workshift (doctor_id, day_of_week, start_time, end_time) VALUES
+INSERT INTO T_DOCTOR_WORKSHIFT (DOCTOR_ID, DAY_OF_WEEK, START_TIME, END_TIME) VALUES
 (2, 'TUESDAY', '08:00:00', '12:00:00'),
 (2, 'TUESDAY', '13:00:00', '17:00:00'),
 (2, 'THURSDAY', '08:00:00', '12:00:00'),
@@ -149,14 +149,14 @@ INSERT INTO t_doctor_workshift (doctor_id, day_of_week, start_time, end_time) VA
 (2, 'SATURDAY', '08:00:00', '12:00:00');
 
 -- Bác sĩ 3 (Tiêu Hóa): Thứ 2, 3, 4
-INSERT INTO t_doctor_workshift (doctor_id, day_of_week, start_time, end_time) VALUES
+INSERT INTO T_DOCTOR_WORKSHIFT (DOCTOR_ID, DAY_OF_WEEK, START_TIME, END_TIME) VALUES
 (3, 'MONDAY', '08:00:00', '12:00:00'),
 (3, 'TUESDAY', '13:00:00', '17:00:00'),
 (3, 'WEDNESDAY', '08:00:00', '12:00:00'),
 (3, 'THURSDAY', '13:00:00', '17:00:00');
 
 -- Bác sĩ 4 (Thần Kinh): Thứ 4, 5, 6
-INSERT INTO t_doctor_workshift (doctor_id, day_of_week, start_time, end_time) VALUES
+INSERT INTO T_DOCTOR_WORKSHIFT (DOCTOR_ID, DAY_OF_WEEK, START_TIME, END_TIME) VALUES
 (4, 'WEDNESDAY', '08:00:00', '12:00:00'),
 (4, 'WEDNESDAY', '13:00:00', '17:00:00'),
 (4, 'THURSDAY', '08:00:00', '12:00:00'),
@@ -164,7 +164,7 @@ INSERT INTO t_doctor_workshift (doctor_id, day_of_week, start_time, end_time) VA
 (4, 'SATURDAY', '08:00:00', '12:00:00');
 
 -- Bác sĩ 5 (Da Liễu): Thứ 2, 4, 6, 7
-INSERT INTO t_doctor_workshift (doctor_id, day_of_week, start_time, end_time) VALUES
+INSERT INTO T_DOCTOR_WORKSHIFT (DOCTOR_ID, DAY_OF_WEEK, START_TIME, END_TIME) VALUES
 (5, 'MONDAY', '13:00:00', '17:00:00'),
 (5, 'WEDNESDAY', '13:00:00', '17:00:00'),
 (5, 'FRIDAY', '08:00:00', '12:00:00'),
@@ -172,7 +172,7 @@ INSERT INTO t_doctor_workshift (doctor_id, day_of_week, start_time, end_time) VA
 (5, 'SATURDAY', '08:00:00', '12:00:00');
 
 -- Bác sĩ 6 (Tai Mũi Họng): Thứ 3, 5, 7
-INSERT INTO t_doctor_workshift (doctor_id, day_of_week, start_time, end_time) VALUES
+INSERT INTO T_DOCTOR_WORKSHIFT (DOCTOR_ID, DAY_OF_WEEK, START_TIME, END_TIME) VALUES
 (6, 'TUESDAY', '08:00:00', '12:00:00'),
 (6, 'TUESDAY', '13:00:00', '17:00:00'),
 (6, 'THURSDAY', '08:00:00', '12:00:00'),
@@ -183,7 +183,7 @@ INSERT INTO t_doctor_workshift (doctor_id, day_of_week, start_time, end_time) VA
 -- 8. INSERT APPOINTMENTS (T_APPOINTMENT)
 -- =====================================================
 -- Các cuộc hẹn trong tương lai và quá khứ
-INSERT INTO t_appointment (appointment_id, patient_id, doctor_id, appointment_date, time_slot, status, notes, created_at) VALUES
+INSERT INTO T_APPOINTMENT (APPOINTMENT_ID, PATIENT_ID, DOCTOR_ID, APPOINTMENT_DATE, TIME_SLOT, STATUS, NOTES, CREATED_AT) VALUES
 -- Appointments đã hoàn thành
 (1, 1, 1, '2025-10-15', 1, 'SCHEDULED', 'Khám định kỳ tim mạch. Bệnh nhân đã được kiểm tra ECG.', '2024-10-10 09:30:00'),
 (2, 2, 2, '2025-10-18', 2, 'SCHEDULED', 'Tái khám tiểu đường. Kết quả đường huyết ổn định.', '2024-10-12 10:15:00'),
@@ -219,14 +219,14 @@ INSERT INTO t_appointment (appointment_id, patient_id, doctor_id, appointment_da
 -- RESET SEQUENCES TO PREVENT DUPLICATE KEY ERRORS
 -- =====================================================
 -- Reset sequence cho t_user để bắt đầu từ ID tiếp theo sau dữ liệu đã insert
-SELECT setval('t_user_user_id_seq', (SELECT MAX(user_id) FROM t_user));
+SELECT setval('T_USER_USER_ID_SEQ', (SELECT MAX(USER_ID) FROM T_USER));
 
 -- Reset sequence cho các bảng khác
-SELECT setval('t_department_department_id_seq', (SELECT MAX(department_id) FROM t_department));
-SELECT setval('t_symptom_symptom_id_seq', (SELECT MAX(symptom_id) FROM t_symptom));
-SELECT setval('t_patient_patient_id_seq', (SELECT MAX(patient_id) FROM t_patient));
-SELECT setval('t_doctor_doctor_id_seq', (SELECT MAX(doctor_id) FROM t_doctor));
-SELECT setval('t_appointment_appointment_id_seq', (SELECT MAX(appointment_id) FROM t_appointment));
+SELECT setval('T_DEPARTMENT_DEPARTMENT_ID_SEQ', (SELECT MAX(DEPARTMENT_ID) FROM T_DEPARTMENT));
+SELECT setval('T_SYMPTOM_SYMPTOM_ID_SEQ', (SELECT MAX(SYMPTOM_ID) FROM T_SYMPTOM));
+SELECT setval('T_PATIENT_PATIENT_ID_SEQ', (SELECT MAX(PATIENT_ID) FROM T_PATIENT));
+SELECT setval('T_DOCTOR_DOCTOR_ID_SEQ', (SELECT MAX(DOCTOR_ID) FROM T_DOCTOR));
+SELECT setval('T_APPOINTMENT_APPOINTMENT_ID_SEQ', (SELECT MAX(APPOINTMENT_ID) FROM T_APPOINTMENT));
 
 -- =====================================================
 -- END OF MOCK DATA
