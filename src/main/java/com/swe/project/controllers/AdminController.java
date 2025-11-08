@@ -5,6 +5,10 @@ import com.swe.project.models.admin.*;
 import com.swe.project.models.authentication.AdminRegistrationRequest;
 import com.swe.project.models.authentication.AuthenticationResponse;
 import com.swe.project.services.admin.AdminDepartmentService;
+import com.swe.project.models.admin.PatientResponseDTO;
+import com.swe.project.models.admin.UpdatePatientRequest;
+import com.swe.project.models.authentication.AdminRegistrationRequest;
+import com.swe.project.models.authentication.AuthenticationResponse;
 import com.swe.project.services.admin.AdminPatientService;
 import com.swe.project.services.authentication.AdminRegistrationService;
 import io.swagger.v3.oas.annotations.Operation;
@@ -24,6 +28,7 @@ public class AdminController {
 
     private final AdminRegistrationService adminRegistrationService;
     private final AdminPatientService adminPatientService;
+
     private final AdminDepartmentService adminDepartmentService;
     public AdminController(AdminRegistrationService adminRegistrationService,
                            AdminPatientService adminPatientService, AdminDepartmentService adminDepartmentService) {
@@ -69,6 +74,7 @@ public class AdminController {
         
         return ResponseEntity.noContent().build();
     }
+
     @GetMapping("/department")
     public ResponseEntity<List<DepartmentResponseDTO>> getDepartments() {
         return ResponseEntity.ok(adminDepartmentService.getAllDepartments());
